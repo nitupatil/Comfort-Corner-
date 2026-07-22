@@ -19,13 +19,7 @@
 :root {
 
     --primary: #111827;
-    --secondary: #374151;
-
     --accent: #2563eb;
-
-    --success: #16a34a;
-    --danger: #dc2626;
-    --warning: #d97706;
 
     --background: #f3f4f6;
     --card: #ffffff;
@@ -34,6 +28,9 @@
 
     --text: #111827;
     --muted: #6b7280;
+
+    --success: #16a34a;
+    --danger: #dc2626;
 
     --radius: 20px;
 
@@ -76,6 +73,7 @@ body {
 
 }
 
+
 /* =====================================================
    APP
 ===================================================== */
@@ -84,9 +82,8 @@ body {
 
     min-height: 100vh;
 
-    display: flex;
-
 }
+
 
 /* =====================================================
    SIDEBAR
@@ -109,11 +106,7 @@ body {
 
     position: fixed;
 
-    left: 0;
-
-    top: 0;
-
-    bottom: 0;
+    inset: 0 auto 0 0;
 
     z-index: 1000;
 
@@ -157,8 +150,6 @@ body {
     justify-content: center;
 
     font-size: 22px;
-
-    flex-shrink: 0;
 
 }
 
@@ -319,6 +310,7 @@ body {
 
 }
 
+
 /* =====================================================
    MAIN
 ===================================================== */
@@ -327,15 +319,13 @@ body {
 
     margin-left: 250px;
 
-    width:
-    calc(100% - 250px);
-
     min-height: 100vh;
 
 }
 
+
 /* =====================================================
-   STICKY TOPBAR
+   STICKY HEADER
 ===================================================== */
 
 .topbar {
@@ -344,18 +334,12 @@ body {
 
     top: 0;
 
-    z-index: 900;
+    z-index: 100;
 
     height: 76px;
 
     background:
-    rgba(255,255,255,0.98);
-
-    backdrop-filter:
-    blur(16px);
-
-    -webkit-backdrop-filter:
-    blur(16px);
+    #ffffff;
 
     border-bottom:
     1px solid var(--border);
@@ -371,28 +355,7 @@ body {
 
     box-shadow:
     0 3px 14px
-    rgba(0,0,0,0.04);
-
-}
-
-/* This ensures content stays visually below the header */
-
-.topbar::after {
-
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-
-    right: 0;
-
-    bottom: -1px;
-
-    height: 2px;
-
-    background:
-    rgba(255,255,255,0.98);
+    rgba(0,0,0,0.06);
 
 }
 
@@ -438,14 +401,6 @@ body {
 
     cursor: pointer;
 
-    transition: 0.2s ease;
-
-}
-
-.refresh-btn:hover {
-
-    background: #f9fafb;
-
 }
 
 .refresh-btn.loading {
@@ -483,24 +438,22 @@ body {
 
 }
 
+
 /* =====================================================
    CONTENT
 ===================================================== */
 
 .content {
 
+    padding:
+    28px 30px 50px;
+
     position: relative;
 
     z-index: 1;
 
-    padding:
-    28px 30px 40px;
-
-    max-width: 1600px;
-
-    margin: auto;
-
 }
+
 
 /* =====================================================
    WELCOME
@@ -541,6 +494,7 @@ body {
 
 }
 
+
 /* =====================================================
    KPI
 ===================================================== */
@@ -550,10 +504,7 @@ body {
     display: grid;
 
     grid-template-columns:
-    repeat(
-        4,
-        minmax(0,1fr)
-    );
+    repeat(4, minmax(0, 1fr));
 
     gap: 18px;
 
@@ -669,8 +620,9 @@ body {
 
 }
 
+
 /* =====================================================
-   GRID
+   DASHBOARD GRID
 ===================================================== */
 
 .dashboard-grid {
@@ -678,8 +630,8 @@ body {
     display: grid;
 
     grid-template-columns:
-    minmax(0,1.4fr)
-    minmax(300px,0.8fr);
+    minmax(0, 1.4fr)
+    minmax(300px, 0.8fr);
 
     gap: 20px;
 
@@ -734,6 +686,7 @@ body {
 
 }
 
+
 /* =====================================================
    OCCUPANCY
 ===================================================== */
@@ -759,10 +712,10 @@ body {
     background:
     conic-gradient(
         var(--accent)
-        var(--occupancy,0%),
+        var(--occupancy, 0%),
 
         #e5e7eb
-        var(--occupancy,0%)
+        var(--occupancy, 0%)
     );
 
     display: flex;
@@ -848,6 +801,7 @@ body {
     #d1d5db;
 
 }
+
 
 /* =====================================================
    TRANSACTIONS
@@ -949,6 +903,7 @@ body {
 
 }
 
+
 /* =====================================================
    QUICK ACTIONS
 ===================================================== */
@@ -958,7 +913,7 @@ body {
     display: grid;
 
     grid-template-columns:
-    repeat(2,1fr);
+    repeat(2, 1fr);
 
     gap: 12px;
 
@@ -1018,8 +973,9 @@ body {
 
 }
 
+
 /* =====================================================
-   EMPTY
+   EMPTY STATE
 ===================================================== */
 
 .empty-state {
@@ -1034,6 +990,7 @@ body {
 
 }
 
+
 /* =====================================================
    LOADING
 ===================================================== */
@@ -1045,7 +1002,7 @@ body {
     inset: 0;
 
     background:
-    rgba(255,255,255,0.75);
+    rgba(255,255,255,0.8);
 
     backdrop-filter:
     blur(5px);
@@ -1109,6 +1066,7 @@ body {
 
 }
 
+
 /* =====================================================
    TOAST
 ===================================================== */
@@ -1159,6 +1117,7 @@ body {
 
 }
 
+
 /* =====================================================
    MOBILE
 ===================================================== */
@@ -1190,7 +1149,7 @@ body {
     .kpi-grid {
 
         grid-template-columns:
-        repeat(2,1fr);
+        repeat(2, 1fr);
 
     }
 
@@ -1216,8 +1175,6 @@ body {
 
         margin-left: 0;
 
-        width: 100%;
-
     }
 
     .mobile-header {
@@ -1226,7 +1183,9 @@ body {
 
     }
 
-    .sidebar-overlay {
+    .sidebar-overlay.show {
+
+        display: block;
 
         position: fixed;
 
@@ -1236,12 +1195,6 @@ body {
         rgba(0,0,0,0.35);
 
         z-index: 950;
-
-    }
-
-    .sidebar-overlay.show {
-
-        display: block;
 
     }
 
@@ -1286,7 +1239,7 @@ body {
     .kpi-grid {
 
         grid-template-columns:
-        repeat(2,1fr);
+        repeat(2, 1fr);
 
         gap: 12px;
 
@@ -1351,7 +1304,7 @@ body {
                 class="brand-title"
                 id="brandName"
             >
-                PG ERP
+                Loading...
             </div>
 
             <div class="brand-subtitle">
@@ -1442,7 +1395,7 @@ body {
                 ></span>
 
                 <span id="syncText">
-                    Syncing...
+                    Connecting...
                 </span>
 
             </div>
@@ -1466,13 +1419,15 @@ body {
     onclick="closeSidebar()"
 ></div>
 
+
 <!-- =====================================================
      MAIN
 ===================================================== -->
 
 <main class="main">
 
-    <!-- STICKY HEADER -->
+
+    <!-- STICKY DASHBOARD HEADER -->
 
     <header class="topbar">
 
@@ -1522,9 +1477,13 @@ body {
 
     </header>
 
-    <!-- PAGE CONTENT -->
+
+    <!-- CONTENT -->
 
     <section class="content">
+
+
+        <!-- WELCOME -->
 
         <div class="welcome-card">
 
@@ -1538,7 +1497,11 @@ body {
 
         </div>
 
+
+        <!-- KPI -->
+
         <div class="kpi-grid">
+
 
             <div class="kpi-card">
 
@@ -1567,6 +1530,7 @@ body {
 
             </div>
 
+
             <div class="kpi-card">
 
                 <div class="kpi-top">
@@ -1594,6 +1558,7 @@ body {
 
             </div>
 
+
             <div class="kpi-card">
 
                 <div class="kpi-top">
@@ -1620,6 +1585,7 @@ body {
                 </div>
 
             </div>
+
 
             <div class="kpi-card">
 
@@ -1651,9 +1617,16 @@ body {
 
             </div>
 
+
         </div>
 
+
+        <!-- MAIN GRID -->
+
         <div class="dashboard-grid">
+
+
+            <!-- RECENT PAYMENTS -->
 
             <div class="panel">
 
@@ -1685,6 +1658,9 @@ body {
 
             </div>
 
+
+            <!-- RIGHT SIDE -->
+
             <div
                 style="
                 display:flex;
@@ -1692,6 +1668,9 @@ body {
                 gap:20px;
                 "
             >
+
+
+                <!-- OCCUPANCY -->
 
                 <div class="panel">
 
@@ -1761,6 +1740,9 @@ body {
 
                 </div>
 
+
+                <!-- QUICK ACTIONS -->
+
                 <div class="panel">
 
                     <div class="panel-header">
@@ -1792,6 +1774,7 @@ body {
 
                         </button>
 
+
                         <button
                             class="quick-action"
                             onclick="navigateTo('payments.html')"
@@ -1811,6 +1794,7 @@ body {
 
                         </button>
 
+
                         <button
                             class="quick-action"
                             onclick="navigateTo('rooms.html')"
@@ -1829,6 +1813,7 @@ body {
                             </div>
 
                         </button>
+
 
                         <button
                             class="quick-action"
@@ -1863,6 +1848,9 @@ body {
 
 </div>
 
+
+<!-- LOADING -->
+
 <div
     class="loading-overlay"
     id="loadingOverlay"
@@ -1880,12 +1868,17 @@ body {
 
 </div>
 
+
+<!-- TOAST -->
+
 <div
     class="toast"
     id="toast"
 ></div>
 
+
 <script>
+
 
 /* =====================================================
    API CONFIGURATION
@@ -1894,11 +1887,14 @@ body {
 const API_URL =
 "https://script.google.com/macros/s/AKfycbzpHr7CS-ELRUXe8QSnKY7HgE8H3ShBCX-8jcr7pEzY5lFwNLWhtHRpu2uX1g4PsPcq/exec";
 
-const DASHBOARD_CACHE_KEY =
-"pg_erp_dashboard_cache_v2";
 
 const SETTINGS_CACHE_KEY =
-"pg_erp_settings_cache_v2";
+"pg_erp_settings_cache_v3";
+
+
+const DASHBOARD_CACHE_KEY =
+"pg_erp_dashboard_cache_v3";
+
 
 let settings = {};
 
@@ -1910,20 +1906,23 @@ let dashboardData = null;
 ===================================================== */
 
 document.addEventListener(
-"DOMContentLoaded",
-async function() {
 
-    setCurrentDate();
+    "DOMContentLoaded",
 
-    loadCachedSettings();
+    async function() {
 
-    loadCachedDashboard();
+        setCurrentDate();
 
-    await loadSettings();
+        loadCachedSettings();
 
-    await loadDashboard();
+        loadCachedDashboard();
 
-}
+        await loadSettings();
+
+        await loadDashboard();
+
+    }
+
 );
 
 
@@ -1932,16 +1931,23 @@ async function() {
 ===================================================== */
 
 async function apiRequest(
+
     action,
+
     data = {}
+
 ) {
 
     const response =
+
         await fetch(
+
             API_URL,
+
             {
 
-                method: "POST",
+                method:
+                "POST",
 
                 headers: {
 
@@ -1951,16 +1957,21 @@ async function apiRequest(
                 },
 
                 body:
-                JSON.stringify({
 
-                    action: action,
+                    JSON.stringify({
 
-                    data: data
+                        action:
+                        action,
 
-                })
+                        data:
+                        data
+
+                    })
 
             }
+
         );
+
 
     if (!response.ok) {
 
@@ -1970,19 +1981,23 @@ async function apiRequest(
 
     }
 
+
     const result =
         await response.json();
+
 
     if (!result.success) {
 
         throw new Error(
 
             result.message ||
+
             "API request failed"
 
         );
 
     }
+
 
     return result;
 
@@ -1998,30 +2013,32 @@ async function loadSettings() {
     try {
 
         const result =
+
             await apiRequest(
                 "getSettings"
             );
 
+
         /*
-           Expected backend response:
+         * BACKEND RESPONSE:
+         *
+         * {
+         *   success: true,
+         *
+         *   data: {
+         *
+         *     pgName:
+         *     "My Comfirt Corner PG"
+         *
+         *   }
+         * }
+         */
 
-           {
-               success: true,
-
-               data: {
-
-                   pgName:
-                   "Name from SETTINGS!C2"
-
-               }
-
-           }
-        */
 
         settings =
-            normalizeSettings(
-                result.data
-            );
+
+            result.data || {};
+
 
         localStorage.setItem(
 
@@ -2033,85 +2050,22 @@ async function loadSettings() {
 
         );
 
+
         applySettings();
 
     }
 
     catch(error) {
 
-        console.warn(
+        console.error(
+
             "Settings sync failed:",
-            error.message
+
+            error
+
         );
 
     }
-
-}
-
-
-/* =====================================================
-   SETTINGS NORMALIZER
-===================================================== */
-
-function normalizeSettings(data) {
-
-    if (!data) {
-
-        return {};
-
-    }
-
-    /*
-       Expected:
-
-       {
-           pgName: "Comfort Corner"
-       }
-    */
-
-    if (
-        data.pgName !== undefined
-    ) {
-
-        return data;
-
-    }
-
-    /*
-       Fallback if backend
-       returns array
-    */
-
-    if (
-        Array.isArray(data)
-    ) {
-
-        const result = {};
-
-        data.forEach(
-            function(row) {
-
-                const key =
-                    row["Setting Name"];
-
-                const value =
-                    row["Value"];
-
-                if (key) {
-
-                    result[key] =
-                        value;
-
-                }
-
-            }
-        );
-
-        return result;
-
-    }
-
-    return data;
 
 }
 
@@ -2122,32 +2076,52 @@ function normalizeSettings(data) {
 
 function applySettings() {
 
-    /*
-       PG NAME COMES FROM:
-
-       SETTINGS!C2
-
-       through backend:
-
-       settings.pgName
-    */
-
     const pgName =
-        settings.pgName ||
-        "PG ERP";
+
+        String(
+
+            settings.pgName ||
+
+            ""
+
+        ).trim();
+
+
+    /*
+     * DO NOT SHOW PG ERP IF
+     * THE BACKEND HAS NOT RETURNED
+     * A PG NAME.
+     */
+
+
+    if (!pgName) {
+
+        return;
+
+    }
+
 
     document.title =
+
         pgName +
         " - Dashboard";
 
-    document.getElementById(
-        "brandName"
-    ).textContent =
-        pgName;
 
     document.getElementById(
-        "welcomeTitle"
+
+        "brandName"
+
     ).textContent =
+
+        pgName;
+
+
+    document.getElementById(
+
+        "welcomeTitle"
+
+    ).textContent =
+
         "Welcome to " +
         pgName +
         " 👋";
@@ -2156,7 +2130,7 @@ function applySettings() {
 
 
 /* =====================================================
-   LOAD CACHED SETTINGS
+   CACHED SETTINGS
 ===================================================== */
 
 function loadCachedSettings() {
@@ -2164,19 +2138,34 @@ function loadCachedSettings() {
     try {
 
         const cached =
+
             localStorage.getItem(
+
                 SETTINGS_CACHE_KEY
+
             );
+
+
+        if (!cached) {
+
+            return;
+
+        }
+
+
+        const parsed =
+
+            JSON.parse(
+                cached
+            );
+
 
         if (
 
-            !cached ||
+            !parsed ||
 
-            cached ===
-            "undefined" ||
-
-            cached ===
-            "null"
+            typeof parsed !==
+            "object"
 
         ) {
 
@@ -2184,10 +2173,10 @@ function loadCachedSettings() {
 
         }
 
+
         settings =
-            JSON.parse(
-                cached
-            );
+            parsed;
+
 
         applySettings();
 
@@ -2196,11 +2185,14 @@ function loadCachedSettings() {
     catch(error) {
 
         console.warn(
-            "Invalid settings cache removed"
+            "Invalid settings cache cleared"
         );
 
+
         localStorage.removeItem(
+
             SETTINGS_CACHE_KEY
+
         );
 
     }
@@ -2217,26 +2209,38 @@ async function loadDashboard() {
     try {
 
         const result =
+
             await apiRequest(
+
                 "getDashboardData"
+
             );
 
+
         dashboardData =
+
             result.data;
+
 
         localStorage.setItem(
 
             DASHBOARD_CACHE_KEY,
 
             JSON.stringify(
+
                 dashboardData
+
             )
 
         );
 
+
         renderDashboard(
+
             dashboardData
+
         );
+
 
         updateSyncStatus(
             true
@@ -2247,17 +2251,27 @@ async function loadDashboard() {
     catch(error) {
 
         console.error(
+
             "Dashboard sync failed:",
+
             error
+
         );
+
 
         updateSyncStatus(
+
             false
+
         );
 
+
         showToast(
+
             "Could not fetch dashboard data",
+
             true
+
         );
 
     }
@@ -2272,7 +2286,7 @@ async function loadDashboard() {
 
 
 /* =====================================================
-   LOAD DASHBOARD CACHE
+   CACHED DASHBOARD
 ===================================================== */
 
 function loadCachedDashboard() {
@@ -2280,19 +2294,34 @@ function loadCachedDashboard() {
     try {
 
         const cached =
+
             localStorage.getItem(
+
                 DASHBOARD_CACHE_KEY
+
             );
+
+
+        if (!cached) {
+
+            return;
+
+        }
+
+
+        const parsed =
+
+            JSON.parse(
+                cached
+            );
+
 
         if (
 
-            !cached ||
+            !parsed ||
 
-            cached ===
-            "undefined" ||
-
-            cached ===
-            "null"
+            typeof parsed !==
+            "object"
 
         ) {
 
@@ -2300,18 +2329,23 @@ function loadCachedDashboard() {
 
         }
 
+
         dashboardData =
-            JSON.parse(
-                cached
-            );
+            parsed;
+
 
         renderDashboard(
+
             dashboardData
+
         );
 
         updateSyncStatus(
+
             false,
+
             true
+
         );
 
     }
@@ -2319,11 +2353,16 @@ function loadCachedDashboard() {
     catch(error) {
 
         console.warn(
-            "Invalid dashboard cache removed"
+
+            "Invalid dashboard cache cleared"
+
         );
 
+
         localStorage.removeItem(
+
             DASHBOARD_CACHE_KEY
+
         );
 
     }
@@ -2343,11 +2382,16 @@ function renderDashboard(data) {
 
     }
 
+
     const dashboard =
+
         data.dashboard ||
+
         data;
 
+
     const revenue =
+
         Number(
 
             dashboard.revenue ||
@@ -2360,7 +2404,9 @@ function renderDashboard(data) {
 
         );
 
+
     const expenses =
+
         Number(
 
             dashboard.expenses ||
@@ -2373,7 +2419,9 @@ function renderDashboard(data) {
 
         );
 
+
     const profit =
+
         Number(
 
             dashboard.profit ||
@@ -2385,11 +2433,16 @@ function renderDashboard(data) {
 
         );
 
+
     const occupancy =
+
         dashboard.occupancy ||
+
         {};
 
+
     const occupied =
+
         Number(
 
             occupancy.occupied ||
@@ -2400,7 +2453,9 @@ function renderDashboard(data) {
 
         );
 
+
     const available =
+
         Number(
 
             occupancy.available ||
@@ -2411,7 +2466,9 @@ function renderDashboard(data) {
 
         );
 
+
     const total =
+
         Number(
 
             occupancy.total ||
@@ -2423,10 +2480,12 @@ function renderDashboard(data) {
 
         );
 
+
     const percentage =
+
         total > 0
 
-        ?
+            ?
 
         Math.round(
 
@@ -2436,64 +2495,107 @@ function renderDashboard(data) {
 
         )
 
-        :
+            :
 
         0;
 
+
     document.getElementById(
+
         "revenueValue"
+
     ).textContent =
+
         formatCurrency(
+
             revenue
+
         );
 
+
     document.getElementById(
+
         "expensesValue"
+
     ).textContent =
+
         formatCurrency(
+
             expenses
+
         );
 
+
     document.getElementById(
+
         "profitValue"
+
     ).textContent =
+
         formatCurrency(
+
             profit
+
         );
 
+
     document.getElementById(
+
         "occupancyValue"
+
     ).textContent =
+
         percentage +
         "%";
 
+
     document.getElementById(
+
         "occupancySub"
+
     ).textContent =
 
         occupied +
+
         " of " +
+
         total +
+
         " beds";
 
+
     document.getElementById(
+
         "progressValue"
+
     ).textContent =
+
         percentage +
         "%";
 
+
     document.getElementById(
+
         "occupiedBeds"
+
     ).textContent =
+
         occupied;
 
-    document.getElementById(
-        "availableBeds"
-    ).textContent =
-        available;
 
     document.getElementById(
+
+        "availableBeds"
+
+    ).textContent =
+
+        available;
+
+
+    document.getElementById(
+
         "progressRing"
+
     ).style.setProperty(
 
         "--occupancy",
@@ -2503,16 +2605,20 @@ function renderDashboard(data) {
 
     );
 
-    const transactions =
 
-        dashboard.recentTransactions ||
+    const transactions =
 
         dashboard.recentPayments ||
 
+        dashboard.recentTransactions ||
+
         [];
 
+
     renderTransactions(
+
         transactions
+
     );
 
 }
@@ -2523,18 +2629,26 @@ function renderDashboard(data) {
 ===================================================== */
 
 function renderTransactions(
+
     transactions
+
 ) {
 
     const container =
+
         document.getElementById(
+
             "transactionList"
+
         );
+
 
     if (
 
         !Array.isArray(
+
             transactions
+
         ) ||
 
         transactions.length === 0
@@ -2555,106 +2669,111 @@ function renderTransactions(
 
     }
 
+
     container.innerHTML =
 
         transactions
 
-        .slice(0,8)
+            .slice(0, 8)
 
-        .map(
+            .map(
 
-            function(payment) {
+                function(payment) {
 
-                const amount =
-                    Number(
+                    const amount =
 
-                        payment.Amount ||
+                        Number(
 
-                        payment.amount ||
+                            payment.Amount ||
 
-                        0
+                            payment.amount ||
 
-                    );
+                            0
 
-                const name =
+                        );
 
-                    payment["Tenant Name"] ||
 
-                    payment.tenant_name ||
+                    const name =
 
-                    payment.FullName ||
+                        payment["Tenant Name"] ||
 
-                    payment.full_name ||
+                        payment.tenant_name ||
 
-                    payment["Tenant ID"] ||
+                        payment.FullName ||
 
-                    payment.tenant_id ||
+                        payment.full_name ||
 
-                    "Tenant";
+                        payment["Tenant ID"] ||
 
-                const date =
+                        payment.tenant_id ||
 
-                    payment["Payment Date"] ||
+                        "Tenant";
 
-                    payment.payment_date ||
 
-                    payment.date;
+                    const date =
 
-                return `
+                        payment["Payment Date"] ||
 
-                    <div
-                        class="transaction"
-                    >
+                        payment.payment_date ||
+
+                        payment.date;
+
+
+                    return `
 
                         <div
-                            class="transaction-left"
+                            class="transaction"
                         >
 
                             <div
-                                class="transaction-icon"
+                                class="transaction-left"
                             >
-                                ₹
+
+                                <div
+                                    class="transaction-icon"
+                                >
+                                    ₹
+                                </div>
+
+                                <div>
+
+                                    <div
+                                        class="transaction-name"
+                                    >
+
+                                        ${escapeHtml(name)}
+
+                                    </div>
+
+                                    <div
+                                        class="transaction-date"
+                                    >
+
+                                        ${formatDate(date)}
+
+                                    </div>
+
+                                </div>
+
                             </div>
 
-                            <div>
+                            <div
+                                class="transaction-amount"
+                            >
 
-                                <div
-                                    class="transaction-name"
-                                >
-
-                                    ${escapeHtml(name)}
-
-                                </div>
-
-                                <div
-                                    class="transaction-date"
-                                >
-
-                                    ${formatDate(date)}
-
-                                </div>
+                                +${formatCurrency(amount)}
 
                             </div>
 
                         </div>
 
-                        <div
-                            class="transaction-amount"
-                        >
+                    `;
 
-                            +${formatCurrency(amount)}
+                }
 
-                        </div>
+            )
 
-                    </div>
-
-                `;
-
-            }
-
-        )
-
-        .join("");
+            .join("");
 
 }
 
@@ -2666,24 +2785,36 @@ function renderTransactions(
 async function refreshDashboard() {
 
     const button =
+
         document.getElementById(
+
             "refreshBtn"
+
         );
 
+
     button.classList.add(
+
         "loading"
+
     );
+
 
     button.textContent =
         "↻ Syncing...";
+
 
     await loadSettings();
 
     await loadDashboard();
 
+
     button.classList.remove(
+
         "loading"
+
     );
+
 
     button.textContent =
         "↻ Refresh";
@@ -2704,30 +2835,48 @@ function updateSyncStatus(
 ) {
 
     const dot =
+
         document.getElementById(
+
             "syncDot"
+
         );
+
 
     const text =
+
         document.getElementById(
+
             "syncText"
+
         );
 
+
     const last =
+
         document.getElementById(
+
             "lastSync"
+
         );
+
 
     if (online) {
 
         dot.classList.remove(
+
             "offline"
+
         );
 
+
         text.textContent =
+
             "Synced with backend";
 
+
         last.textContent =
+
             "Updated just now";
 
     }
@@ -2735,30 +2884,34 @@ function updateSyncStatus(
     else {
 
         dot.classList.add(
+
             "offline"
+
         );
+
 
         text.textContent =
 
             cached
 
-            ?
+                ?
 
             "Using cached data"
 
-            :
+                :
 
             "Offline";
+
 
         last.textContent =
 
             cached
 
-            ?
+                ?
 
             "Will sync when available"
 
-            :
+                :
 
             "Connection unavailable";
 
@@ -2778,42 +2931,70 @@ function navigateTo(page) {
 
 }
 
+
 function toggleSidebar() {
 
     document
+
         .getElementById(
+
             "sidebar"
+
         )
+
         .classList.toggle(
+
             "open"
+
         );
 
+
     document
+
         .getElementById(
+
             "sidebarOverlay"
+
         )
+
         .classList.toggle(
+
             "show"
+
         );
 
 }
 
+
 function closeSidebar() {
 
     document
+
         .getElementById(
+
             "sidebar"
+
         )
+
         .classList.remove(
+
             "open"
+
         );
 
+
     document
+
         .getElementById(
+
             "sidebarOverlay"
+
         )
+
         .classList.remove(
+
             "show"
+
         );
 
 }
@@ -2828,8 +3009,11 @@ function setCurrentDate() {
     const date =
         new Date();
 
+
     document.getElementById(
+
         "currentDate"
+
     ).textContent =
 
         date.toLocaleDateString(
@@ -2862,23 +3046,19 @@ function setCurrentDate() {
 ===================================================== */
 
 function formatCurrency(
+
     amount
+
 ) {
-
-    const symbol =
-
-        settings.currencySymbol ||
-
-        settings["Currency Symbol"] ||
-
-        "₹";
 
     return (
 
-        symbol +
+        "₹" +
 
         Number(
+
             amount
+
         ).toLocaleString(
 
             "en-IN",
@@ -2902,7 +3082,9 @@ function formatCurrency(
 ===================================================== */
 
 function formatDate(
+
     value
+
 ) {
 
     if (!value) {
@@ -2911,15 +3093,22 @@ function formatDate(
 
     }
 
+
     const date =
+
         new Date(
+
             value
+
         );
+
 
     if (
 
         isNaN(
+
             date.getTime()
+
         )
 
     ) {
@@ -2927,6 +3116,7 @@ function formatDate(
         return value;
 
     }
+
 
     return date.toLocaleDateString(
 
@@ -2951,41 +3141,60 @@ function formatDate(
 
 
 /* =====================================================
-   ESCAPE HTML
+   HTML ESCAPE
 ===================================================== */
 
 function escapeHtml(
+
     value
+
 ) {
 
     return String(
+
         value || ""
+
     )
 
-    .replace(
-        /&/g,
-        "&amp;"
-    )
+        .replace(
 
-    .replace(
-        /</g,
-        "&lt;"
-    )
+            /&/g,
 
-    .replace(
-        />/g,
-        "&gt;"
-    )
+            "&amp;"
 
-    .replace(
-        /"/g,
-        "&quot;"
-    )
+        )
 
-    .replace(
-        /'/g,
-        "&#039;"
-    );
+        .replace(
+
+            /</g,
+
+            "&lt;"
+
+        )
+
+        .replace(
+
+            />/g,
+
+            "&gt;"
+
+        )
+
+        .replace(
+
+            /"/g,
+
+            "&quot;"
+
+        )
+
+        .replace(
+
+            /'/g,
+
+            "&#039;"
+
+        );
 
 }
 
@@ -2997,8 +3206,11 @@ function escapeHtml(
 function hideLoading() {
 
     document.getElementById(
+
         "loadingOverlay"
+
     ).style.display =
+
         "none";
 
 }
@@ -3017,28 +3229,42 @@ function showToast(
 ) {
 
     const toast =
+
         document.getElementById(
+
             "toast"
+
         );
+
 
     toast.textContent =
         message;
 
+
     toast.classList.toggle(
+
         "error",
+
         error
+
     );
 
+
     toast.classList.add(
+
         "show"
+
     );
+
 
     setTimeout(
 
         function() {
 
             toast.classList.remove(
+
                 "show"
+
             );
 
         },
