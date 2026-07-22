@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -10,1841 +9,794 @@
 <style>
 
 :root {
-
     --primary: #111827;
     --secondary: #374151;
     --accent: #2563eb;
     --success: #16a34a;
     --danger: #dc2626;
     --warning: #d97706;
-
     --background: #f3f4f6;
     --card: #ffffff;
     --border: #e5e7eb;
     --text: #111827;
     --muted: #6b7280;
-
     --radius: 20px;
-
 }
 
-
 * {
-
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
-
 
 body {
-
-    font-family:
-
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     background: var(--background);
-
     color: var(--text);
-
     min-height: 100vh;
-
 }
-
 
 button {
-
     font-family: inherit;
-
 }
-
 
 .app {
-
     min-height: 100vh;
-
     display: flex;
-
 }
 
-
-/* =================================================
-   SIDEBAR
-================================================= */
+/* SIDEBAR */
 
 .sidebar {
-
     width: 250px;
-
-    background:
-
-        linear-gradient(
-
-            145deg,
-
-            #111827,
-
-            #1f2937
-
-        );
-
+    background: linear-gradient(145deg, #111827, #1f2937);
     color: white;
-
     padding: 24px 16px;
-
     position: fixed;
-
     left: 0;
-
     top: 0;
-
     bottom: 0;
-
     z-index: 100;
-
     transition: 0.3s ease;
-
 }
-
 
 .brand {
-
     display: flex;
-
     align-items: center;
-
     gap: 12px;
-
     padding: 0 10px 30px;
-
 }
-
 
 .brand-icon {
-
     width: 44px;
-
     height: 44px;
-
     border-radius: 14px;
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #2563eb,
-
-            #7c3aed
-
-        );
-
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     font-size: 22px;
-
-    box-shadow:
-
-        0 8px 20px
-
-        rgba(
-
-            37,
-
-            99,
-
-            235,
-
-            0.35
-
-        );
-
 }
-
 
 .brand-text {
-
     overflow: hidden;
-
 }
-
 
 .brand-title {
-
     font-size: 17px;
-
     font-weight: 700;
-
     white-space: nowrap;
-
     overflow: hidden;
-
     text-overflow: ellipsis;
-
 }
-
 
 .brand-subtitle {
-
     font-size: 11px;
-
     color: #9ca3af;
-
     margin-top: 3px;
-
 }
-
 
 .nav {
-
     display: flex;
-
     flex-direction: column;
-
     gap: 6px;
-
 }
-
 
 .nav-item {
-
     border: none;
-
     background: transparent;
-
     color: #d1d5db;
-
     width: 100%;
-
     padding: 13px 14px;
-
     border-radius: 13px;
-
     display: flex;
-
     align-items: center;
-
     gap: 12px;
-
     cursor: pointer;
-
     text-align: left;
-
     font-size: 14px;
-
     transition: 0.2s ease;
-
 }
-
 
 .nav-item:hover {
-
-    background:
-
-        rgba(
-
-            255,
-
-            255,
-
-            255,
-
-            0.08
-
-        );
-
+    background: rgba(255,255,255,0.08);
     color: white;
-
 }
-
 
 .nav-item.active {
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #2563eb,
-
-            #4f46e5
-
-        );
-
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
     color: white;
-
-    box-shadow:
-
-        0 8px 20px
-
-        rgba(
-
-            37,
-
-            99,
-
-            235,
-
-            0.3
-
-        );
-
 }
-
 
 .nav-icon {
-
     width: 22px;
-
     text-align: center;
-
     font-size: 18px;
-
 }
-
 
 .sidebar-footer {
-
     position: absolute;
-
     left: 16px;
-
     right: 16px;
-
     bottom: 20px;
-
 }
-
 
 .sync-status {
-
-    background:
-
-        rgba(
-
-            255,
-
-            255,
-
-            255,
-
-            0.07
-
-        );
-
+    background: rgba(255,255,255,0.07);
     border-radius: 14px;
-
     padding: 13px;
-
     font-size: 11px;
-
     color: #d1d5db;
-
 }
-
 
 .sync-row {
-
     display: flex;
-
     align-items: center;
-
     gap: 7px;
-
 }
-
 
 .sync-dot {
-
     width: 8px;
-
     height: 8px;
-
     border-radius: 50%;
-
     background: #22c55e;
-
 }
-
 
 .sync-dot.offline {
-
     background: #ef4444;
-
 }
 
-
-/* =================================================
-   MAIN
-================================================= */
+/* MAIN */
 
 .main {
-
     margin-left: 250px;
-
-    width: calc(
-
-        100% - 250px
-
-    );
-
+    width: calc(100% - 250px);
     min-height: 100vh;
-
 }
-
 
 .topbar {
-
     height: 76px;
-
     background: white;
-
     border-bottom: 1px solid var(--border);
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
     padding: 0 30px;
-
     position: sticky;
-
     top: 0;
-
     z-index: 50;
-
 }
-
 
 .page-title h1 {
-
     font-size: 23px;
-
     font-weight: 750;
-
 }
-
 
 .page-title p {
-
     font-size: 12px;
-
     color: var(--muted);
-
     margin-top: 3px;
-
 }
-
 
 .top-actions {
-
     display: flex;
-
     align-items: center;
-
     gap: 12px;
-
 }
-
 
 .refresh-btn {
-
     border: 1px solid var(--border);
-
     background: white;
-
     border-radius: 11px;
-
     padding: 9px 13px;
-
     cursor: pointer;
-
-    transition: 0.2s ease;
-
 }
-
-
-.refresh-btn:hover {
-
-    background: #f9fafb;
-
-}
-
 
 .refresh-btn.loading {
-
     opacity: 0.6;
-
     pointer-events: none;
-
 }
-
 
 .profile {
-
     width: 38px;
-
     height: 38px;
-
     border-radius: 50%;
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #2563eb,
-
-            #7c3aed
-
-        );
-
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
     color: white;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     font-weight: 700;
-
 }
 
-
-/* =================================================
-   CONTENT
-================================================= */
+/* CONTENT */
 
 .content {
-
     padding: 28px 30px 40px;
-
     max-width: 1600px;
-
     margin: auto;
-
 }
 
-
-/* =================================================
-   WELCOME
-================================================= */
+/* WELCOME */
 
 .welcome-card {
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #111827,
-
-            #1e3a8a
-
-        );
-
+    background: linear-gradient(135deg, #111827, #1e3a8a);
     color: white;
-
     border-radius: 24px;
-
     padding: 28px;
-
     margin-bottom: 25px;
-
     position: relative;
-
     overflow: hidden;
-
-    box-shadow:
-
-        0 15px 35px
-
-        rgba(
-
-            17,
-
-            24,
-
-            39,
-
-            0.18
-
-        );
-
 }
-
-
-.welcome-card::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 240px;
-
-    height: 240px;
-
-    border-radius: 50%;
-
-    right: -70px;
-
-    top: -100px;
-
-    background:
-
-        rgba(
-
-            255,
-
-            255,
-
-            255,
-
-            0.08
-
-        );
-
-}
-
 
 .welcome-card h2 {
-
     font-size: 25px;
-
     margin-bottom: 8px;
-
-    position: relative;
-
-    z-index: 2;
-
 }
-
 
 .welcome-card p {
-
     color: #dbeafe;
-
     font-size: 14px;
-
-    position: relative;
-
-    z-index: 2;
-
 }
 
-
-/* =================================================
-   KPI GRID
-================================================= */
+/* KPI */
 
 .kpi-grid {
-
     display: grid;
-
-    grid-template-columns:
-
-        repeat(
-
-            4,
-
-            minmax(
-
-                0,
-
-                1fr
-
-            )
-
-        );
-
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 18px;
-
     margin-bottom: 25px;
-
 }
-
 
 .kpi-card {
-
     background: var(--card);
-
     border: 1px solid var(--border);
-
     border-radius: var(--radius);
-
     padding: 20px;
-
     min-height: 145px;
-
     transition: 0.25s ease;
-
-    position: relative;
-
-    overflow: hidden;
-
 }
-
 
 .kpi-card:hover {
-
     transform: translateY(-4px);
-
-    box-shadow:
-
-        0 14px 30px
-
-        rgba(
-
-            0,
-
-            0,
-
-            0,
-
-            0.07
-
-        );
-
+    box-shadow: 0 14px 30px rgba(0,0,0,0.07);
 }
-
 
 .kpi-top {
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     margin-bottom: 20px;
-
 }
-
 
 .kpi-label {
-
     color: var(--muted);
-
     font-size: 13px;
-
 }
-
 
 .kpi-icon {
-
     width: 38px;
-
     height: 38px;
-
     border-radius: 12px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     font-size: 19px;
-
 }
 
-
-.kpi-icon.revenue {
-
+.revenue {
     background: #dcfce7;
-
 }
 
-
-.kpi-icon.expenses {
-
+.expenses {
     background: #fee2e2;
-
 }
 
-
-.kpi-icon.profit {
-
+.profit {
     background: #dbeafe;
-
 }
 
-
-.kpi-icon.occupancy {
-
+.occupancy {
     background: #fef3c7;
-
 }
-
 
 .kpi-value {
-
     font-size: 26px;
-
     font-weight: 750;
-
 }
-
 
 .kpi-sub {
-
     color: var(--muted);
-
     font-size: 11px;
-
     margin-top: 5px;
-
 }
 
-
-/* =================================================
-   MAIN GRID
-================================================= */
+/* GRID */
 
 .dashboard-grid {
-
     display: grid;
-
-    grid-template-columns:
-
-        minmax(
-
-            0,
-
-            1.4fr
-
-        )
-
-        minmax(
-
-            300px,
-
-            0.8fr
-
-        );
-
+    grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.8fr);
     gap: 20px;
-
 }
-
 
 .panel {
-
     background: white;
-
     border: 1px solid var(--border);
-
     border-radius: var(--radius);
-
     padding: 22px;
-
 }
-
 
 .panel-header {
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
     margin-bottom: 20px;
-
 }
-
 
 .panel-title {
-
     font-size: 16px;
-
     font-weight: 700;
-
 }
-
 
 .panel-link {
-
     border: none;
-
     background: transparent;
-
     color: var(--accent);
-
     cursor: pointer;
-
     font-size: 12px;
-
     font-weight: 600;
-
 }
 
-
-/* =================================================
-   OCCUPANCY
-================================================= */
+/* OCCUPANCY */
 
 .occupancy-card {
-
     display: flex;
-
     align-items: center;
-
     gap: 25px;
-
 }
-
 
 .progress-ring {
-
     width: 130px;
-
     height: 130px;
-
     border-radius: 50%;
-
-    background:
-
-        conic-gradient(
-
-            var(--accent)
-
-            var(--occupancy, 0%),
-
-            #e5e7eb
-
-            var(--occupancy, 0%)
-
-        );
-
+    background: conic-gradient(
+        var(--accent) var(--occupancy, 0%),
+        #e5e7eb var(--occupancy, 0%)
+    );
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     position: relative;
-
 }
-
 
 .progress-ring::before {
-
     content: "";
-
     position: absolute;
-
     width: 94px;
-
     height: 94px;
-
     border-radius: 50%;
-
     background: white;
-
 }
-
 
 .progress-value {
-
     position: relative;
-
     z-index: 2;
-
     font-size: 24px;
-
     font-weight: 750;
-
 }
-
 
 .occupancy-info {
-
     display: flex;
-
     flex-direction: column;
-
     gap: 13px;
-
 }
-
 
 .occupancy-stat {
-
     display: flex;
-
     align-items: center;
-
     gap: 9px;
-
     font-size: 13px;
-
 }
-
 
 .stat-dot {
-
     width: 9px;
-
     height: 9px;
-
     border-radius: 50%;
-
 }
-
 
 .stat-dot.occupied {
-
     background: var(--accent);
-
 }
-
 
 .stat-dot.available {
-
     background: #d1d5db;
-
 }
 
-
-/* =================================================
-   TRANSACTIONS
-================================================= */
+/* TRANSACTIONS */
 
 .transaction-list {
-
     display: flex;
-
     flex-direction: column;
-
 }
-
 
 .transaction {
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
     padding: 14px 0;
-
     border-bottom: 1px solid #f0f0f0;
-
 }
-
 
 .transaction:last-child {
-
     border-bottom: none;
-
 }
-
 
 .transaction-left {
-
     display: flex;
-
     align-items: center;
-
     gap: 12px;
-
     min-width: 0;
-
 }
-
 
 .transaction-icon {
-
     width: 38px;
-
     height: 38px;
-
     border-radius: 12px;
-
     background: #eff6ff;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
 }
-
 
 .transaction-name {
-
     font-size: 13px;
-
     font-weight: 650;
-
     white-space: nowrap;
-
     overflow: hidden;
-
     text-overflow: ellipsis;
-
     max-width: 220px;
-
 }
-
 
 .transaction-date {
-
     color: var(--muted);
-
     font-size: 11px;
-
     margin-top: 3px;
-
 }
-
 
 .transaction-amount {
-
     font-weight: 700;
-
     font-size: 13px;
-
     white-space: nowrap;
-
 }
 
-
-/* =================================================
-   QUICK ACTIONS
-================================================= */
+/* QUICK ACTIONS */
 
 .quick-actions {
-
     display: grid;
-
-    grid-template-columns:
-
-        repeat(
-
-            2,
-
-            1fr
-
-        );
-
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
-
 }
-
 
 .quick-action {
-
     border: 1px solid var(--border);
-
     background: #fafafa;
-
     border-radius: 15px;
-
     padding: 16px;
-
     cursor: pointer;
-
     transition: 0.2s ease;
-
     text-align: left;
-
 }
-
 
 .quick-action:hover {
-
     background: #f3f4f6;
-
     transform: translateY(-2px);
-
 }
-
 
 .quick-action-icon {
-
     font-size: 21px;
-
     margin-bottom: 10px;
-
 }
-
 
 .quick-action-title {
-
     font-size: 13px;
-
     font-weight: 650;
-
 }
-
 
 .quick-action-sub {
-
     font-size: 11px;
-
     color: var(--muted);
-
     margin-top: 4px;
-
 }
-
-
-/* =================================================
-   EMPTY STATE
-================================================= */
 
 .empty-state {
-
     text-align: center;
-
     padding: 30px 10px;
-
     color: var(--muted);
-
     font-size: 13px;
-
 }
 
-
-/* =================================================
-   TOAST
-================================================= */
+/* TOAST */
 
 .toast {
-
     position: fixed;
-
     bottom: 25px;
-
     right: 25px;
-
     background: #111827;
-
     color: white;
-
     padding: 13px 18px;
-
     border-radius: 12px;
-
     font-size: 13px;
-
     transform: translateY(100px);
-
     opacity: 0;
-
     transition: 0.3s ease;
-
     z-index: 999;
-
 }
-
 
 .toast.show {
-
     transform: translateY(0);
-
     opacity: 1;
-
 }
-
 
 .toast.error {
-
     background: #b91c1c;
-
 }
 
-
-/* =================================================
-   LOADING
-================================================= */
+/* LOADING */
 
 .loading-overlay {
-
     position: fixed;
-
     inset: 0;
-
-    background:
-
-        rgba(
-
-            255,
-
-            255,
-
-            255,
-
-            0.75
-
-        );
-
+    background: rgba(255,255,255,0.75);
     backdrop-filter: blur(5px);
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     z-index: 500;
-
 }
-
 
 .loading-box {
-
     background: white;
-
     padding: 25px;
-
     border-radius: 18px;
-
-    box-shadow:
-
-        0 15px 40px
-
-        rgba(
-
-            0,
-
-            0,
-
-            0,
-
-            0.12
-
-        );
-
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
     text-align: center;
-
 }
-
 
 .spinner {
-
     width: 32px;
-
     height: 32px;
-
     border: 3px solid #e5e7eb;
-
     border-top-color: var(--accent);
-
     border-radius: 50%;
-
     animation: spin 0.8s linear infinite;
-
     margin: auto auto 12px;
-
 }
-
 
 @keyframes spin {
-
     to {
-
         transform: rotate(360deg);
-
     }
-
 }
-
-
-/* =================================================
-   MOBILE
-================================================= */
 
 .mobile-header {
-
     display: none;
-
 }
 
-
-@media (
-
-    max-width: 1100px
-
-) {
-
-
+@media (max-width: 1100px) {
     .kpi-grid {
-
-        grid-template-columns:
-
-            repeat(
-
-                2,
-
-                1fr
-
-            );
-
+        grid-template-columns: repeat(2, 1fr);
     }
-
-
 }
 
-
-@media (
-
-    max-width: 800px
-
-) {
-
+@media (max-width: 800px) {
 
     .sidebar {
-
         transform: translateX(-100%);
-
     }
-
 
     .sidebar.open {
-
         transform: translateX(0);
-
     }
-
 
     .main {
-
         margin-left: 0;
-
         width: 100%;
-
     }
-
 
     .topbar {
-
         padding: 0 18px;
-
     }
-
 
     .mobile-header {
-
         display: block;
-
         margin-right: 12px;
-
         border: none;
-
         background: transparent;
-
         font-size: 22px;
-
         cursor: pointer;
-
     }
-
 
     .content {
-
         padding: 20px 16px 30px;
-
     }
-
 
     .dashboard-grid {
-
         grid-template-columns: 1fr;
-
     }
-
-
 }
 
-
-@media (
-
-    max-width: 520px
-
-) {
-
+@media (max-width: 520px) {
 
     .topbar {
-
         height: 68px;
-
     }
-
 
     .page-title h1 {
-
         font-size: 18px;
-
     }
-
 
     .page-title p {
-
         display: none;
-
     }
-
 
     .refresh-btn {
-
         padding: 8px 10px;
-
         font-size: 12px;
-
     }
-
 
     .profile {
-
         width: 34px;
-
         height: 34px;
-
     }
-
 
     .welcome-card {
-
         padding: 22px;
-
         border-radius: 20px;
-
     }
-
 
     .welcome-card h2 {
-
         font-size: 21px;
-
     }
-
 
     .kpi-grid {
-
         grid-template-columns: 1fr 1fr;
-
         gap: 12px;
-
     }
-
 
     .kpi-card {
-
         min-height: 130px;
-
         padding: 15px;
-
     }
-
 
     .kpi-value {
-
         font-size: 20px;
-
     }
-
 
     .kpi-label {
-
         font-size: 11px;
-
     }
-
 
     .kpi-icon {
-
         width: 32px;
-
         height: 32px;
-
         font-size: 15px;
-
     }
-
 
     .occupancy-card {
-
         flex-direction: column;
-
         align-items: flex-start;
-
     }
-
 
     .quick-actions {
-
         grid-template-columns: 1fr 1fr;
-
     }
-
-
 }
-
-
-/* =================================================
-   DARK OVERLAY
-================================================= */
 
 .sidebar-overlay {
-
     display: none;
-
 }
 
-
-@media (
-
-    max-width: 800px
-
-) {
-
+@media (max-width: 800px) {
 
     .sidebar-overlay {
-
         position: fixed;
-
         inset: 0;
-
-        background:
-
-            rgba(
-
-                0,
-
-                0,
-
-                0,
-
-                0.35
-
-            );
-
+        background: rgba(0,0,0,0.35);
         z-index: 90;
-
     }
-
 
     .sidebar-overlay.show {
-
         display: block;
-
     }
-
 }
 
 </style>
-
 </head>
 
 <body>
 
 <div class="app">
 
-<!-- SIDEBAR -->
-
 <aside class="sidebar" id="sidebar">
 
 <div class="brand">
 
-```
-<div class="brand-icon">
-
-    🏠
-
-</div>
-
+<div class="brand-icon">🏠</div>
 
 <div class="brand-text">
 
-    <div
+<div class="brand-title" id="brandName">
+PG ERP
+</div>
 
-        class="brand-title"
-
-        id="brandName"
-
-    >
-
-        PG ERP
-
-    </div>
-
-
-    <div class="brand-subtitle">
-
-        Management System
-
-    </div>
+<div class="brand-subtitle">
+Management System
+</div>
 
 </div>
-```
 
 </div>
 
 <nav class="nav">
 
-<button
-
-```
-class="nav-item active"
-
-onclick="navigateTo('index.html')"
-```
-
->
-
-```
+<button class="nav-item active" onclick="navigateTo('index.html')">
 <span class="nav-icon">▦</span>
-
 <span>Dashboard</span>
-```
-
 </button>
 
-<button
-
-```
-class="nav-item"
-
-onclick="navigateTo('admissions.html')"
-```
-
->
-
-```
+<button class="nav-item" onclick="navigateTo('admissions.html')">
 <span class="nav-icon">＋</span>
-
 <span>Admissions</span>
-```
-
 </button>
 
-<button
-
-```
-class="nav-item"
-
-onclick="navigateTo('rooms.html')"
-```
-
->
-
-```
+<button class="nav-item" onclick="navigateTo('rooms.html')">
 <span class="nav-icon">⌂</span>
-
 <span>Rooms & Beds</span>
-```
-
 </button>
 
-<button
-
-```
-class="nav-item"
-
-onclick="navigateTo('payments.html')"
-```
-
->
-
-```
+<button class="nav-item" onclick="navigateTo('payments.html')">
 <span class="nav-icon">₹</span>
-
 <span>Payments</span>
-```
-
 </button>
 
-<button
-
-```
-class="nav-item"
-
-onclick="navigateTo('reports.html')"
-```
-
->
-
-```
+<button class="nav-item" onclick="navigateTo('reports.html')">
 <span class="nav-icon">▥</span>
-
 <span>Reports</span>
-```
-
 </button>
 
-<button
-
-```
-class="nav-item"
-
-onclick="navigateTo('expenses.html')"
-```
-
->
-
-```
+<button class="nav-item" onclick="navigateTo('expenses.html')">
 <span class="nav-icon">↘</span>
-
 <span>Expenses</span>
-```
-
 </button>
 
-<button
-
-```
-class="nav-item"
-
-onclick="navigateTo('tenants.html')"
-```
-
->
-
-```
+<button class="nav-item" onclick="navigateTo('tenants.html')">
 <span class="nav-icon">♙</span>
-
 <span>Tenants</span>
-```
-
 </button>
 
-<button
-
-```
-class="nav-item"
-
-onclick="navigateTo('settings.html')"
-```
-
->
-
-```
+<button class="nav-item" onclick="navigateTo('settings.html')">
 <span class="nav-icon">⚙</span>
-
 <span>Settings</span>
-```
-
 </button>
 
 </nav>
@@ -1855,40 +807,16 @@ onclick="navigateTo('settings.html')"
 
 <div class="sync-row">
 
-<span
-
-```
-class="sync-dot"
-
-id="syncDot"
-```
-
-> </span>
+<span class="sync-dot" id="syncDot"></span>
 
 <span id="syncText">
-
-```
 Syncing...
-```
-
 </span>
 
 </div>
 
-<div
-
-```
-id="lastSync"
-
-style="margin-top:6px;"
-```
-
->
-
-```
+<div id="lastSync" style="margin-top:6px;">
 --
-```
-
 </div>
 
 </div>
@@ -1897,64 +825,26 @@ style="margin-top:6px;"
 
 </aside>
 
-<div
-
-```
-class="sidebar-overlay"
-
-id="sidebarOverlay"
-
-onclick="closeSidebar()"
-```
-
-> </div>
-
-<!-- MAIN -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
 <main class="main">
 
 <header class="topbar">
 
-<div
+<div style="display:flex;align-items:center;">
 
-```
-style="display:flex;align-items:center;"
-```
-
->
-
-<button
-
-```
-class="mobile-header"
-
-onclick="toggleSidebar()"
-```
-
->
-
-```
+<button class="mobile-header" onclick="toggleSidebar()">
 ☰
-```
-
 </button>
 
 <div class="page-title">
 
 <h1>
-
-```
 Dashboard
-```
-
 </h1>
 
 <p id="currentDate">
-
-```
 --
-```
-
 </p>
 
 </div>
@@ -1963,30 +853,12 @@ Dashboard
 
 <div class="top-actions">
 
-<button
-
-```
-class="refresh-btn"
-
-id="refreshBtn"
-
-onclick="refreshDashboard()"
-```
-
->
-
-```
+<button class="refresh-btn" id="refreshBtn" onclick="refreshDashboard()">
 ↻ Refresh
-```
-
 </button>
 
 <div class="profile">
-
-```
 A
-```
-
 </div>
 
 </div>
@@ -1995,29 +867,17 @@ A
 
 <section class="content">
 
-<!-- WELCOME -->
-
 <div class="welcome-card">
 
-<h2>
-
-```
+<h2 id="welcomeTitle">
 Welcome back 👋
-```
-
 </h2>
 
 <p>
-
-```
 Here's what's happening with your property today.
-```
-
 </p>
 
 </div>
-
-<!-- KPI -->
 
 <div class="kpi-grid">
 
@@ -2026,45 +886,21 @@ Here's what's happening with your property today.
 <div class="kpi-top">
 
 <span class="kpi-label">
-
-```
 Monthly Revenue
-```
-
 </span>
 
 <div class="kpi-icon revenue">
-
-```
 ₹
-```
-
 </div>
 
 </div>
 
-<div
-
-```
-class="kpi-value"
-
-id="revenueValue"
-```
-
->
-
-```
+<div class="kpi-value" id="revenueValue">
 ₹0
-```
-
 </div>
 
 <div class="kpi-sub">
-
-```
 Current month
-```
-
 </div>
 
 </div>
@@ -2074,45 +910,21 @@ Current month
 <div class="kpi-top">
 
 <span class="kpi-label">
-
-```
 Monthly Expenses
-```
-
 </span>
 
 <div class="kpi-icon expenses">
-
-```
 ↘
-```
-
 </div>
 
 </div>
 
-<div
-
-```
-class="kpi-value"
-
-id="expensesValue"
-```
-
->
-
-```
+<div class="kpi-value" id="expensesValue">
 ₹0
-```
-
 </div>
 
 <div class="kpi-sub">
-
-```
 Current month
-```
-
 </div>
 
 </div>
@@ -2122,45 +934,21 @@ Current month
 <div class="kpi-top">
 
 <span class="kpi-label">
-
-```
 Net Profit
-```
-
 </span>
 
 <div class="kpi-icon profit">
-
-```
 ↗
-```
-
 </div>
 
 </div>
 
-<div
-
-```
-class="kpi-value"
-
-id="profitValue"
-```
-
->
-
-```
+<div class="kpi-value" id="profitValue">
 ₹0
-```
-
 </div>
 
 <div class="kpi-sub">
-
-```
 Revenue minus expenses
-```
-
 </div>
 
 </div>
@@ -2170,169 +958,71 @@ Revenue minus expenses
 <div class="kpi-top">
 
 <span class="kpi-label">
-
-```
 Occupancy
-```
-
 </span>
 
 <div class="kpi-icon occupancy">
-
-```
 ⌂
-```
-
 </div>
 
 </div>
 
-<div
-
-```
-class="kpi-value"
-
-id="occupancyValue"
-```
-
->
-
-```
+<div class="kpi-value" id="occupancyValue">
 0%
-```
-
 </div>
 
-<div
-
-```
-class="kpi-sub"
-
-id="occupancySub"
-```
-
->
-
-```
+<div class="kpi-sub" id="occupancySub">
 0 of 0 beds
-```
-
 </div>
 
 </div>
 
 </div>
-
-<!-- DASHBOARD GRID -->
 
 <div class="dashboard-grid">
-
-<!-- RECENT PAYMENTS -->
 
 <div class="panel">
 
 <div class="panel-header">
 
 <div class="panel-title">
-
-```
 Recent Payments
-```
-
 </div>
 
-<button
-
-```
-class="panel-link"
-
-onclick="navigateTo('payments.html')"
-```
-
->
-
-```
+<button class="panel-link" onclick="navigateTo('payments.html')">
 View All
-```
-
 </button>
 
 </div>
 
-<div
-
-```
-class="transaction-list"
-
-id="transactionList"
-```
-
->
+<div class="transaction-list" id="transactionList">
 
 <div class="empty-state">
-
-```
 Loading transactions...
-```
-
 </div>
 
 </div>
 
 </div>
 
-<!-- RIGHT SIDE -->
-
-<div
-
-```
-style="display:flex;flex-direction:column;gap:20px;"
-```
-
->
-
-<!-- OCCUPANCY -->
+<div style="display:flex;flex-direction:column;gap:20px;">
 
 <div class="panel">
 
 <div class="panel-header">
 
 <div class="panel-title">
-
-```
 Occupancy Overview
-```
-
 </div>
 
 </div>
 
 <div class="occupancy-card">
 
-<div
+<div class="progress-ring" id="progressRing">
 
-```
-class="progress-ring"
-
-id="progressRing"
-```
-
->
-
-<div
-
-```
-class="progress-value"
-
-id="progressValue"
-```
-
->
-
-```
+<div class="progress-value" id="progressValue">
 0%
-```
-
 </div>
 
 </div>
@@ -2344,21 +1034,8 @@ id="progressValue"
 <span class="stat-dot occupied"></span>
 
 <span>
-
-```
 Occupied:
-
-<strong
-
-    id="occupiedBeds"
-
->
-
-    0
-
-</strong>
-```
-
+<strong id="occupiedBeds">0</strong>
 </span>
 
 </div>
@@ -2368,21 +1045,8 @@ Occupied:
 <span class="stat-dot available"></span>
 
 <span>
-
-```
 Available:
-
-<strong
-
-    id="availableBeds"
-
->
-
-    0
-
-</strong>
-```
-
+<strong id="availableBeds">0</strong>
 </span>
 
 </div>
@@ -2393,164 +1057,78 @@ Available:
 
 </div>
 
-<!-- QUICK ACTIONS -->
-
 <div class="panel">
 
 <div class="panel-header">
 
 <div class="panel-title">
-
-```
 Quick Actions
-```
-
 </div>
 
 </div>
 
 <div class="quick-actions">
 
-<button
-
-```
-class="quick-action"
-
-onclick="navigateTo('admissions.html')"
-```
-
->
+<button class="quick-action" onclick="navigateTo('admissions.html')">
 
 <div class="quick-action-icon">
-
-```
 👤
-```
-
 </div>
 
 <div class="quick-action-title">
-
-```
 New Admission
-```
-
 </div>
 
 <div class="quick-action-sub">
-
-```
 Add a new tenant
-```
-
 </div>
 
 </button>
 
-<button
-
-```
-class="quick-action"
-
-onclick="navigateTo('payments.html')"
-```
-
->
+<button class="quick-action" onclick="navigateTo('payments.html')">
 
 <div class="quick-action-icon">
-
-```
 ₹
-```
-
 </div>
 
 <div class="quick-action-title">
-
-```
 Record Payment
-```
-
 </div>
 
 <div class="quick-action-sub">
-
-```
 Add rent payment
-```
-
 </div>
 
 </button>
 
-<button
-
-```
-class="quick-action"
-
-onclick="navigateTo('rooms.html')"
-```
-
->
+<button class="quick-action" onclick="navigateTo('rooms.html')">
 
 <div class="quick-action-icon">
-
-```
 🛏️
-```
-
 </div>
 
 <div class="quick-action-title">
-
-```
 View Beds
-```
-
 </div>
 
 <div class="quick-action-sub">
-
-```
 Check availability
-```
-
 </div>
 
 </button>
 
-<button
-
-```
-class="quick-action"
-
-onclick="navigateTo('reports.html')"
-```
-
->
+<button class="quick-action" onclick="navigateTo('reports.html')">
 
 <div class="quick-action-icon">
-
-```
 📊
-```
-
 </div>
 
 <div class="quick-action-title">
-
-```
 View Reports
-```
-
 </div>
 
 <div class="quick-action-sub">
-
-```
 Financial overview
-```
-
 </div>
 
 </button>
@@ -2569,408 +1147,351 @@ Financial overview
 
 </div>
 
-<!-- LOADING -->
-
-<div
-
-```
-class="loading-overlay"
-
-id="loadingOverlay"
-```
-
->
+<div class="loading-overlay" id="loadingOverlay">
 
 <div class="loading-box">
 
 <div class="spinner"></div>
 
 <div>
-
-```
 Loading dashboard...
-```
-
 </div>
 
 </div>
 
 </div>
 
-<!-- TOAST -->
-
-<div
-
-```
-class="toast"
-
-id="toast"
-```
-
-> </div>
+<div class="toast" id="toast"></div>
 
 <script>
 
-
-/* =================================================
-   CONFIGURATION
-================================================= */
-
+/* =====================================================
+   API CONFIGURATION
+===================================================== */
 
 const API_URL =
+"https://script.google.com/macros/s/AKfycbzpHr7CS-ELRUXe8QSnKY7HgE8H3ShBCX-8jcr7pEzY5lFwNLWhtHRpu2uX1g4PsPcq/exec";
 
-    "https://script.google.com/macros/s/AKfycbzpHr7CS-ELRUXe8QSnKY7HgE8H3ShBCX-8jcr7pEzY5lFwNLWhtHRpu2uX1g4PsPcq/exec";
+const DASHBOARD_CACHE_KEY =
+"pg_erp_dashboard_cache_v2";
 
+const SETTINGS_CACHE_KEY =
+"pg_erp_settings_cache_v2";
 
-const CACHE_KEY =
-
-    "pg_erp_dashboard_cache";
-
-
-const CONFIG_CACHE_KEY =
-
-    "pg_erp_configuration";
-
+let settings = {};
 
 let dashboardData = null;
 
-let appConfig = {};
 
-
-/* =================================================
-   INITIALIZATION
-================================================= */
-
+/* =====================================================
+   INITIALIZE
+===================================================== */
 
 document.addEventListener(
+"DOMContentLoaded",
+async function() {
 
-    "DOMContentLoaded",
+    setCurrentDate();
 
-    async function() {
+    loadCachedSettings();
 
+    loadCachedDashboard();
 
-        setCurrentDate();
+    await loadSettings();
 
+    await loadDashboard();
 
-        loadCachedData();
-
-
-        await loadConfiguration();
-
-
-        await loadDashboard();
-
-
-    }
-
+}
 );
 
 
-/* =================================================
+/* =====================================================
    API REQUEST
-================================================= */
+===================================================== */
 
+async function apiRequest(action, data = {}) {
 
-async function apiRequest(
+    const response = await fetch(
+        API_URL,
+        {
+            method: "POST",
 
-    action,
+            headers: {
+                "Content-Type":
+                "text/plain;charset=utf-8"
+            },
 
-    data = {}
-
-) {
-
-
-    const response =
-
-        await fetch(
-
-            API_URL,
-
-            {
-
-                method:
-
-                    "POST",
-
-
-                headers: {
-
-                    "Content-Type":
-
-                        "text/plain;charset=utf-8"
-
-                },
-
-
-                body:
-
-                    JSON.stringify({
-
-                        action,
-
-                        data
-
-                    })
-
-            }
-
-        );
-
+            body: JSON.stringify({
+                action: action,
+                data: data
+            })
+        }
+    );
 
     if (!response.ok) {
-
-
         throw new Error(
-
             "Network request failed"
-
         );
-
     }
 
-
     const result =
-
         await response.json();
-
 
     if (!result.success) {
 
-
         throw new Error(
-
             result.message ||
-
             "API request failed"
-
         );
 
     }
-
 
     return result;
 
 }
 
 
-/* =================================================
-   CONFIGURATION
-================================================= */
+/* =====================================================
+   SETTINGS
+===================================================== */
 
-
-async function loadConfiguration() {
-
+async function loadSettings() {
 
     try {
 
-
-        const cached =
-
-            localStorage.getItem(
-
-                CONFIG_CACHE_KEY
-
-            );
-
-
-        if (cached) {
-
-
-            appConfig =
-
-                JSON.parse(
-
-                    cached
-
-                );
-
-
-            applyConfiguration();
-
-        }
-
-
         const result =
-
             await apiRequest(
-
-                "getConfiguration"
-
+                "getSettings"
             );
 
-
-        appConfig =
-
-            result.data;
-
+        settings =
+            normalizeSettings(
+                result.data
+            );
 
         localStorage.setItem(
-
-            CONFIG_CACHE_KEY,
-
-            JSON.stringify(
-
-                appConfig
-
-            )
-
+            SETTINGS_CACHE_KEY,
+            JSON.stringify(settings)
         );
 
-
-        applyConfiguration();
-
+        applySettings();
 
     }
 
-    catch (error) {
-
+    catch(error) {
 
         console.warn(
-
-            "Configuration sync failed:",
-
+            "Settings sync failed:",
             error.message
-
         );
 
+        updateSyncStatus(
+            false
+        );
 
     }
 
 }
 
 
-/* =================================================
-   APPLY CONFIGURATION
-================================================= */
+/* =====================================================
+   NORMALIZE SETTINGS
+===================================================== */
+
+function normalizeSettings(data) {
+
+    const normalized = {};
+
+    if (!data) {
+        return normalized;
+    }
+
+    /*
+       Supports both:
+
+       {
+           "PG Name": "Comfort Corner"
+       }
+
+       and:
+
+       [
+           {
+               "Setting Name": "PG Name",
+               "Value": "Comfort Corner"
+           }
+       ]
+    */
+
+    if (Array.isArray(data)) {
+
+        data.forEach(function(row) {
+
+            const key =
+                row["Setting Name"] ||
+                row.settingName ||
+                row.name;
+
+            const value =
+                row["Value"] ??
+                row.value;
+
+            if (key) {
+
+                normalized[key] =
+                    value;
+
+            }
+
+        });
+
+    }
+
+    else {
+
+        Object.keys(data).forEach(
+            function(key) {
+
+                normalized[key] =
+                    data[key];
+
+            }
+        );
+
+    }
+
+    return normalized;
+
+}
 
 
-function applyConfiguration() {
+/* =====================================================
+   APPLY SETTINGS
+===================================================== */
 
+function applySettings() {
 
-    const businessName =
-
-        appConfig.BUSINESS_NAME ||
-
+    const pgName =
+        settings["PG Name"] ||
+        settings["PG_NAME"] ||
+        settings["Business Name"] ||
         "PG ERP";
 
-
     document.title =
-
-        businessName +
-
+        pgName +
         " - Dashboard";
 
+    document.getElementById(
+        "brandName"
+    ).textContent =
+        pgName;
 
     document.getElementById(
-
-        "brandName"
-
+        "welcomeTitle"
     ).textContent =
-
-        businessName;
-
-
-    document.querySelector(
-
-        ".welcome-card h2"
-
-    ).innerHTML =
-
         "Welcome to " +
-
-        escapeHtml(
-
-            businessName
-
-        ) +
-
+        pgName +
         " 👋";
 
 }
 
 
-/* =================================================
-   DASHBOARD
-================================================= */
+/* =====================================================
+   CACHE SETTINGS
+===================================================== */
 
-
-async function loadDashboard() {
-
+function loadCachedSettings() {
 
     try {
 
-
-        const result =
-
-            await apiRequest(
-
-                "getDashboardData"
-
+        const cached =
+            localStorage.getItem(
+                SETTINGS_CACHE_KEY
             );
 
+        if (
+            !cached ||
+            cached === "undefined" ||
+            cached === "null"
+        ) {
 
-        dashboardData =
+            return;
 
-            result.data;
+        }
 
+        settings =
+            JSON.parse(
+                cached
+            );
 
-        localStorage.setItem(
-
-            CACHE_KEY,
-
-            JSON.stringify(
-
-                dashboardData
-
-            )
-
-        );
-
-
-        renderDashboard(
-
-            dashboardData
-
-        );
-
-
-        updateSyncStatus(
-
-            true
-
-        );
-
+        applySettings();
 
     }
 
-    catch (error) {
+    catch(error) {
 
-
-        console.error(
-
-            "Dashboard sync failed:",
-
-            error
-
+        console.warn(
+            "Invalid settings cache removed"
         );
 
+        localStorage.removeItem(
+            SETTINGS_CACHE_KEY
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+async function loadDashboard() {
+
+    try {
+
+        const result =
+            await apiRequest(
+                "getDashboardData"
+            );
+
+        dashboardData =
+            result.data;
+
+        localStorage.setItem(
+            DASHBOARD_CACHE_KEY,
+            JSON.stringify(
+                dashboardData
+            )
+        );
+
+        renderDashboard(
+            dashboardData
+        );
 
         updateSyncStatus(
-
-            false
-
+            true
         );
 
+    }
+
+    catch(error) {
+
+        console.error(
+            "Dashboard sync failed:",
+            error
+        );
+
+        updateSyncStatus(
+            false
+        );
 
         if (!dashboardData) {
 
-
             showToast(
-
-                "Unable to connect to backend. Showing available cached data.",
-
+                "Could not fetch dashboard data",
                 true
-
             );
 
         }
@@ -2979,7 +1500,6 @@ async function loadDashboard() {
 
     finally {
 
-
         hideLoading();
 
     }
@@ -2987,70 +1507,53 @@ async function loadDashboard() {
 }
 
 
-/* =================================================
-   CACHE
-================================================= */
+/* =====================================================
+   CACHE DASHBOARD
+===================================================== */
 
-
-function loadCachedData() {
-
+function loadCachedDashboard() {
 
     try {
 
-
         const cached =
-
             localStorage.getItem(
-
-                CACHE_KEY
-
+                DASHBOARD_CACHE_KEY
             );
 
-
-        if (!cached) {
-
+        if (
+            !cached ||
+            cached === "undefined" ||
+            cached === "null"
+        ) {
 
             return;
 
         }
 
-
         dashboardData =
-
             JSON.parse(
-
                 cached
-
             );
 
-
         renderDashboard(
-
             dashboardData
-
         );
-
 
         updateSyncStatus(
-
             false,
-
             true
-
         );
-
 
     }
 
-    catch (error) {
-
+    catch(error) {
 
         console.warn(
+            "Invalid dashboard cache removed"
+        );
 
-            "Cache load failed",
-
-            error
-
+        localStorage.removeItem(
+            DASHBOARD_CACHE_KEY
         );
 
     }
@@ -3058,934 +1561,584 @@ function loadCachedData() {
 }
 
 
-/* =================================================
+/* =====================================================
    RENDER DASHBOARD
-================================================= */
+===================================================== */
 
-
-function renderDashboard(
-
-    data
-
-) {
-
+function renderDashboard(data) {
 
     if (!data) {
-
-
         return;
-
     }
 
+    /*
+       Supports dashboard data like:
+
+       {
+           revenue: 50000,
+           expenses: 10000,
+           profit: 40000,
+           occupancy: {
+               occupied: 20,
+               available: 5,
+               total: 25
+           },
+           recentTransactions: []
+       }
+
+       or:
+
+       {
+           dashboard: {
+               revenue: ...
+           }
+       }
+    */
 
     const dashboard =
-
         data.dashboard ||
-
-        {};
-
+        data;
 
     const revenue =
-
         Number(
-
-            dashboard.revenue
-
-        ) || 0;
-
+            dashboard.revenue ||
+            dashboard.totalRevenue ||
+            dashboard.monthlyRevenue ||
+            0
+        );
 
     const expenses =
-
         Number(
-
-            dashboard.expenses
-
-        ) || 0;
-
+            dashboard.expenses ||
+            dashboard.totalExpenses ||
+            dashboard.monthlyExpenses ||
+            0
+        );
 
     const profit =
-
         Number(
-
-            dashboard.profit
-
-        ) || 0;
-
+            dashboard.profit ||
+            dashboard.netProfit ||
+            revenue - expenses
+        );
 
     const occupancy =
-
         dashboard.occupancy ||
-
         {};
 
-
     const occupied =
-
         Number(
-
-            occupancy.occupied
-
-        ) || 0;
-
+            occupancy.occupied ||
+            dashboard.occupiedBeds ||
+            0
+        );
 
     const available =
-
         Number(
-
-            occupancy.available
-
-        ) || 0;
-
+            occupancy.available ||
+            dashboard.availableBeds ||
+            0
+        );
 
     const total =
-
         Number(
+            occupancy.total ||
+            dashboard.totalBeds ||
+            occupied + available
+        );
 
-            occupancy.total
-
-        ) || 0;
-
-
-    const occupancyPercentage =
-
+    const percentage =
         total > 0
-
-            ? Math.round(
-
-                (
-
-                    occupied /
-
-                    total
-
-                ) * 100
-
-            )
-
-            : 0;
-
+        ? Math.round(
+            occupied /
+            total *
+            100
+        )
+        : 0;
 
     document.getElementById(
-
         "revenueValue"
-
     ).textContent =
-
         formatCurrency(
-
             revenue
-
         );
 
-
     document.getElementById(
-
         "expensesValue"
-
     ).textContent =
-
         formatCurrency(
-
             expenses
-
         );
 
-
     document.getElementById(
-
         "profitValue"
-
     ).textContent =
-
         formatCurrency(
-
             profit
-
         );
 
-
     document.getElementById(
-
         "occupancyValue"
-
     ).textContent =
-
-        occupancyPercentage +
-
+        percentage +
         "%";
 
-
     document.getElementById(
-
         "occupancySub"
-
     ).textContent =
-
         occupied +
-
         " of " +
-
         total +
-
         " beds";
 
-
     document.getElementById(
-
         "progressValue"
-
     ).textContent =
-
-        occupancyPercentage +
-
+        percentage +
         "%";
 
-
     document.getElementById(
-
         "occupiedBeds"
-
     ).textContent =
-
         occupied;
 
-
     document.getElementById(
-
         "availableBeds"
-
     ).textContent =
-
         available;
 
-
     document.getElementById(
-
         "progressRing"
-
     ).style.setProperty(
-
         "--occupancy",
-
-        occupancyPercentage +
-
+        percentage +
         "%"
-
     );
 
+    const transactions =
+        dashboard.recentTransactions ||
+        dashboard.recentPayments ||
+        [];
 
     renderTransactions(
-
-        dashboard.recentTransactions ||
-
-        []
-
+        transactions
     );
 
 }
 
 
-/* =================================================
+/* =====================================================
    TRANSACTIONS
-================================================= */
-
+===================================================== */
 
 function renderTransactions(
-
     transactions
-
 ) {
 
-
     const container =
-
         document.getElementById(
-
             "transactionList"
-
         );
 
-
     if (
-
-        !transactions ||
-
+        !Array.isArray(
+            transactions
+        ) ||
         transactions.length === 0
-
     ) {
 
-
         container.innerHTML = `
-
             <div class="empty-state">
-
                 No recent payments found.
-
             </div>
-
         `;
-
 
         return;
 
     }
 
-
     container.innerHTML =
-
         transactions
+        .slice(0, 8)
+        .map(function(payment) {
 
-            .slice(
+            const amount =
+                Number(
+                    payment.Amount ||
+                    payment.amount ||
+                    0
+                );
 
-                0,
+            const name =
+                payment["Tenant Name"] ||
+                payment.tenant_name ||
+                payment.FullName ||
+                payment.full_name ||
+                payment["Tenant ID"] ||
+                payment.tenant_id ||
+                "Tenant";
 
-                8
+            const date =
+                payment["Payment Date"] ||
+                payment.payment_date ||
+                payment.date;
 
-            )
+            return `
 
-            .map(
+                <div class="transaction">
 
-                function(payment) {
+                    <div class="transaction-left">
 
+                        <div class="transaction-icon">
+                            ₹
+                        </div>
 
-                    const amount =
+                        <div>
 
-                        Number(
-
-                            payment.amount
-
-                        ) || 0;
-
-
-                    const name =
-
-                        payment.tenant_name ||
-
-                        payment.full_name ||
-
-                        payment.tenant_id ||
-
-                        "Tenant";
-
-
-                    return `
-
-                        <div class="transaction">
-
-
-                            <div class="transaction-left">
-
-
-                                <div class="transaction-icon">
-
-                                    ₹
-
-                                </div>
-
-
-                                <div>
-
-
-                                    <div class="transaction-name">
-
-                                        ${escapeHtml(
-
-                                            name
-
-                                        )}
-
-                                    </div>
-
-
-                                    <div class="transaction-date">
-
-                                        ${formatDate(
-
-                                            payment.payment_date
-
-                                        )}
-
-                                    </div>
-
-
-                                </div>
-
-
+                            <div class="transaction-name">
+                                ${escapeHtml(name)}
                             </div>
 
-
-                            <div class="transaction-amount">
-
-                                +${formatCurrency(
-
-                                    amount
-
-                                )}
-
+                            <div class="transaction-date">
+                                ${formatDate(date)}
                             </div>
-
 
                         </div>
 
-                    `;
+                    </div>
 
-                }
+                    <div class="transaction-amount">
+                        +${formatCurrency(amount)}
+                    </div>
 
-            )
+                </div>
 
-            .join(
+            `;
 
-                ""
-
-            );
+        })
+        .join("");
 
 }
 
 
-/* =================================================
+/* =====================================================
    REFRESH
-================================================= */
-
+===================================================== */
 
 async function refreshDashboard() {
 
-
     const button =
-
         document.getElementById(
-
             "refreshBtn"
-
         );
 
-
     button.classList.add(
-
         "loading"
-
     );
 
-
     button.textContent =
-
         "↻ Syncing...";
 
-
-    await loadConfiguration();
-
+    await loadSettings();
 
     await loadDashboard();
 
-
     button.classList.remove(
-
         "loading"
-
     );
-
 
     button.textContent =
-
         "↻ Refresh";
-
-
-    showToast(
-
-        "Dashboard synchronized successfully."
-
-    );
 
 }
 
 
-/* =================================================
+/* =====================================================
    SYNC STATUS
-================================================= */
-
+===================================================== */
 
 function updateSyncStatus(
-
     online,
-
     cached = false
-
 ) {
 
-
     const dot =
-
         document.getElementById(
-
             "syncDot"
-
         );
-
 
     const text =
-
         document.getElementById(
-
             "syncText"
-
         );
 
-
-    const lastSync =
-
+    const last =
         document.getElementById(
-
             "lastSync"
-
         );
-
 
     if (online) {
 
-
         dot.classList.remove(
-
             "offline"
-
         );
 
-
         text.textContent =
-
             "Synced with backend";
 
-
-        lastSync.textContent =
-
+        last.textContent =
             "Updated just now";
-
-
-        return;
 
     }
 
+    else {
 
-    dot.classList.add(
+        dot.classList.add(
+            "offline"
+        );
 
-        "offline"
-
-    );
-
-
-    text.textContent =
-
-        cached
-
+        text.textContent =
+            cached
             ? "Using cached data"
-
             : "Offline";
 
-
-    lastSync.textContent =
-
-        cached
-
+        last.textContent =
+            cached
             ? "Will sync when available"
-
             : "Connection unavailable";
 
+    }
+
 }
 
 
-/* =================================================
+/* =====================================================
    NAVIGATION
-================================================= */
+===================================================== */
 
-
-function navigateTo(
-
-    page
-
-) {
-
-
-    window.location.href =
-
-        page;
-
+function navigateTo(page) {
+    window.location.href = page;
 }
-
 
 function toggleSidebar() {
 
+    document
+    .getElementById(
+        "sidebar"
+    )
+    .classList.toggle(
+        "open"
+    );
 
     document
-
-        .getElementById(
-
-            "sidebar"
-
-        )
-
-        .classList.toggle(
-
-            "open"
-
-        );
-
-
-    document
-
-        .getElementById(
-
-            "sidebarOverlay"
-
-        )
-
-        .classList.toggle(
-
-            "show"
-
-        );
+    .getElementById(
+        "sidebarOverlay"
+    )
+    .classList.toggle(
+        "show"
+    );
 
 }
-
 
 function closeSidebar() {
 
+    document
+    .getElementById(
+        "sidebar"
+    )
+    .classList.remove(
+        "open"
+    );
 
     document
-
-        .getElementById(
-
-            "sidebar"
-
-        )
-
-        .classList.remove(
-
-            "open"
-
-        );
-
-
-    document
-
-        .getElementById(
-
-            "sidebarOverlay"
-
-        )
-
-        .classList.remove(
-
-            "show"
-
-        );
-
-}
-
-
-/* =================================================
-   DATE
-================================================= */
-
-
-function setCurrentDate() {
-
-
-    const date =
-
-        new Date();
-
-
-    document.getElementById(
-
-        "currentDate"
-
-    ).textContent =
-
-        date.toLocaleDateString(
-
-            "en-IN",
-
-            {
-
-                weekday:
-
-                    "long",
-
-                day:
-
-                    "numeric",
-
-                month:
-
-                    "long",
-
-                year:
-
-                    "numeric"
-
-            }
-
-        );
-
-}
-
-
-/* =================================================
-   FORMATTERS
-================================================= */
-
-
-function formatCurrency(
-
-    amount
-
-) {
-
-
-    const currency =
-
-        appConfig.CURRENCY ||
-
-        "₹";
-
-
-    return (
-
-        currency +
-
-        Number(
-
-            amount
-
-        ).toLocaleString(
-
-            "en-IN",
-
-            {
-
-                maximumFractionDigits:
-
-                    0
-
-            }
-
-        )
-
+    .getElementById(
+        "sidebarOverlay"
+    )
+    .classList.remove(
+        "show"
     );
 
 }
 
 
-function formatDate(
+/* =====================================================
+   DATE
+===================================================== */
 
-    value
-
-) {
-
-
-    if (!value) {
-
-
-        return "--";
-
-    }
-
+function setCurrentDate() {
 
     const date =
+        new Date();
 
-        new Date(
-
-            value
-
+    document.getElementById(
+        "currentDate"
+    ).textContent =
+        date.toLocaleDateString(
+            "en-IN",
+            {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            }
         );
 
+}
+
+
+/* =====================================================
+   FORMAT CURRENCY
+===================================================== */
+
+function formatCurrency(amount) {
+
+    const symbol =
+        settings["Currency Symbol"] ||
+        settings["Currency"] ||
+        "₹";
+
+    return (
+        symbol +
+        Number(
+            amount
+        ).toLocaleString(
+            "en-IN",
+            {
+                maximumFractionDigits: 0
+            }
+        )
+    );
+
+}
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDate(value) {
+
+    if (!value) {
+        return "--";
+    }
+
+    const date =
+        new Date(value);
 
     if (
-
         isNaN(
-
             date.getTime()
-
         )
-
     ) {
-
 
         return value;
 
     }
 
-
     return date.toLocaleDateString(
-
         "en-IN",
-
         {
-
-            day:
-
-                "2-digit",
-
-            month:
-
-                "short",
-
-            year:
-
-                "numeric"
-
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
         }
-
     );
 
 }
 
 
-function escapeHtml(
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
 
-    value
-
-) {
-
+function escapeHtml(value) {
 
     return String(
-
         value || ""
-
     )
 
-        .replace(
+    .replace(
+        /&/g,
+        "&amp;"
+    )
 
-            /&/g,
+    .replace(
+        /</g,
+        "&lt;"
+    )
 
-            "&amp;"
+    .replace(
+        />/g,
+        "&gt;"
+    )
 
-        )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
 
-        .replace(
-
-            /</g,
-
-            "&lt;"
-
-        )
-
-        .replace(
-
-            />/g,
-
-            "&gt;"
-
-        )
-
-        .replace(
-
-            /"/g,
-
-            "&quot;"
-
-        )
-
-        .replace(
-
-            /'/g,
-
-            "&#039;"
-
-        );
+    .replace(
+        /'/g,
+        "&#039;"
+    );
 
 }
 
 
-/* =================================================
+/* =====================================================
    LOADING
-================================================= */
-
+===================================================== */
 
 function hideLoading() {
 
-
-    const overlay =
-
-        document.getElementById(
-
-            "loadingOverlay"
-
-        );
-
-
-    overlay.style.display =
-
+    document.getElementById(
+        "loadingOverlay"
+    ).style.display =
         "none";
 
 }
 
 
-/* =================================================
+/* =====================================================
    TOAST
-================================================= */
-
+===================================================== */
 
 function showToast(
-
     message,
-
     error = false
-
 ) {
 
-
     const toast =
-
         document.getElementById(
-
             "toast"
-
         );
 
-
     toast.textContent =
-
         message;
 
-
     toast.classList.toggle(
-
         "error",
-
         error
-
     );
-
 
     toast.classList.add(
-
         "show"
-
     );
 
-
     setTimeout(
-
         function() {
 
-
             toast.classList.remove(
-
                 "show"
-
             );
 
-
         },
-
         3500
-
     );
 
 }
 
-
 </script>
 
 </body>
-
 </html>
