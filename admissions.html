@@ -1,0 +1,6113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Admissions</title>
+
+<style>
+
+/* =====================================================
+   ROOT
+===================================================== */
+
+:root {
+
+    --primary: #111827;
+    --primary-light: #1f2937;
+
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+
+    --success: #16a34a;
+    --success-light: #dcfce7;
+
+    --danger: #dc2626;
+    --danger-light: #fee2e2;
+
+    --warning: #d97706;
+    --warning-light: #fef3c7;
+
+    --background: #f3f4f6;
+    --card: #ffffff;
+
+    --border: #e5e7eb;
+    --text: #111827;
+    --muted: #6b7280;
+
+    --radius: 18px;
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    font-family:
+
+    Inter,
+
+    -apple-system,
+
+    BlinkMacSystemFont,
+
+    "Segoe UI",
+
+    sans-serif;
+
+    background:
+
+    var(--background);
+
+    color:
+
+    var(--text);
+
+    min-height: 100vh;
+
+}
+
+
+button,
+
+input,
+
+select,
+
+textarea {
+
+    font-family: inherit;
+
+}
+
+
+/* =====================================================
+   APP
+===================================================== */
+
+.app {
+
+    min-height: 100vh;
+
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar {
+
+    width: 250px;
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        #111827,
+
+        #1f2937
+
+    );
+
+    color: white;
+
+    padding: 24px 16px;
+
+    position: fixed;
+
+    inset: 0 auto 0 0;
+
+    z-index: 1000;
+
+    transition:
+
+    transform 0.3s ease;
+
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding:
+
+    0 10px 30px;
+
+}
+
+
+.brand-icon {
+
+    width: 44px;
+
+    height: 44px;
+
+    border-radius: 14px;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #2563eb,
+
+        #7c3aed
+
+    );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 22px;
+
+}
+
+
+.brand-text {
+
+    min-width: 0;
+
+}
+
+
+.brand-title {
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+.brand-subtitle {
+
+    font-size: 11px;
+
+    color: #9ca3af;
+
+    margin-top: 3px;
+
+}
+
+
+.nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+}
+
+
+.nav-item {
+
+    border: none;
+
+    background: transparent;
+
+    color: #d1d5db;
+
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border-radius: 13px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    font-size: 14px;
+
+    transition: 0.2s ease;
+
+}
+
+
+.nav-item:hover {
+
+    background:
+
+    rgba(
+
+        255,
+
+        255,
+
+        255,
+
+        0.08
+
+    );
+
+    color: white;
+
+}
+
+
+.nav-item.active {
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #2563eb,
+
+        #4f46e5
+
+    );
+
+    color: white;
+
+}
+
+
+.nav-icon {
+
+    width: 22px;
+
+    text-align: center;
+
+    font-size: 18px;
+
+}
+
+
+.sidebar-footer {
+
+    position: absolute;
+
+    left: 16px;
+
+    right: 16px;
+
+    bottom: 20px;
+
+}
+
+
+.sync-status {
+
+    background:
+
+    rgba(
+
+        255,
+
+        255,
+
+        255,
+
+        0.07
+
+    );
+
+    border-radius: 14px;
+
+    padding: 13px;
+
+    font-size: 11px;
+
+    color: #d1d5db;
+
+}
+
+
+.sync-row {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+}
+
+
+.sync-dot {
+
+    width: 8px;
+
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+}
+
+
+.sync-dot.offline {
+
+    background: #ef4444;
+
+}
+
+
+.sync-dot.pending {
+
+    background: #f59e0b;
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main {
+
+    margin-left: 250px;
+
+    min-height: 100vh;
+
+}
+
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+
+.topbar {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    height: 76px;
+
+    background:
+
+    rgba(
+
+        255,
+
+        255,
+
+        255,
+
+        0.96
+
+    );
+
+    backdrop-filter:
+
+    blur(12px);
+
+    border-bottom:
+
+    1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+
+    0 30px;
+
+    box-shadow:
+
+    0 3px 14px
+
+    rgba(
+
+        0,
+
+        0,
+
+        0,
+
+        0.06
+
+    );
+
+}
+
+
+.page-title h1 {
+
+    font-size: 23px;
+
+    font-weight: 750;
+
+}
+
+
+.page-title p {
+
+    font-size: 12px;
+
+    color: var(--muted);
+
+    margin-top: 3px;
+
+}
+
+
+.top-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.sync-button {
+
+    border:
+
+    1px solid var(--border);
+
+    background: white;
+
+    border-radius: 11px;
+
+    padding:
+
+    9px 13px;
+
+    cursor: pointer;
+
+}
+
+
+.profile {
+
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 50%;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #2563eb,
+
+        #7c3aed
+
+    );
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 700;
+
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.content {
+
+    padding:
+
+    28px 30px 60px;
+
+    max-width: 1400px;
+
+    margin: auto;
+
+}
+
+
+/* =====================================================
+   PAGE INTRO
+===================================================== */
+
+.page-intro {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.page-intro h2 {
+
+    font-size: 22px;
+
+}
+
+
+.page-intro p {
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    margin-top: 5px;
+
+}
+
+
+.status-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding:
+
+    8px 12px;
+
+    border-radius: 999px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    background:
+
+    var(--success-light);
+
+    color:
+
+    var(--success);
+
+}
+
+
+.status-dot {
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background:
+
+    currentColor;
+
+}
+
+
+/* =====================================================
+   LAYOUT
+===================================================== */
+
+.admission-layout {
+
+    display: grid;
+
+    grid-template-columns:
+
+    minmax(
+
+        0,
+
+        1.5fr
+
+    )
+
+    minmax(
+
+        300px,
+
+        0.8fr
+
+    );
+
+    gap: 22px;
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card {
+
+    background: white;
+
+    border:
+
+    1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    padding: 24px;
+
+}
+
+
+.card-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+
+}
+
+
+.card-title {
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+}
+
+
+.card-subtitle {
+
+    font-size: 12px;
+
+    color: var(--muted);
+
+    margin-top: 4px;
+
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-section {
+
+    margin-bottom: 30px;
+
+}
+
+
+.section-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    margin-bottom: 16px;
+
+}
+
+
+.section-number {
+
+    width: 26px;
+
+    height: 26px;
+
+    border-radius: 9px;
+
+    background:
+
+    var(--accent-light);
+
+    color:
+
+    var(--accent);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+.form-grid {
+
+    display: grid;
+
+    grid-template-columns:
+
+    repeat(
+
+        2,
+
+        minmax(
+
+            0,
+
+            1fr
+
+        )
+
+    );
+
+    gap: 16px;
+
+}
+
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+}
+
+
+.form-group.full {
+
+    grid-column:
+
+    1 / -1;
+
+}
+
+
+label {
+
+    font-size: 12px;
+
+    font-weight: 650;
+
+    color:
+
+    #374151;
+
+}
+
+
+.required {
+
+    color:
+
+    var(--danger);
+
+}
+
+
+input,
+
+select,
+
+textarea {
+
+    width: 100%;
+
+    border:
+
+    1px solid var(--border);
+
+    background:
+
+    #ffffff;
+
+    border-radius: 11px;
+
+    padding:
+
+    12px 13px;
+
+    outline: none;
+
+    font-size: 13px;
+
+    color:
+
+    var(--text);
+
+    transition:
+
+    0.2s ease;
+
+}
+
+
+input:focus,
+
+select:focus,
+
+textarea:focus {
+
+    border-color:
+
+    var(--accent);
+
+    box-shadow:
+
+    0 0 0 3px
+
+    rgba(
+
+        37,
+
+        99,
+
+        235,
+
+        0.1
+
+    );
+
+}
+
+
+textarea {
+
+    resize: vertical;
+
+    min-height: 90px;
+
+}
+
+
+/* =====================================================
+   ROOM SELECTION
+===================================================== */
+
+.room-selection {
+
+    display: grid;
+
+    grid-template-columns:
+
+    repeat(
+
+        2,
+
+        minmax(
+
+            0,
+
+            1fr
+
+        )
+
+    );
+
+    gap: 12px;
+
+}
+
+
+.room-card {
+
+    border:
+
+    1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 15px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+    background: white;
+
+}
+
+
+.room-card:hover {
+
+    border-color:
+
+    var(--accent);
+
+    transform:
+
+    translateY(
+
+        -2px
+
+    );
+
+}
+
+
+.room-card.selected {
+
+    border-color:
+
+    var(--accent);
+
+    background:
+
+    var(--accent-light);
+
+}
+
+
+.room-card.unavailable {
+
+    opacity: 0.5;
+
+    cursor: not-allowed;
+
+}
+
+
+.room-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 9px;
+
+}
+
+
+.room-number {
+
+    font-size: 15px;
+
+    font-weight: 750;
+
+}
+
+
+.room-status {
+
+    font-size: 10px;
+
+    padding:
+
+    4px 7px;
+
+    border-radius: 999px;
+
+}
+
+
+.room-status.available {
+
+    background:
+
+    var(--success-light);
+
+    color:
+
+    var(--success);
+
+}
+
+
+.room-status.full {
+
+    background:
+
+    var(--danger-light);
+
+    color:
+
+    var(--danger);
+
+}
+
+
+.room-info {
+
+    color:
+
+    var(--muted);
+
+    font-size: 11px;
+
+}
+
+
+.bed-list {
+
+    display: flex;
+
+    gap: 6px;
+
+    flex-wrap: wrap;
+
+    margin-top: 12px;
+
+}
+
+
+.bed {
+
+    padding:
+
+    6px 8px;
+
+    border-radius: 7px;
+
+    font-size: 10px;
+
+    border:
+
+    1px solid var(--border);
+
+    background:
+
+    white;
+
+}
+
+
+.bed.available {
+
+    color:
+
+    var(--success);
+
+    border-color:
+
+    #bbf7d0;
+
+}
+
+
+.bed.occupied {
+
+    color:
+
+    var(--danger);
+
+    border-color:
+
+    #fecaca;
+
+}
+
+
+.bed.selected {
+
+    background:
+
+    var(--accent);
+
+    color: white;
+
+    border-color:
+
+    var(--accent);
+
+}
+
+
+/* =====================================================
+   PAYMENT SUMMARY
+===================================================== */
+
+.summary-card {
+
+    position: sticky;
+
+    top: 100px;
+
+}
+
+
+.summary-header {
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    margin-bottom: 20px;
+
+}
+
+
+.summary-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding:
+
+    12px 0;
+
+    border-bottom:
+
+    1px solid #f3f4f6;
+
+    font-size: 13px;
+
+}
+
+
+.summary-row:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.summary-label {
+
+    color:
+
+    var(--muted);
+
+}
+
+
+.summary-value {
+
+    font-weight: 700;
+
+    text-align: right;
+
+}
+
+
+.total-row {
+
+    margin-top: 12px;
+
+    padding-top: 18px;
+
+    border-top:
+
+    2px solid var(--border);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 18px;
+
+    font-weight: 750;
+
+}
+
+
+.payment-highlight {
+
+    background:
+
+    var(--success-light);
+
+    border-radius: 14px;
+
+    padding: 15px;
+
+    margin-top: 20px;
+
+}
+
+
+.payment-highlight-title {
+
+    font-size: 11px;
+
+    color:
+
+    var(--success);
+
+    font-weight: 650;
+
+}
+
+
+.payment-highlight-value {
+
+    font-size: 24px;
+
+    color:
+
+    var(--success);
+
+    font-weight: 750;
+
+    margin-top: 5px;
+
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.form-actions {
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 25px;
+
+}
+
+
+.btn {
+
+    border: none;
+
+    border-radius: 11px;
+
+    padding:
+
+    13px 18px;
+
+    font-size: 13px;
+
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+}
+
+
+.btn-primary {
+
+    background:
+
+    var(--accent);
+
+    color: white;
+
+    flex: 1;
+
+}
+
+
+.btn-primary:hover {
+
+    background:
+
+    #1d4ed8;
+
+    transform:
+
+    translateY(
+
+        -1px
+
+    );
+
+}
+
+
+.btn-secondary {
+
+    background:
+
+    #f3f4f6;
+
+    color:
+
+    #374151;
+
+}
+
+
+.btn:disabled {
+
+    opacity: 0.55;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty-state {
+
+    padding: 35px 20px;
+
+    text-align: center;
+
+    color:
+
+    var(--muted);
+
+    font-size: 13px;
+
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+
+    rgba(
+
+        255,
+
+        255,
+
+        255,
+
+        0.82
+
+    );
+
+    backdrop-filter:
+
+    blur(5px);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 2000;
+
+}
+
+
+.loading-box {
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    box-shadow:
+
+    0 15px 40px
+
+    rgba(
+
+        0,
+
+        0,
+
+        0,
+
+        0.12
+
+    );
+
+    text-align: center;
+
+}
+
+
+.spinner {
+
+    width: 32px;
+
+    height: 32px;
+
+    border:
+
+    3px solid #e5e7eb;
+
+    border-top-color:
+
+    var(--accent);
+
+    border-radius: 50%;
+
+    animation:
+
+    spin 0.8s linear infinite;
+
+    margin:
+
+    auto auto 12px;
+
+}
+
+
+@keyframes spin {
+
+    to {
+
+        transform:
+
+        rotate(
+
+            360deg
+
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast {
+
+    position: fixed;
+
+    bottom: 25px;
+
+    right: 25px;
+
+    background:
+
+    #111827;
+
+    color: white;
+
+    padding:
+
+    13px 18px;
+
+    border-radius: 12px;
+
+    font-size: 13px;
+
+    transform:
+
+    translateY(
+
+        100px
+
+    );
+
+    opacity: 0;
+
+    transition:
+
+    0.3s ease;
+
+    z-index: 3000;
+
+}
+
+
+.toast.show {
+
+    transform:
+
+    translateY(
+
+        0
+
+    );
+
+    opacity: 1;
+
+}
+
+
+.toast.error {
+
+    background:
+
+    #b91c1c;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+.mobile-header {
+
+    display: none;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    margin-right: 12px;
+
+}
+
+
+.sidebar-overlay {
+
+    display: none;
+
+}
+
+
+@media (
+
+    max-width: 900px
+
+) {
+
+    .admission-layout {
+
+        grid-template-columns:
+
+        1fr;
+
+    }
+
+    .summary-card {
+
+        position: static;
+
+    }
+
+}
+
+
+@media (
+
+    max-width: 800px
+
+) {
+
+    .sidebar {
+
+        transform:
+
+        translateX(
+
+            -100%
+
+        );
+
+    }
+
+    .sidebar.open {
+
+        transform:
+
+        translateX(
+
+            0
+
+        );
+
+    }
+
+    .main {
+
+        margin-left: 0;
+
+    }
+
+    .mobile-header {
+
+        display: block;
+
+    }
+
+    .sidebar-overlay.show {
+
+        display: block;
+
+        position: fixed;
+
+        inset: 0;
+
+        background:
+
+        rgba(
+
+            0,
+
+            0,
+
+            0,
+
+            0.35
+
+        );
+
+        z-index: 950;
+
+    }
+
+    .topbar {
+
+        height: 68px;
+
+        padding:
+
+        0 18px;
+
+    }
+
+    .content {
+
+        padding:
+
+        20px 16px 40px;
+
+    }
+
+}
+
+
+@media (
+
+    max-width: 550px
+
+) {
+
+    .form-grid {
+
+        grid-template-columns:
+
+        1fr;
+
+    }
+
+    .form-group.full {
+
+        grid-column:
+
+        auto;
+
+    }
+
+    .room-selection {
+
+        grid-template-columns:
+
+        1fr;
+
+    }
+
+    .page-intro {
+
+        align-items:
+
+        flex-start;
+
+        flex-direction:
+
+        column;
+
+    }
+
+    .form-actions {
+
+        flex-direction:
+
+        column;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+<!-- =================================================
+     SIDEBAR
+================================================== -->
+
+<aside
+class="sidebar"
+id="sidebar"
+>
+
+
+<div class="brand">
+
+
+<div class="brand-icon">
+
+🏠
+
+</div>
+
+
+<div class="brand-text">
+
+
+<div
+class="brand-title"
+id="brandName"
+>
+
+Loading...
+
+</div>
+
+
+<div
+class="brand-subtitle"
+>
+
+Management System
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<nav class="nav">
+
+
+<button
+class="nav-item"
+onclick="navigateTo('index.html')"
+>
+
+<span
+class="nav-icon"
+>
+▦
+</span>
+
+<span>
+Dashboard
+</span>
+
+</button>
+
+
+<button
+class="nav-item active"
+>
+
+<span
+class="nav-icon"
+>
+＋
+</span>
+
+<span>
+Admissions
+</span>
+
+</button>
+
+
+<button
+class="nav-item"
+onclick="navigateTo('rooms.html')"
+>
+
+<span
+class="nav-icon"
+>
+⌂
+</span>
+
+<span>
+Rooms & Beds
+</span>
+
+</button>
+
+
+<button
+class="nav-item"
+onclick="navigateTo('payments.html')"
+>
+
+<span
+class="nav-icon"
+>
+₹
+</span>
+
+<span>
+Payments
+</span>
+
+</button>
+
+
+<button
+class="nav-item"
+onclick="navigateTo('reports.html')"
+>
+
+<span
+class="nav-icon"
+>
+▥
+</span>
+
+<span>
+Reports
+</span>
+
+</button>
+
+
+<button
+class="nav-item"
+onclick="navigateTo('expenses.html')"
+>
+
+<span
+class="nav-icon"
+>
+↘
+</span>
+
+<span>
+Expenses
+</span>
+
+</button>
+
+
+<button
+class="nav-item"
+onclick="navigateTo('tenants.html')"
+>
+
+<span
+class="nav-icon"
+>
+♙
+</span>
+
+<span>
+Tenants
+</span>
+
+</button>
+
+
+<button
+class="nav-item"
+onclick="navigateTo('settings.html')"
+>
+
+<span
+class="nav-icon"
+>
+⚙
+</span>
+
+<span>
+Settings
+</span>
+
+</button>
+
+
+</nav>
+
+
+<div class="sidebar-footer">
+
+
+<div class="sync-status">
+
+
+<div class="sync-row">
+
+
+<span
+class="sync-dot"
+id="syncDot"
+>
+</span>
+
+
+<span
+id="syncText"
+>
+
+Loading...
+
+</span>
+
+
+</div>
+
+
+<div
+id="lastSync"
+style="margin-top:6px;"
+>
+
+--
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</aside>
+
+
+<div
+class="sidebar-overlay"
+id="sidebarOverlay"
+onclick="closeSidebar()"
+>
+</div>
+
+
+<!-- =================================================
+     MAIN
+================================================== -->
+
+<main class="main">
+
+
+<header class="topbar">
+
+
+<div
+style="
+display:flex;
+align-items:center;
+"
+>
+
+
+<button
+class="mobile-header"
+onclick="toggleSidebar()"
+>
+
+☰
+
+</button>
+
+
+<div class="page-title">
+
+
+<h1>
+
+Admissions
+
+</h1>
+
+
+<p>
+
+Register a new tenant and assign a bed
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+<div class="top-actions">
+
+
+<button
+class="sync-button"
+onclick="manualSync()"
+>
+
+↻ Sync
+
+</button>
+
+
+<div class="profile">
+
+A
+
+</div>
+
+
+</div>
+
+
+</header>
+
+
+<section class="content">
+
+
+<div class="page-intro">
+
+
+<div>
+
+
+<h2>
+
+New Admission
+
+</h2>
+
+
+<p>
+
+Create a complete tenant admission record.
+
+</p>
+
+
+</div>
+
+
+<div
+class="status-badge"
+>
+
+<span
+class="status-dot"
+>
+</span>
+
+Ready for admission
+
+</div>
+
+
+</div>
+
+
+<form
+id="admissionForm"
+onsubmit="submitAdmission(event)"
+>
+
+
+<div class="admission-layout">
+
+
+<!-- =================================================
+     LEFT FORM
+================================================== -->
+
+<div>
+
+
+<div class="card">
+
+
+<!-- PERSONAL DETAILS -->
+
+<div class="form-section">
+
+
+<div class="section-heading">
+
+
+<div class="section-number">
+
+1
+
+</div>
+
+
+Personal Details
+
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+
+<label>
+
+Full Name
+
+<span class="required">
+*
+</span>
+
+</label>
+
+
+<input
+type="text"
+id="fullName"
+required
+placeholder="Enter tenant full name"
+>
+
+
+</div>
+
+
+<div class="form-group">
+
+
+<label>
+
+Mobile Number
+
+<span class="required">
+*
+</span>
+
+</label>
+
+
+<input
+type="tel"
+id="mobile"
+required
+placeholder="Enter mobile number"
+>
+
+
+</div>
+
+
+<div class="form-group">
+
+
+<label>
+
+Email Address
+
+</label>
+
+
+<input
+type="email"
+id="email"
+placeholder="tenant@email.com"
+>
+
+
+</div>
+
+
+<div class="form-group">
+
+
+<label>
+
+Date of Birth
+
+</label>
+
+
+<input
+type="date"
+id="dateOfBirth"
+>
+
+
+</div>
+
+
+<div class="form-group">
+
+
+<label>
+
+Gender
+
+</label>
+
+
+<select
+id="gender"
+>
+
+<option
+value=""
+>
+Select gender
+</option>
+
+<option
+value="Male"
+>
+Male
+</option>
+
+<option
+value="Female"
+>
+Female
+</option>
+
+<option
+value="Other"
+>
+Other
+</option>
+
+</select>
+
+
+</div>
+
+
+<div class="form-group">
+
+
+<label>
+
+Occupation
+
+</label>
+
+
+<input
+type="text"
+id="occupation"
+placeholder="Student / Working Professional"
+>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- IDENTITY DETAILS -->
+
+<div class="form-section">
+
+
+<div class="section-heading">
+
+
+<div class="section-number">
+
+2
+
+</div>
+
+
+Identity Details
+
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+
+<label>
+
+ID Proof Type
+
+</label>
+
+
+<select
+id="idProofType"
+>
+
+<option
+value=""
+>
+Select ID proof
+</option>
+
+<option
+value="Aadhaar Card"
+>
+Aadhaar Card
+</option>
+
+<option
+value="PAN Card"
+>
+PAN Card
+</option>
+
+<option
+value="Passport"
+>
+Passport
+</option>
+
+<option
+value="Driving License"
+>
+Driving License
+</option>
+
+<option
+value="Other"
+>
+Other
+</option>
+
+</select>
+
+
+</div>
+
+
+<div class="form-group">
+
+
+<label>
+
+ID Proof Number
+
+</label>
+
+
+<input
+type="text"
+id="idProofNumber"
+placeholder="Enter ID number"
+>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- EMERGENCY CONTACT -->
+
+<div class="form-section">
+
+
+<div class="section-heading">
+
+
+<div class="section-number">
+
+3
+
+</div>
+
+
+Emergency Contact
+
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+
+<label>
+
+Contact Name
+
+</label>
+
+
+<input
+type="text"
+id="emergencyName"
+placeholder="Emergency contact name"
+>
+
+
+</div>
+
+
+<div class="form-group">
+
+
+<label>
+
+Contact Number
+
+</label>
+
+
+<input
+type="tel"
+id="emergencyPhone"
+placeholder="Emergency contact number"
+>
+
+
+</div>
+
+
+<div class="form-group full">
+
+
+<label>
+
+Relationship
+
+</label>
+
+
+<input
+type="text"
+id="emergencyRelation"
+placeholder="Father / Mother / Brother / Friend"
+>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- ADMISSION DETAILS -->
+
+<div class="form-section">
+
+
+<div class="section-heading">
+
+
+<div class="section-number">
+
+4
+
+</div>
+
+
+Admission Details
+
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+
+<label>
+
+Admission Date
+
+<span class="required">
+*
+</span>
+
+</label>
+
+
+<input
+type="date"
+id="admissionDate"
+required
+>
+
+
+</div>
+
+
+<div class="form-group">
+
+
+<label>
+
+Expected Move-out Date
+
+</label>
+
+
+<input
+type="date"
+id="expectedMoveOutDate"
+>
+
+
+</div>
+
+
+<div class="form-group full">
+
+
+<label>
+
+Select Room and Bed
+
+<span class="required">
+*
+</span>
+
+</label>
+
+
+<div
+class="room-selection"
+id="roomSelection"
+>
+
+
+<div
+class="empty-state"
+>
+
+Loading rooms...
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- PAYMENT DETAILS -->
+
+<div class="form-section">
+
+
+<div class="section-heading">
+
+
+<div class="section-number">
+
+5
+
+</div>
+
+
+Payment Details
+
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+
+<label>
+
+Monthly Rent
+
+<span class="required">
+*
+</span>
+
+</label>
+
+
+<input
+type="number"
+id="monthlyRent"
+required
+min="0"
+step="1"
+placeholder="0"
+oninput="calculateSummary()"
+>
+
+
+</div>
+
+
+<div class="form-group">
+
+
+<label>
+
+Security Deposit
+
+</label>
+
+
+<input
+type="number"
+id="securityDeposit"
+min="0"
+step="1"
+value="0"
+oninput="calculateSummary()"
+>
+
+
+</div>
+
+
+<div class="form-group">
+
+
+<label>
+
+Initial Payment
+
+</label>
+
+
+<input
+type="number"
+id="initialPayment"
+min="0"
+step="1"
+value="0"
+oninput="calculateSummary()"
+>
+
+
+</div>
+
+
+<div class="form-group">
+
+
+<label>
+
+Payment Mode
+
+</label>
+
+
+<select
+id="paymentMode"
+>
+
+<option
+value="Cash"
+>
+Cash
+</option>
+
+<option
+value="UPI"
+>
+UPI
+</option>
+
+<option
+value="Bank Transfer"
+>
+Bank Transfer
+</option>
+
+<option
+value="Card"
+>
+Card
+</option>
+
+<option
+value="Other"
+>
+Other
+</option>
+
+</select>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- NOTES -->
+
+<div class="form-section">
+
+
+<div class="section-heading">
+
+
+<div class="section-number">
+
+6
+
+</div>
+
+
+Additional Information
+
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="form-group full">
+
+
+<label>
+
+Notes
+
+</label>
+
+
+<textarea
+id="notes"
+placeholder="Add any additional notes..."
+></textarea>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<div class="form-actions">
+
+
+<button
+type="button"
+class="btn btn-secondary"
+onclick="resetForm()"
+>
+
+Clear
+
+</button>
+
+
+<button
+type="submit"
+class="btn btn-primary"
+id="submitButton"
+>
+
+Create Admission
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =================================================
+     RIGHT SUMMARY
+================================================== -->
+
+<div>
+
+
+<div
+class="card summary-card"
+>
+
+
+<div class="summary-header">
+
+Admission Summary
+
+</div>
+
+
+<div class="summary-row">
+
+
+<span
+class="summary-label"
+>
+
+Tenant
+
+</span>
+
+
+<span
+class="summary-value"
+id="summaryTenant"
+>
+
+Not selected
+
+</span>
+
+
+</div>
+
+
+<div class="summary-row">
+
+
+<span
+class="summary-label"
+>
+
+Room / Bed
+
+</span>
+
+
+<span
+class="summary-value"
+id="summaryBed"
+>
+
+Not selected
+
+</span>
+
+
+</div>
+
+
+<div class="summary-row">
+
+
+<span
+class="summary-label"
+>
+
+Monthly Rent
+
+</span>
+
+
+<span
+class="summary-value"
+id="summaryRent"
+>
+
+₹0
+
+</span>
+
+
+</div>
+
+
+<div class="summary-row">
+
+
+<span
+class="summary-label"
+>
+
+Security Deposit
+
+</span>
+
+
+<span
+class="summary-value"
+id="summaryDeposit"
+>
+
+₹0
+
+</span>
+
+
+</div>
+
+
+<div class="summary-row">
+
+
+<span
+class="summary-label"
+>
+
+Initial Payment
+
+</span>
+
+
+<span
+class="summary-value"
+id="summaryPayment"
+>
+
+₹0
+
+</span>
+
+
+</div>
+
+
+<div class="total-row">
+
+
+<span>
+
+Total Due
+
+</span>
+
+
+<span
+id="summaryTotal"
+>
+
+₹0
+
+</span>
+
+
+</div>
+
+
+<div
+class="payment-highlight"
+>
+
+
+<div
+class="payment-highlight-title"
+>
+
+PAYMENT RECEIVED TODAY
+
+</div>
+
+
+<div
+class="payment-highlight-value"
+id="summaryReceived"
+>
+
+₹0
+
+</div>
+
+
+</div>
+
+
+<div
+style="
+margin-top:20px;
+font-size:11px;
+color:#6b7280;
+line-height:1.6;
+"
+>
+
+After admission:
+
+<br>
+
+• Tenant record will be created
+
+<br>
+
+• Room and bed will be assigned
+
+<br>
+
+• Initial payment will be recorded
+
+<br>
+
+• Receipt will be generated
+
+<br>
+
+• Welcome email will be sent
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</form>
+
+
+</section>
+
+
+</main>
+
+
+</div>
+
+
+<!-- =================================================
+     LOADING
+================================================== -->
+
+<div
+class="loading-overlay"
+id="loadingOverlay"
+>
+
+
+<div
+class="loading-box"
+>
+
+
+<div
+class="spinner"
+>
+</div>
+
+
+<div>
+
+Loading admission data...
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =================================================
+     TOAST
+================================================== -->
+
+<div
+class="toast"
+id="toast"
+>
+</div>
+
+
+<script>
+
+
+/* =====================================================
+   API
+===================================================== */
+
+const API_URL =
+
+"https://script.google.com/macros/s/AKfycbzpHr7CS-ELRUXe8QSnKY7HgE8H3ShBCX-8jcr7pEzY5lFwNLWhtHRpu2uX1g4PsPcq/exec";
+
+
+/* =====================================================
+   STORAGE
+===================================================== */
+
+const STORAGE = {
+
+    SETTINGS:
+
+    "pg_erp_settings_v4",
+
+    ADMISSION_DATA:
+
+    "pg_erp_admission_form_data_v1",
+
+    SYNC_QUEUE:
+
+    "pg_erp_sync_queue_v4",
+
+    LAST_SYNC:
+
+    "pg_erp_last_sync_v4"
+
+};
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let state = {
+
+    settings: null,
+
+    admissionData: {
+
+        rooms: [],
+
+        beds: []
+
+    },
+
+    selectedRoom: null,
+
+    selectedBed: null,
+
+    syncing: false
+
+};
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    async function() {
+
+
+        setDefaultAdmissionDate();
+
+
+        loadLocalData();
+
+
+        if (
+
+            state.settings ||
+
+            state.admissionData.rooms.length
+
+        ) {
+
+            hideLoading();
+
+        }
+
+
+        await syncAdmissionData();
+
+
+        document
+
+        .getElementById(
+
+            "fullName"
+
+        )
+
+        .addEventListener(
+
+            "input",
+
+            function() {
+
+                document
+
+                .getElementById(
+
+                    "summaryTenant"
+
+                )
+
+                .textContent =
+
+                    this.value ||
+
+                    "Not selected";
+
+            }
+
+        );
+
+
+    }
+
+);
+
+
+/* =====================================================
+   API REQUEST
+===================================================== */
+
+async function apiRequest(
+
+    action,
+
+    data = {}
+
+) {
+
+
+    const response =
+
+        await fetch(
+
+            API_URL,
+
+            {
+
+                method:
+
+                "POST",
+
+                headers: {
+
+                    "Content-Type":
+
+                    "text/plain;charset=utf-8"
+
+                },
+
+                body:
+
+                JSON.stringify({
+
+                    action:
+
+                    action,
+
+                    data:
+
+                    data
+
+                })
+
+            }
+
+        );
+
+
+    if (
+
+        !response.ok
+
+    ) {
+
+        throw new Error(
+
+            "Network request failed"
+
+        );
+
+    }
+
+
+    const result =
+
+        await response.json();
+
+
+    if (
+
+        !result.success
+
+    ) {
+
+        throw new Error(
+
+            result.message ||
+
+            "API request failed"
+
+        );
+
+    }
+
+
+    return result;
+
+}
+
+
+/* =====================================================
+   LOAD LOCAL DATA
+===================================================== */
+
+function loadLocalData() {
+
+
+    try {
+
+
+        const settings =
+
+            localStorage.getItem(
+
+                STORAGE.SETTINGS
+
+            );
+
+
+        if (
+
+            settings
+
+        ) {
+
+
+            state.settings =
+
+                JSON.parse(
+
+                    settings
+
+                );
+
+
+            applySettings();
+
+        }
+
+
+        const admissionData =
+
+            localStorage.getItem(
+
+                STORAGE.ADMISSION_DATA
+
+            );
+
+
+        if (
+
+            admissionData
+
+        ) {
+
+
+            state.admissionData =
+
+                JSON.parse(
+
+                    admissionData
+
+                );
+
+
+            renderRooms();
+
+        }
+
+
+        updateSyncStatus(
+
+            "local"
+
+        );
+
+
+    }
+
+    catch (
+
+        error
+
+    ) {
+
+
+        console.warn(
+
+            "Local data load failed",
+
+            error
+
+        );
+
+
+        localStorage.removeItem(
+
+            STORAGE.ADMISSION_DATA
+
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   SYNC ADMISSION DATA
+===================================================== */
+
+async function syncAdmissionData() {
+
+
+    if (
+
+        state.syncing
+
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+
+        !navigator.onLine
+
+    ) {
+
+        updateSyncStatus(
+
+            "offline"
+
+        );
+
+        hideLoading();
+
+        return;
+
+    }
+
+
+    state.syncing =
+
+    true;
+
+
+    updateSyncStatus(
+
+        "syncing"
+
+    );
+
+
+    try {
+
+
+        /*
+         * This backend action will be
+         * added to Code.gs.
+         */
+
+        const response =
+
+            await apiRequest(
+
+                "getAdmissionFormData"
+
+            );
+
+
+        const data =
+
+            response.data ||
+
+            {};
+
+
+        state.admissionData = {
+
+            rooms:
+
+            data.rooms ||
+
+            [],
+
+            beds:
+
+            data.beds ||
+
+            []
+
+        };
+
+
+        if (
+
+            data.settings
+
+        ) {
+
+
+            state.settings =
+
+                data.settings;
+
+
+            localStorage.setItem(
+
+                STORAGE.SETTINGS,
+
+                JSON.stringify(
+
+                    state.settings
+
+                )
+
+            );
+
+
+            applySettings();
+
+        }
+
+
+        localStorage.setItem(
+
+            STORAGE.ADMISSION_DATA,
+
+            JSON.stringify(
+
+                state.admissionData
+
+            )
+
+        );
+
+
+        renderRooms();
+
+
+        updateSyncStatus(
+
+            "synced"
+
+        );
+
+
+    }
+
+    catch (
+
+        error
+
+    ) {
+
+
+        console.error(
+
+            "Admission data sync failed",
+
+            error
+
+        );
+
+
+        updateSyncStatus(
+
+            "offline"
+
+        );
+
+    }
+
+
+    finally {
+
+
+        state.syncing =
+
+        false;
+
+
+        hideLoading();
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER ROOMS
+===================================================== */
+
+function renderRooms() {
+
+
+    const container =
+
+        document.getElementById(
+
+            "roomSelection"
+
+        );
+
+
+    const rooms =
+
+        state.admissionData.rooms ||
+
+        [];
+
+
+    if (
+
+        rooms.length === 0
+
+    ) {
+
+
+        container.innerHTML = `
+
+            <div
+            class="empty-state"
+            >
+
+            No rooms available.
+
+            </div>
+
+        `;
+
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+
+        rooms
+
+        .map(
+
+            function(room) {
+
+
+                const roomId =
+
+                    room.id ||
+
+                    room.roomId ||
+
+                    room["Room ID"] ||
+
+                    room["Room Number"];
+
+
+                const roomNumber =
+
+                    room.roomNumber ||
+
+                    room["Room Number"] ||
+
+                    room.name ||
+
+                    roomId;
+
+
+                const roomBeds =
+
+                    getRoomBeds(
+
+                        room
+
+                    );
+
+
+                const availableBeds =
+
+                    roomBeds
+
+                    .filter(
+
+                        function(bed) {
+
+                            return isBedAvailable(
+
+                                bed
+
+                            );
+
+                        }
+
+                    );
+
+
+                const isFull =
+
+                    availableBeds.length ===
+
+                    0;
+
+
+                return `
+
+                    <div
+
+                    class="room-card
+
+                    ${isFull
+
+                    ?
+
+                    "unavailable"
+
+                    :
+
+                    ""
+
+                    }"
+
+                    data-room-id="${escapeHtml(
+
+                        roomId
+
+                    )}"
+
+                    onclick="${
+
+                        isFull
+
+                        ?
+
+                        ""
+
+                        :
+
+                        `selectRoom('${escapeJs(
+
+                            roomId
+
+                        )}')`
+
+                    }"
+
+                    >
+
+                    <div
+
+                    class="room-header"
+
+                    >
+
+                    <div
+
+                    class="room-number"
+
+                    >
+
+                    Room ${escapeHtml(
+
+                        roomNumber
+
+                    )}
+
+                    </div>
+
+
+                    <div
+
+                    class="room-status
+
+                    ${
+
+                    isFull
+
+                    ?
+
+                    "full"
+
+                    :
+
+                    "available"
+
+                    }"
+
+                    >
+
+                    ${
+
+                    isFull
+
+                    ?
+
+                    "Full"
+
+                    :
+
+                    availableBeds.length +
+
+                    " Available"
+
+                    }
+
+                    </div>
+
+
+                    </div>
+
+
+                    <div
+
+                    class="room-info"
+
+                    >
+
+                    ${roomBeds.length}
+
+                    total beds
+
+                    </div>
+
+
+                    <div
+
+                    class="bed-list"
+
+                    >
+
+                    ${roomBeds
+
+                    .map(
+
+                        function(bed) {
+
+
+                            const bedId =
+
+                                bed.id ||
+
+                                bed.bedId ||
+
+                                bed["Bed ID"];
+
+
+                            const bedNumber =
+
+                                bed.bedNumber ||
+
+                                bed["Bed Number"] ||
+
+                                bed.name ||
+
+                                bedId;
+
+
+                            const available =
+
+                                isBedAvailable(
+
+                                    bed
+
+                                );
+
+
+                            return `
+
+                                <span
+
+                                class="bed
+
+                                ${
+
+                                available
+
+                                ?
+
+                                "available"
+
+                                :
+
+                                "occupied"
+
+                                }"
+
+                                data-bed-id="${escapeHtml(
+
+                                    bedId
+
+                                )}"
+
+                                >
+
+                                ${escapeHtml(
+
+                                    bedNumber
+
+                                )}
+
+                                </span>
+
+                            `;
+
+                        }
+
+                    )
+
+                    .join("")}
+
+                    </div>
+
+                    </div>
+
+                `;
+
+            }
+
+        )
+
+        .join("");
+
+}
+
+
+/* =====================================================
+   GET ROOM BEDS
+===================================================== */
+
+function getRoomBeds(
+
+    room
+
+) {
+
+
+    if (
+
+        Array.isArray(
+
+            room.beds
+
+        )
+
+    ) {
+
+        return room.beds;
+
+    }
+
+
+    const roomId =
+
+        room.id ||
+
+        room.roomId ||
+
+        room["Room ID"];
+
+
+    return (
+
+        state.admissionData.beds ||
+
+        []
+
+    )
+
+    .filter(
+
+        function(bed) {
+
+
+            return (
+
+                bed.roomId ===
+
+                roomId
+
+            )
+
+            ||
+
+            bed["Room ID"] ===
+
+            roomId;
+
+        }
+
+    );
+
+}
+
+
+/* =====================================================
+   CHECK BED AVAILABILITY
+===================================================== */
+
+function isBedAvailable(
+
+    bed
+
+) {
+
+
+    const status =
+
+        String(
+
+            bed.status ||
+
+            bed["Status"] ||
+
+            bed["Bed Status"] ||
+
+            ""
+
+        )
+
+        .trim()
+
+        .toLowerCase();
+
+
+    return [
+
+        "",
+
+        "available",
+
+        "vacant",
+
+        "empty",
+
+        "free"
+
+    ]
+
+    .includes(
+
+        status
+
+    );
+
+}
+
+
+/* =====================================================
+   SELECT ROOM
+===================================================== */
+
+function selectRoom(
+
+    roomId
+
+) {
+
+
+    const rooms =
+
+        state.admissionData.rooms ||
+
+        [];
+
+
+    const room =
+
+        rooms.find(
+
+            function(item) {
+
+
+                return (
+
+                    item.id ===
+
+                    roomId
+
+                )
+
+                ||
+
+                item.roomId ===
+
+                roomId
+
+                ||
+
+                item["Room ID"] ===
+
+                roomId
+
+                ||
+
+                item["Room Number"] ===
+
+                roomId;
+
+            }
+
+        );
+
+
+    if (
+
+        !room
+
+    ) {
+
+        return;
+
+    }
+
+
+    state.selectedRoom =
+
+        room;
+
+
+    const beds =
+
+        getRoomBeds(
+
+            room
+
+        );
+
+
+    const availableBeds =
+
+        beds
+
+        .filter(
+
+            function(bed) {
+
+
+                return isBedAvailable(
+
+                    bed
+
+                );
+
+            }
+
+        );
+
+
+    if (
+
+        availableBeds.length ===
+
+        0
+
+    ) {
+
+        showToast(
+
+            "No available beds in this room",
+
+            true
+
+        );
+
+
+        return;
+
+    }
+
+
+    const selectedBed =
+
+        availableBeds[0];
+
+
+    state.selectedBed =
+
+        selectedBed;
+
+
+    document
+
+    .querySelectorAll(
+
+        ".room-card"
+
+    )
+
+    .forEach(
+
+        function(card) {
+
+            card.classList.remove(
+
+                "selected"
+
+            );
+
+        }
+
+    );
+
+
+    const card =
+
+        document
+
+        .querySelector(
+
+            `[data-room-id="${CSS.escape(
+
+                String(
+
+                    roomId
+
+                )
+
+            )}"]`
+
+        );
+
+
+    if (
+
+        card
+
+    ) {
+
+        card.classList.add(
+
+            "selected"
+
+        );
+
+    }
+
+
+    document
+
+    .getElementById(
+
+        "summaryBed"
+
+    )
+
+    .textContent =
+
+        "Room " +
+
+        (
+
+            room.roomNumber ||
+
+            room["Room Number"] ||
+
+            room.name ||
+
+            roomId
+
+        )
+
+        +
+
+        " / Bed " +
+
+        (
+
+            selectedBed.bedNumber ||
+
+            selectedBed["Bed Number"] ||
+
+            selectedBed.name ||
+
+            selectedBed.id ||
+
+            selectedBed["Bed ID"]
+
+        );
+
+}
+
+
+/* =====================================================
+   SUMMARY CALCULATION
+===================================================== */
+
+function calculateSummary() {
+
+
+    const rent =
+
+        Number(
+
+            document
+
+            .getElementById(
+
+                "monthlyRent"
+
+            )
+
+            .value
+
+        )
+
+        ||
+
+        0;
+
+
+    const deposit =
+
+        Number(
+
+            document
+
+            .getElementById(
+
+                "securityDeposit"
+
+            )
+
+            .value
+
+        )
+
+        ||
+
+        0;
+
+
+    const payment =
+
+        Number(
+
+            document
+
+            .getElementById(
+
+                "initialPayment"
+
+            )
+
+            .value
+
+        )
+
+        ||
+
+        0;
+
+
+    const total =
+
+        rent +
+
+        deposit;
+
+
+    document
+
+    .getElementById(
+
+        "summaryRent"
+
+    )
+
+    .textContent =
+
+        formatCurrency(
+
+            rent
+
+        );
+
+
+    document
+
+    .getElementById(
+
+        "summaryDeposit"
+
+    )
+
+    .textContent =
+
+        formatCurrency(
+
+            deposit
+
+        );
+
+
+    document
+
+    .getElementById(
+
+        "summaryPayment"
+
+    )
+
+    .textContent =
+
+        formatCurrency(
+
+            payment
+
+        );
+
+
+    document
+
+    .getElementById(
+
+        "summaryTotal"
+
+    )
+
+    .textContent =
+
+        formatCurrency(
+
+            total
+
+        );
+
+
+    document
+
+    .getElementById(
+
+        "summaryReceived"
+
+    )
+
+    .textContent =
+
+        formatCurrency(
+
+            payment
+
+        );
+
+}
+
+
+/* =====================================================
+   SUBMIT ADMISSION
+===================================================== */
+
+async function submitAdmission(
+
+    event
+
+) {
+
+
+    event.preventDefault();
+
+
+    if (
+
+        !state.selectedRoom ||
+
+        !state.selectedBed
+
+    ) {
+
+
+        showToast(
+
+            "Please select a room and bed",
+
+            true
+
+        );
+
+
+        return;
+
+    }
+
+
+    const fullName =
+
+        document
+
+        .getElementById(
+
+            "fullName"
+
+        )
+
+        .value
+
+        .trim();
+
+
+    const mobile =
+
+        document
+
+        .getElementById(
+
+            "mobile"
+
+        )
+
+        .value
+
+        .trim();
+
+
+    if (
+
+        !fullName ||
+
+        !mobile
+
+    ) {
+
+
+        showToast(
+
+            "Please fill required fields",
+
+            true
+
+        );
+
+
+        return;
+
+    }
+
+
+    const admissionData =
+
+    {
+
+
+        admissionId:
+
+            generateId(
+
+                "ADM"
+
+            ),
+
+
+        tenant:
+
+        {
+
+            fullName:
+
+                fullName,
+
+
+            mobile:
+
+                mobile,
+
+
+            email:
+
+                getValue(
+
+                    "email"
+
+                ),
+
+
+            dateOfBirth:
+
+                getValue(
+
+                    "dateOfBirth"
+
+                ),
+
+
+            gender:
+
+                getValue(
+
+                    "gender"
+
+                ),
+
+
+            occupation:
+
+                getValue(
+
+                    "occupation"
+
+                ),
+
+
+            idProofType:
+
+                getValue(
+
+                    "idProofType"
+
+                ),
+
+
+            idProofNumber:
+
+                getValue(
+
+                    "idProofNumber"
+
+                ),
+
+
+            emergencyName:
+
+                getValue(
+
+                    "emergencyName"
+
+                ),
+
+
+            emergencyPhone:
+
+                getValue(
+
+                    "emergencyPhone"
+
+                ),
+
+
+            emergencyRelation:
+
+                getValue(
+
+                    "emergencyRelation"
+
+                )
+
+        },
+
+
+        admission:
+
+        {
+
+            admissionDate:
+
+                getValue(
+
+                    "admissionDate"
+
+                ),
+
+
+            expectedMoveOutDate:
+
+                getValue(
+
+                    "expectedMoveOutDate"
+
+                ),
+
+
+            roomId:
+
+                getObjectId(
+
+                    state.selectedRoom
+
+                ),
+
+
+            bedId:
+
+                getObjectId(
+
+                    state.selectedBed
+
+                )
+
+        },
+
+
+        payment:
+
+        {
+
+            monthlyRent:
+
+                Number(
+
+                    getValue(
+
+                        "monthlyRent"
+
+                    )
+
+                )
+
+                ||
+
+                0,
+
+
+            securityDeposit:
+
+                Number(
+
+                    getValue(
+
+                        "securityDeposit"
+
+                    )
+
+                )
+
+                ||
+
+                0,
+
+
+            initialPayment:
+
+                Number(
+
+                    getValue(
+
+                        "initialPayment"
+
+                    )
+
+                )
+
+                ||
+
+                0,
+
+
+            paymentMode:
+
+                getValue(
+
+                    "paymentMode"
+
+                )
+
+        },
+
+
+        notes:
+
+            getValue(
+
+                "notes"
+
+            ),
+
+
+        createdAt:
+
+            new Date()
+
+            .toISOString()
+
+    };
+
+
+    const button =
+
+        document
+
+        .getElementById(
+
+            "submitButton"
+
+        );
+
+
+    button.disabled =
+
+        true;
+
+
+    button.textContent =
+
+        "Saving...";
+
+
+    try {
+
+
+        /*
+         * LOCAL-FIRST:
+         *
+         * The backend request is
+         * queued in the background.
+         *
+         * The UI does not need to
+         * wait for the backend.
+         */
+
+
+        addToSyncQueue(
+
+            "createAdmission",
+
+            admissionData
+
+        );
+
+
+        showToast(
+
+            "Admission saved locally. Syncing in background."
+
+        );
+
+
+        resetForm();
+
+
+        /*
+         * Try to sync immediately
+         * if internet is available.
+         */
+
+        syncQueuedChanges();
+
+
+    }
+
+    catch (
+
+        error
+
+    ) {
+
+
+        console.error(
+
+            error
+
+        );
+
+
+        showToast(
+
+            "Admission could not be saved",
+
+            true
+
+        );
+
+    }
+
+
+    finally {
+
+
+        button.disabled =
+
+        false;
+
+
+        button.textContent =
+
+        "Create Admission";
+
+    }
+
+}
+
+
+/* =====================================================
+   SYNC QUEUE
+===================================================== */
+
+function addToSyncQueue(
+
+    action,
+
+    data
+
+) {
+
+
+    const queue =
+
+        getSyncQueue();
+
+
+    queue.push(
+
+    {
+
+        id:
+
+            generateId(
+
+                "QUEUE"
+
+            ),
+
+
+        action:
+
+            action,
+
+
+        data:
+
+            data,
+
+
+        createdAt:
+
+            new Date()
+
+            .toISOString()
+
+    });
+
+
+    localStorage.setItem(
+
+        "pg_erp_sync_queue_v4",
+
+        JSON.stringify(
+
+            queue
+
+        )
+
+    );
+
+
+    updateSyncStatus(
+
+        "pending"
+
+    );
+
+}
+
+
+/* =====================================================
+   SEND QUEUED DATA
+===================================================== */
+
+async function syncQueuedChanges() {
+
+
+    if (
+
+        !navigator.onLine
+
+    ) {
+
+        return;
+
+    }
+
+
+    const queue =
+
+        getSyncQueue();
+
+
+    if (
+
+        queue.length ===
+
+        0
+
+    ) {
+
+        return;
+
+    }
+
+
+    updateSyncStatus(
+
+        "syncing"
+
+    );
+
+
+    for (
+
+        const item of queue
+
+    ) {
+
+
+        try {
+
+
+            await apiRequest(
+
+                item.action,
+
+                item.data
+
+            );
+
+
+            removeQueueItem(
+
+                item.id
+
+            );
+
+
+            showToast(
+
+                "Admission synced successfully"
+
+            );
+
+        }
+
+
+        catch (
+
+            error
+
+        ) {
+
+
+            console.error(
+
+                "Queue sync failed",
+
+                error
+
+            );
+
+
+            updateSyncStatus(
+
+                "offline"
+
+            );
+
+
+            return;
+
+        }
+
+    }
+
+
+    updateSyncStatus(
+
+        "synced"
+
+    );
+
+}
+
+
+/* =====================================================
+   QUEUE HELPERS
+===================================================== */
+
+function getSyncQueue() {
+
+
+    try {
+
+
+        return JSON.parse(
+
+            localStorage.getItem(
+
+                "pg_erp_sync_queue_v4"
+
+            )
+
+        )
+
+        ||
+
+        [];
+
+
+    }
+
+    catch (
+
+        error
+
+    ) {
+
+
+        return [];
+
+    }
+
+}
+
+
+function removeQueueItem(
+
+    id
+
+) {
+
+
+    const queue =
+
+        getSyncQueue()
+
+        .filter(
+
+            function(item) {
+
+
+                return item.id !== id;
+
+            }
+
+        );
+
+
+    localStorage.setItem(
+
+        "pg_erp_sync_queue_v4",
+
+        JSON.stringify(
+
+            queue
+
+        )
+
+    );
+
+}
+
+
+/* =====================================================
+   RESET FORM
+===================================================== */
+
+function resetForm() {
+
+
+    document
+
+    .getElementById(
+
+        "admissionForm"
+
+    )
+
+    .reset();
+
+
+    state.selectedRoom =
+
+        null;
+
+
+    state.selectedBed =
+
+        null;
+
+
+    document
+
+    .getElementById(
+
+        "summaryTenant"
+
+    )
+
+    .textContent =
+
+        "Not selected";
+
+
+    document
+
+    .getElementById(
+
+        "summaryBed"
+
+    )
+
+    .textContent =
+
+        "Not selected";
+
+
+    calculateSummary();
+
+
+    document
+
+    .querySelectorAll(
+
+        ".room-card"
+
+    )
+
+    .forEach(
+
+        function(card) {
+
+
+            card.classList.remove(
+
+                "selected"
+
+            );
+
+        }
+
+    );
+
+
+    setDefaultAdmissionDate();
+
+}
+
+
+/* =====================================================
+   SETTINGS
+===================================================== */
+
+function applySettings() {
+
+
+    if (
+
+        !state.settings
+
+    ) {
+
+        return;
+
+    }
+
+
+    const pgName =
+
+        state.settings.pgName ||
+
+        "";
+
+
+    if (
+
+        pgName
+
+    ) {
+
+
+        document
+
+        .getElementById(
+
+            "brandName"
+
+        )
+
+        .textContent =
+
+            pgName;
+
+
+        document.title =
+
+            "Admissions - " +
+
+            pgName;
+
+    }
+
+}
+
+
+/* =====================================================
+   SYNC STATUS
+===================================================== */
+
+function updateSyncStatus(
+
+    status
+
+) {
+
+
+    const dot =
+
+        document
+
+        .getElementById(
+
+            "syncDot"
+
+        );
+
+
+    const text =
+
+        document
+
+        .getElementById(
+
+            "syncText"
+
+        );
+
+
+    const last =
+
+        document
+
+        .getElementById(
+
+            "lastSync"
+
+        );
+
+
+    dot.classList.remove(
+
+        "offline",
+
+        "pending"
+
+    );
+
+
+    if (
+
+        status ===
+
+        "local"
+
+    ) {
+
+
+        dot.classList.add(
+
+            "pending"
+
+        );
+
+
+        text.textContent =
+
+            "Local data loaded";
+
+
+        last.textContent =
+
+            "Syncing in background";
+
+    }
+
+
+    else if (
+
+        status ===
+
+        "syncing"
+
+    ) {
+
+
+        dot.classList.add(
+
+            "pending"
+
+        );
+
+
+        text.textContent =
+
+            "Syncing...";
+
+
+        last.textContent =
+
+            "Updating backend";
+
+    }
+
+
+    else if (
+
+        status ===
+
+        "pending"
+
+    ) {
+
+
+        dot.classList.add(
+
+            "pending"
+
+        );
+
+
+        text.textContent =
+
+            "Pending sync";
+
+
+        last.textContent =
+
+            "Changes queued";
+
+    }
+
+
+    else if (
+
+        status ===
+
+        "synced"
+
+    ) {
+
+
+        text.textContent =
+
+            "Synced with backend";
+
+
+        last.textContent =
+
+            "Updated just now";
+
+    }
+
+
+    else if (
+
+        status ===
+
+        "offline"
+
+    ) {
+
+
+        dot.classList.add(
+
+            "offline"
+
+        );
+
+
+        text.textContent =
+
+            "Offline";
+
+
+        last.textContent =
+
+            "Using local data";
+
+    }
+
+}
+
+
+/* =====================================================
+   MANUAL SYNC
+===================================================== */
+
+async function manualSync() {
+
+
+    await syncQueuedChanges();
+
+
+    await syncAdmissionData();
+
+
+}
+
+
+/* =====================================================
+   DEFAULT DATE
+===================================================== */
+
+function setDefaultAdmissionDate() {
+
+
+    const input =
+
+        document
+
+        .getElementById(
+
+            "admissionDate"
+
+        );
+
+
+    if (
+
+        input &&
+
+        !input.value
+
+    ) {
+
+
+        input.value =
+
+            new Date()
+
+            .toISOString()
+
+            .split(
+
+                "T"
+
+            )[0];
+
+    }
+
+}
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function getValue(
+
+    id
+
+) {
+
+
+    return (
+
+        document
+
+        .getElementById(
+
+            id
+
+        )
+
+        .value
+
+        ||
+
+        ""
+
+    )
+
+    .trim();
+
+}
+
+
+function getObjectId(
+
+    object
+
+) {
+
+
+    return (
+
+        object.id ||
+
+        object.roomId ||
+
+        object.bedId ||
+
+        object["Room ID"] ||
+
+        object["Bed ID"] ||
+
+        ""
+
+    );
+
+}
+
+
+function generateId(
+
+    prefix
+
+) {
+
+
+    return (
+
+        prefix +
+
+        "-" +
+
+        Date.now() +
+
+        "-" +
+
+        Math.random()
+
+        .toString(
+
+            36
+
+        )
+
+        .substring(
+
+            2,
+
+            8
+
+        )
+
+        .toUpperCase()
+
+    );
+
+}
+
+
+function formatCurrency(
+
+    amount
+
+) {
+
+
+    return (
+
+        "₹" +
+
+        Number(
+
+            amount
+
+        )
+
+        .toLocaleString(
+
+            "en-IN",
+
+            {
+
+                maximumFractionDigits:
+
+                    0
+
+            }
+
+        )
+
+    );
+
+}
+
+
+function escapeHtml(
+
+    value
+
+) {
+
+
+    return String(
+
+        value ||
+
+        ""
+
+    )
+
+    .replace(
+
+        /&/g,
+
+        "&amp;"
+
+    )
+
+    .replace(
+
+        /</g,
+
+        "&lt;"
+
+    )
+
+    .replace(
+
+        />/g,
+
+        "&gt;"
+
+    )
+
+    .replace(
+
+        /"/g,
+
+        "&quot;"
+
+    )
+
+    .replace(
+
+        /'/g,
+
+        "&#039;"
+
+    );
+
+}
+
+
+function escapeJs(
+
+    value
+
+) {
+
+
+    return String(
+
+        value ||
+
+        ""
+
+    )
+
+    .replace(
+
+        /\\/g,
+
+        "\\\\"
+
+    )
+
+    .replace(
+
+        /'/g,
+
+        "\\'"
+
+    );
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function navigateTo(
+
+    page
+
+) {
+
+
+    window.location.href =
+
+        page;
+
+}
+
+
+function toggleSidebar() {
+
+
+    document
+
+    .getElementById(
+
+        "sidebar"
+
+    )
+
+    .classList.toggle(
+
+        "open"
+
+    );
+
+
+    document
+
+    .getElementById(
+
+        "sidebarOverlay"
+
+    )
+
+    .classList.toggle(
+
+        "show"
+
+    );
+
+}
+
+
+function closeSidebar() {
+
+
+    document
+
+    .getElementById(
+
+        "sidebar"
+
+    )
+
+    .classList.remove(
+
+        "open"
+
+    );
+
+
+    document
+
+    .getElementById(
+
+        "sidebarOverlay"
+
+    )
+
+    .classList.remove(
+
+        "show"
+
+    );
+
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+function hideLoading() {
+
+
+    document
+
+    .getElementById(
+
+        "loadingOverlay"
+
+    )
+
+    .style
+
+    .display =
+
+        "none";
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(
+
+    message,
+
+    error = false
+
+) {
+
+
+    const toast =
+
+        document
+
+        .getElementById(
+
+            "toast"
+
+        );
+
+
+    toast.textContent =
+
+        message;
+
+
+    toast.classList.toggle(
+
+        "error",
+
+        error
+
+    );
+
+
+    toast.classList.add(
+
+        "show"
+
+    );
+
+
+    setTimeout(
+
+        function() {
+
+
+            toast.classList.remove(
+
+                "show"
+
+            );
+
+
+        },
+
+        3500
+
+    );
+
+}
+
+
+/* =====================================================
+   ONLINE EVENT
+===================================================== */
+
+window.addEventListener(
+
+    "online",
+
+    function() {
+
+
+        syncQueuedChanges();
+
+
+        syncAdmissionData();
+
+    }
+
+);
+
+</script>
+
+</body>
+
+</html>
