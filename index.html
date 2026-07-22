@@ -12,40 +12,25 @@
 
 <style>
 
-/* =====================================================
-   ROOT
-===================================================== */
-
 :root {
 
     --primary: #111827;
     --accent: #2563eb;
-
     --background: #f3f4f6;
     --card: #ffffff;
-
     --border: #e5e7eb;
-
     --text: #111827;
     --muted: #6b7280;
-
     --success: #16a34a;
     --danger: #dc2626;
-
     --radius: 20px;
 
 }
 
-/* =====================================================
-   RESET
-===================================================== */
-
 * {
 
     margin: 0;
-
     padding: 0;
-
     box-sizing: border-box;
 
 }
@@ -66,17 +51,10 @@ body {
     sans-serif;
 
     background: var(--background);
-
     color: var(--text);
-
     min-height: 100vh;
 
 }
-
-
-/* =====================================================
-   APP
-===================================================== */
 
 .app {
 
@@ -85,9 +63,9 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    SIDEBAR
-===================================================== */
+========================= */
 
 .sidebar {
 
@@ -131,7 +109,6 @@ body {
 .brand-icon {
 
     width: 44px;
-
     height: 44px;
 
     border-radius: 14px;
@@ -146,7 +123,6 @@ body {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     font-size: 22px;
@@ -260,9 +236,7 @@ body {
     position: absolute;
 
     left: 16px;
-
     right: 16px;
-
     bottom: 20px;
 
 }
@@ -295,7 +269,6 @@ body {
 .sync-dot {
 
     width: 8px;
-
     height: 8px;
 
     border-radius: 50%;
@@ -310,10 +283,16 @@ body {
 
 }
 
+.sync-dot.pending {
 
-/* =====================================================
+    background: #f59e0b;
+
+}
+
+
+/* =========================
    MAIN
-===================================================== */
+========================= */
 
 .main {
 
@@ -324,9 +303,9 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    STICKY HEADER
-===================================================== */
+========================= */
 
 .topbar {
 
@@ -339,7 +318,10 @@ body {
     height: 76px;
 
     background:
-    #ffffff;
+    rgba(255,255,255,0.96);
+
+    backdrop-filter:
+    blur(12px);
 
     border-bottom:
     1px solid var(--border);
@@ -414,7 +396,6 @@ body {
 .profile {
 
     width: 38px;
-
     height: 38px;
 
     border-radius: 50%;
@@ -431,7 +412,6 @@ body {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     font-weight: 700;
@@ -439,25 +419,21 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    CONTENT
-===================================================== */
+========================= */
 
 .content {
 
     padding:
     28px 30px 50px;
 
-    position: relative;
-
-    z-index: 1;
-
 }
 
 
-/* =====================================================
+/* =========================
    WELCOME
-===================================================== */
+========================= */
 
 .welcome-card {
 
@@ -495,9 +471,9 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    KPI
-===================================================== */
+========================= */
 
 .kpi-grid {
 
@@ -563,7 +539,6 @@ body {
 .kpi-icon {
 
     width: 38px;
-
     height: 38px;
 
     border-radius: 12px;
@@ -571,7 +546,6 @@ body {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     font-size: 19px;
@@ -621,9 +595,9 @@ body {
 }
 
 
-/* =====================================================
-   DASHBOARD GRID
-===================================================== */
+/* =========================
+   GRID
+========================= */
 
 .dashboard-grid {
 
@@ -687,9 +661,9 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    OCCUPANCY
-===================================================== */
+========================= */
 
 .occupancy-card {
 
@@ -704,7 +678,6 @@ body {
 .progress-ring {
 
     width: 130px;
-
     height: 130px;
 
     border-radius: 50%;
@@ -721,7 +694,6 @@ body {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     position: relative;
@@ -735,7 +707,6 @@ body {
     position: absolute;
 
     width: 94px;
-
     height: 94px;
 
     border-radius: 50%;
@@ -781,7 +752,6 @@ body {
 .stat-dot {
 
     width: 9px;
-
     height: 9px;
 
     border-radius: 50%;
@@ -803,9 +773,9 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    TRANSACTIONS
-===================================================== */
+========================= */
 
 .transaction-list {
 
@@ -852,7 +822,6 @@ body {
 .transaction-icon {
 
     width: 38px;
-
     height: 38px;
 
     border-radius: 12px;
@@ -862,7 +831,6 @@ body {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
 }
@@ -904,9 +872,9 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    QUICK ACTIONS
-===================================================== */
+========================= */
 
 .quick-actions {
 
@@ -974,26 +942,9 @@ body {
 }
 
 
-/* =====================================================
-   EMPTY STATE
-===================================================== */
-
-.empty-state {
-
-    text-align: center;
-
-    padding: 30px 10px;
-
-    color: var(--muted);
-
-    font-size: 13px;
-
-}
-
-
-/* =====================================================
+/* =========================
    LOADING
-===================================================== */
+========================= */
 
 .loading-overlay {
 
@@ -1036,7 +987,6 @@ body {
 .spinner {
 
     width: 32px;
-
     height: 32px;
 
     border:
@@ -1067,9 +1017,9 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    TOAST
-===================================================== */
+========================= */
 
 .toast {
 
@@ -1118,9 +1068,9 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    MOBILE
-===================================================== */
+========================= */
 
 .mobile-header {
 
@@ -1283,9 +1233,6 @@ body {
 
 <div class="app">
 
-<!-- =====================================================
-     SIDEBAR
-===================================================== -->
 
 <aside
     class="sidebar"
@@ -1314,6 +1261,7 @@ body {
         </div>
 
     </div>
+
 
     <nav class="nav">
 
@@ -1383,6 +1331,7 @@ body {
 
     </nav>
 
+
     <div class="sidebar-footer">
 
         <div class="sync-status">
@@ -1395,7 +1344,7 @@ body {
                 ></span>
 
                 <span id="syncText">
-                    Connecting...
+                    Loading local data...
                 </span>
 
             </div>
@@ -1413,6 +1362,7 @@ body {
 
 </aside>
 
+
 <div
     class="sidebar-overlay"
     id="sidebarOverlay"
@@ -1420,436 +1370,412 @@ body {
 ></div>
 
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
 <main class="main">
 
 
-    <!-- STICKY DASHBOARD HEADER -->
+<header class="topbar">
 
-    <header class="topbar">
+    <div
+        style="
+        display:flex;
+        align-items:center;
+        "
+    >
 
-        <div
-            style="
-            display:flex;
-            align-items:center;
-            "
+        <button
+            class="mobile-header"
+            onclick="toggleSidebar()"
         >
+            ☰
+        </button>
 
-            <button
-                class="mobile-header"
-                onclick="toggleSidebar()"
-            >
-                ☰
-            </button>
+        <div class="page-title">
 
-            <div class="page-title">
+            <h1>
+                Dashboard
+            </h1>
 
-                <h1>
-                    Dashboard
-                </h1>
-
-                <p id="currentDate">
-                    --
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="top-actions">
-
-            <button
-                class="refresh-btn"
-                id="refreshBtn"
-                onclick="refreshDashboard()"
-            >
-                ↻ Refresh
-            </button>
-
-            <div class="profile">
-                A
-            </div>
-
-        </div>
-
-    </header>
-
-
-    <!-- CONTENT -->
-
-    <section class="content">
-
-
-        <!-- WELCOME -->
-
-        <div class="welcome-card">
-
-            <h2 id="welcomeTitle">
-                Welcome 👋
-            </h2>
-
-            <p>
-                Here's what's happening with your property today.
+            <p id="currentDate">
+                --
             </p>
 
         </div>
 
-
-        <!-- KPI -->
-
-        <div class="kpi-grid">
+    </div>
 
 
-            <div class="kpi-card">
+    <div class="top-actions">
 
-                <div class="kpi-top">
+        <button
+            class="refresh-btn"
+            id="refreshBtn"
+            onclick="manualSync()"
+        >
+            ↻ Sync
+        </button>
 
-                    <span class="kpi-label">
-                        Monthly Revenue
-                    </span>
-
-                    <div class="kpi-icon revenue">
-                        ₹
-                    </div>
-
-                </div>
-
-                <div
-                    class="kpi-value"
-                    id="revenueValue"
-                >
-                    ₹0
-                </div>
-
-                <div class="kpi-sub">
-                    Current month
-                </div>
-
-            </div>
-
-
-            <div class="kpi-card">
-
-                <div class="kpi-top">
-
-                    <span class="kpi-label">
-                        Monthly Expenses
-                    </span>
-
-                    <div class="kpi-icon expenses">
-                        ↘
-                    </div>
-
-                </div>
-
-                <div
-                    class="kpi-value"
-                    id="expensesValue"
-                >
-                    ₹0
-                </div>
-
-                <div class="kpi-sub">
-                    Current month
-                </div>
-
-            </div>
-
-
-            <div class="kpi-card">
-
-                <div class="kpi-top">
-
-                    <span class="kpi-label">
-                        Net Profit
-                    </span>
-
-                    <div class="kpi-icon profit">
-                        ↗
-                    </div>
-
-                </div>
-
-                <div
-                    class="kpi-value"
-                    id="profitValue"
-                >
-                    ₹0
-                </div>
-
-                <div class="kpi-sub">
-                    Revenue minus expenses
-                </div>
-
-            </div>
-
-
-            <div class="kpi-card">
-
-                <div class="kpi-top">
-
-                    <span class="kpi-label">
-                        Occupancy
-                    </span>
-
-                    <div class="kpi-icon occupancy">
-                        ⌂
-                    </div>
-
-                </div>
-
-                <div
-                    class="kpi-value"
-                    id="occupancyValue"
-                >
-                    0%
-                </div>
-
-                <div
-                    class="kpi-sub"
-                    id="occupancySub"
-                >
-                    0 of 0 beds
-                </div>
-
-            </div>
-
-
+        <div class="profile">
+            A
         </div>
 
+    </div>
 
-        <!-- MAIN GRID -->
-
-        <div class="dashboard-grid">
-
-
-            <!-- RECENT PAYMENTS -->
-
-            <div class="panel">
-
-                <div class="panel-header">
-
-                    <div class="panel-title">
-                        Recent Payments
-                    </div>
-
-                    <button
-                        class="panel-link"
-                        onclick="navigateTo('payments.html')"
-                    >
-                        View All
-                    </button>
-
-                </div>
-
-                <div
-                    class="transaction-list"
-                    id="transactionList"
-                >
-
-                    <div class="empty-state">
-                        Loading transactions...
-                    </div>
-
-                </div>
-
-            </div>
+</header>
 
 
-            <!-- RIGHT SIDE -->
+<section class="content">
+
+
+<div class="welcome-card">
+
+    <h2 id="welcomeTitle">
+        Welcome 👋
+    </h2>
+
+    <p>
+        Here's what's happening with your property today.
+    </p>
+
+</div>
+
+
+<div class="kpi-grid">
+
+
+<div class="kpi-card">
+
+    <div class="kpi-top">
+
+        <span class="kpi-label">
+            Monthly Revenue
+        </span>
+
+        <div class="kpi-icon revenue">
+            ₹
+        </div>
+
+    </div>
+
+    <div
+        class="kpi-value"
+        id="revenueValue"
+    >
+        ₹0
+    </div>
+
+    <div class="kpi-sub">
+        Current month
+    </div>
+
+</div>
+
+
+<div class="kpi-card">
+
+    <div class="kpi-top">
+
+        <span class="kpi-label">
+            Monthly Expenses
+        </span>
+
+        <div class="kpi-icon expenses">
+            ↘
+        </div>
+
+    </div>
+
+    <div
+        class="kpi-value"
+        id="expensesValue"
+    >
+        ₹0
+    </div>
+
+    <div class="kpi-sub">
+        Current month
+    </div>
+
+</div>
+
+
+<div class="kpi-card">
+
+    <div class="kpi-top">
+
+        <span class="kpi-label">
+            Net Profit
+        </span>
+
+        <div class="kpi-icon profit">
+            ↗
+        </div>
+
+    </div>
+
+    <div
+        class="kpi-value"
+        id="profitValue"
+    >
+        ₹0
+    </div>
+
+    <div class="kpi-sub">
+        Revenue minus expenses
+    </div>
+
+</div>
+
+
+<div class="kpi-card">
+
+    <div class="kpi-top">
+
+        <span class="kpi-label">
+            Occupancy
+        </span>
+
+        <div class="kpi-icon occupancy">
+            ⌂
+        </div>
+
+    </div>
+
+    <div
+        class="kpi-value"
+        id="occupancyValue"
+    >
+        0%
+    </div>
+
+    <div
+        class="kpi-sub"
+        id="occupancySub"
+    >
+        0 of 0 beds
+    </div>
+
+</div>
+
+
+</div>
+
+
+<div class="dashboard-grid">
+
+
+<div class="panel">
+
+    <div class="panel-header">
+
+        <div class="panel-title">
+            Recent Payments
+        </div>
+
+        <button
+            class="panel-link"
+            onclick="navigateTo('payments.html')"
+        >
+            View All
+        </button>
+
+    </div>
+
+    <div
+        class="transaction-list"
+        id="transactionList"
+    >
+
+        <div class="empty-state">
+            Loading...
+        </div>
+
+    </div>
+
+</div>
+
+
+<div
+    style="
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    "
+>
+
+
+<div class="panel">
+
+    <div class="panel-header">
+
+        <div class="panel-title">
+            Occupancy Overview
+        </div>
+
+    </div>
+
+    <div class="occupancy-card">
+
+        <div
+            class="progress-ring"
+            id="progressRing"
+        >
 
             <div
-                style="
-                display:flex;
-                flex-direction:column;
-                gap:20px;
-                "
+                class="progress-value"
+                id="progressValue"
             >
+                0%
+            </div>
+
+        </div>
 
 
-                <!-- OCCUPANCY -->
+        <div class="occupancy-info">
 
-                <div class="panel">
+            <div class="occupancy-stat">
 
-                    <div class="panel-header">
+                <span
+                    class="stat-dot occupied"
+                ></span>
 
-                        <div class="panel-title">
-                            Occupancy Overview
-                        </div>
+                <span>
+                    Occupied:
+                    <strong id="occupiedBeds">
+                        0
+                    </strong>
+                </span>
 
-                    </div>
-
-                    <div class="occupancy-card">
-
-                        <div
-                            class="progress-ring"
-                            id="progressRing"
-                        >
-
-                            <div
-                                class="progress-value"
-                                id="progressValue"
-                            >
-                                0%
-                            </div>
-
-                        </div>
-
-                        <div class="occupancy-info">
-
-                            <div class="occupancy-stat">
-
-                                <span
-                                    class="stat-dot occupied"
-                                ></span>
-
-                                <span>
-                                    Occupied:
-                                    <strong
-                                        id="occupiedBeds"
-                                    >
-                                        0
-                                    </strong>
-                                </span>
-
-                            </div>
-
-                            <div class="occupancy-stat">
-
-                                <span
-                                    class="stat-dot available"
-                                ></span>
-
-                                <span>
-                                    Available:
-                                    <strong
-                                        id="availableBeds"
-                                    >
-                                        0
-                                    </strong>
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
+            </div>
 
 
-                <!-- QUICK ACTIONS -->
+            <div class="occupancy-stat">
 
-                <div class="panel">
+                <span
+                    class="stat-dot available"
+                ></span>
 
-                    <div class="panel-header">
-
-                        <div class="panel-title">
-                            Quick Actions
-                        </div>
-
-                    </div>
-
-                    <div class="quick-actions">
-
-                        <button
-                            class="quick-action"
-                            onclick="navigateTo('admissions.html')"
-                        >
-
-                            <div class="quick-action-icon">
-                                👤
-                            </div>
-
-                            <div class="quick-action-title">
-                                New Admission
-                            </div>
-
-                            <div class="quick-action-sub">
-                                Add a new tenant
-                            </div>
-
-                        </button>
-
-
-                        <button
-                            class="quick-action"
-                            onclick="navigateTo('payments.html')"
-                        >
-
-                            <div class="quick-action-icon">
-                                ₹
-                            </div>
-
-                            <div class="quick-action-title">
-                                Record Payment
-                            </div>
-
-                            <div class="quick-action-sub">
-                                Add rent payment
-                            </div>
-
-                        </button>
-
-
-                        <button
-                            class="quick-action"
-                            onclick="navigateTo('rooms.html')"
-                        >
-
-                            <div class="quick-action-icon">
-                                🛏️
-                            </div>
-
-                            <div class="quick-action-title">
-                                View Beds
-                            </div>
-
-                            <div class="quick-action-sub">
-                                Check availability
-                            </div>
-
-                        </button>
-
-
-                        <button
-                            class="quick-action"
-                            onclick="navigateTo('reports.html')"
-                        >
-
-                            <div class="quick-action-icon">
-                                📊
-                            </div>
-
-                            <div class="quick-action-title">
-                                View Reports
-                            </div>
-
-                            <div class="quick-action-sub">
-                                Financial overview
-                            </div>
-
-                        </button>
-
-                    </div>
-
-                </div>
+                <span>
+                    Available:
+                    <strong id="availableBeds">
+                        0
+                    </strong>
+                </span>
 
             </div>
 
         </div>
 
-    </section>
+    </div>
+
+</div>
+
+
+<div class="panel">
+
+    <div class="panel-header">
+
+        <div class="panel-title">
+            Quick Actions
+        </div>
+
+    </div>
+
+
+    <div class="quick-actions">
+
+        <button
+            class="quick-action"
+            onclick="navigateTo('admissions.html')"
+        >
+
+            <div class="quick-action-icon">
+                👤
+            </div>
+
+            <div class="quick-action-title">
+                New Admission
+            </div>
+
+            <div class="quick-action-sub">
+                Add a new tenant
+            </div>
+
+        </button>
+
+
+        <button
+            class="quick-action"
+            onclick="navigateTo('payments.html')"
+        >
+
+            <div class="quick-action-icon">
+                ₹
+            </div>
+
+            <div class="quick-action-title">
+                Record Payment
+            </div>
+
+            <div class="quick-action-sub">
+                Add rent payment
+            </div>
+
+        </button>
+
+
+        <button
+            class="quick-action"
+            onclick="navigateTo('rooms.html')"
+        >
+
+            <div class="quick-action-icon">
+                🛏️
+            </div>
+
+            <div class="quick-action-title">
+                View Beds
+            </div>
+
+            <div class="quick-action-sub">
+                Check availability
+            </div>
+
+        </button>
+
+
+        <button
+            class="quick-action"
+            onclick="navigateTo('reports.html')"
+        >
+
+            <div class="quick-action-icon">
+                📊
+            </div>
+
+            <div class="quick-action-title">
+                View Reports
+            </div>
+
+            <div class="quick-action-sub">
+                Financial overview
+            </div>
+
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
 
 </main>
 
 </div>
 
-
-<!-- LOADING -->
 
 <div
     class="loading-overlay"
@@ -1861,15 +1787,13 @@ body {
         <div class="spinner"></div>
 
         <div>
-            Loading dashboard...
+            Loading data...
         </div>
 
     </div>
 
 </div>
 
-
-<!-- TOAST -->
 
 <div
     class="toast"
@@ -1888,21 +1812,56 @@ const API_URL =
 "https://script.google.com/macros/s/AKfycbzpHr7CS-ELRUXe8QSnKY7HgE8H3ShBCX-8jcr7pEzY5lFwNLWhtHRpu2uX1g4PsPcq/exec";
 
 
-const SETTINGS_CACHE_KEY =
-"pg_erp_settings_cache_v3";
+/* =====================================================
+   LOCAL STORAGE KEYS
+===================================================== */
 
+const STORAGE = {
 
-const DASHBOARD_CACHE_KEY =
-"pg_erp_dashboard_cache_v3";
+    SETTINGS:
+    "pg_erp_settings_v4",
 
+    DASHBOARD:
+    "pg_erp_dashboard_v4",
 
-let settings = {};
+    VERSION:
+    "pg_erp_backend_version_v4",
 
-let dashboardData = null;
+    LAST_SYNC:
+    "pg_erp_last_sync_v4",
+
+    SYNC_QUEUE:
+    "pg_erp_sync_queue_v4"
+
+};
 
 
 /* =====================================================
-   INITIALIZE
+   APPLICATION STATE
+===================================================== */
+
+let state = {
+
+    settings:
+    null,
+
+    dashboard:
+    null,
+
+    backendVersion:
+    0,
+
+    syncing:
+    false,
+
+    lastSync:
+    null
+
+};
+
+
+/* =====================================================
+   INITIALIZATION
 ===================================================== */
 
 document.addEventListener(
@@ -1913,17 +1872,412 @@ document.addEventListener(
 
         setCurrentDate();
 
-        loadCachedSettings();
 
-        loadCachedDashboard();
+        /*
+         * STEP 1
+         *
+         * Render local data immediately.
+         */
 
-        await loadSettings();
+        loadLocalState();
 
-        await loadDashboard();
+
+        /*
+         * STEP 2
+         *
+         * Hide loading screen immediately
+         * if local data exists.
+         */
+
+        if (
+
+            state.settings ||
+
+            state.dashboard
+
+        ) {
+
+            hideLoading();
+
+        }
+
+
+        /*
+         * STEP 3
+         *
+         * One background sync.
+         */
+
+        syncWithBackend();
+
+
+        /*
+         * STEP 4
+         *
+         * Retry queued changes when
+         * browser becomes online.
+         */
+
+        window.addEventListener(
+
+            "online",
+
+            function() {
+
+                syncWithBackend();
+
+            }
+
+        );
 
     }
 
 );
+
+
+/* =====================================================
+   LOAD LOCAL DATA
+===================================================== */
+
+function loadLocalState() {
+
+    try {
+
+
+        const settingsCache =
+
+            localStorage.getItem(
+
+                STORAGE.SETTINGS
+
+            );
+
+
+        if (
+
+            settingsCache
+
+        ) {
+
+            state.settings =
+
+                JSON.parse(
+
+                    settingsCache
+
+                );
+
+            applySettings();
+
+        }
+
+
+        const dashboardCache =
+
+            localStorage.getItem(
+
+                STORAGE.DASHBOARD
+
+            );
+
+
+        if (
+
+            dashboardCache
+
+        ) {
+
+            state.dashboard =
+
+                JSON.parse(
+
+                    dashboardCache
+
+                );
+
+            renderDashboard(
+
+                state.dashboard
+
+            );
+
+        }
+
+
+        const versionCache =
+
+            localStorage.getItem(
+
+                STORAGE.VERSION
+
+            );
+
+
+        state.backendVersion =
+
+            Number(
+
+                versionCache
+
+            ) || 0;
+
+
+        state.lastSync =
+
+            localStorage.getItem(
+
+                STORAGE.LAST_SYNC
+
+            );
+
+
+        updateSyncStatus(
+
+            "local"
+
+        );
+
+    }
+
+
+    catch (error) {
+
+        console.warn(
+
+            "Local cache corrupted. Clearing cache.",
+
+            error
+
+        );
+
+
+        clearLocalCache();
+
+    }
+
+}
+
+
+/* =====================================================
+   BACKGROUND SYNC
+===================================================== */
+
+async function syncWithBackend() {
+
+
+    if (
+
+        state.syncing
+
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+
+        !navigator.onLine
+
+    ) {
+
+        updateSyncStatus(
+
+            "offline"
+
+        );
+
+        return;
+
+    }
+
+
+    state.syncing =
+
+        true;
+
+
+    updateSyncStatus(
+
+        "syncing"
+
+    );
+
+
+    try {
+
+
+        /*
+         * ONE API CALL
+         *
+         * Fetch settings.
+         *
+         * It includes backend version.
+         */
+
+        const settingsResponse =
+
+            await apiRequest(
+
+                "getSettings"
+
+            );
+
+
+        const remoteSettings =
+
+            settingsResponse.data ||
+
+            {};
+
+
+        const remoteVersion =
+
+            Number(
+
+                remoteSettings.version
+
+            ) || 0;
+
+
+        /*
+         * If backend version has not
+         * changed and local dashboard
+         * exists, no need to download
+         * dashboard again.
+         */
+
+        if (
+
+            remoteVersion ===
+
+            state.backendVersion &&
+
+            state.dashboard
+
+        ) {
+
+
+            state.settings =
+
+                remoteSettings;
+
+
+            saveLocalSettings();
+
+
+            state.syncing =
+
+                false;
+
+
+            updateSyncStatus(
+
+                "synced"
+
+            );
+
+
+            return;
+
+        }
+
+
+        /*
+         * Backend changed.
+         *
+         * Download fresh dashboard.
+         */
+
+        const dashboardResponse =
+
+            await apiRequest(
+
+                "getDashboardData"
+
+            );
+
+
+        state.settings =
+
+            remoteSettings;
+
+
+        state.dashboard =
+
+            dashboardResponse.data ||
+
+            {};
+
+
+        state.backendVersion =
+
+            remoteVersion;
+
+
+        state.lastSync =
+
+            new Date()
+
+                .toISOString();
+
+
+        saveLocalState();
+
+
+        applySettings();
+
+
+        renderDashboard(
+
+            state.dashboard
+
+        );
+
+
+        updateSyncStatus(
+
+            "synced"
+
+        );
+
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+
+            "Background sync failed:",
+
+            error
+
+        );
+
+
+        updateSyncStatus(
+
+            "offline"
+
+        );
+
+    }
+
+
+    finally {
+
+        state.syncing =
+
+            false;
+
+
+        hideLoading();
+
+    }
+
+}
 
 
 /* =====================================================
@@ -1937,6 +2291,7 @@ async function apiRequest(
     data = {}
 
 ) {
+
 
     const response =
 
@@ -1973,20 +2328,31 @@ async function apiRequest(
         );
 
 
-    if (!response.ok) {
+    if (
+
+        !response.ok
+
+    ) {
 
         throw new Error(
+
             "Network request failed"
+
         );
 
     }
 
 
     const result =
+
         await response.json();
 
 
-    if (!result.success) {
+    if (
+
+        !result.success
+
+    ) {
 
         throw new Error(
 
@@ -2005,67 +2371,104 @@ async function apiRequest(
 
 
 /* =====================================================
-   LOAD SETTINGS
+   SAVE LOCAL STATE
 ===================================================== */
 
-async function loadSettings() {
-
-    try {
-
-        const result =
-
-            await apiRequest(
-                "getSettings"
-            );
+function saveLocalState() {
 
 
-        /*
-         * BACKEND RESPONSE:
-         *
-         * {
-         *   success: true,
-         *
-         *   data: {
-         *
-         *     pgName:
-         *     "My Comfirt Corner PG"
-         *
-         *   }
-         * }
-         */
+    if (
 
+        state.settings
 
-        settings =
-
-            result.data || {};
-
+    ) {
 
         localStorage.setItem(
 
-            SETTINGS_CACHE_KEY,
+            STORAGE.SETTINGS,
 
             JSON.stringify(
-                settings
+
+                state.settings
+
             )
 
         );
 
-
-        applySettings();
-
     }
 
-    catch(error) {
 
-        console.error(
+    if (
 
-            "Settings sync failed:",
+        state.dashboard
 
-            error
+    ) {
+
+        localStorage.setItem(
+
+            STORAGE.DASHBOARD,
+
+            JSON.stringify(
+
+                state.dashboard
+
+            )
 
         );
 
     }
+
+
+    localStorage.setItem(
+
+        STORAGE.VERSION,
+
+        String(
+
+            state.backendVersion
+
+        )
+
+    );
+
+
+    if (
+
+        state.lastSync
+
+    ) {
+
+        localStorage.setItem(
+
+            STORAGE.LAST_SYNC,
+
+            state.lastSync
+
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   SAVE SETTINGS ONLY
+===================================================== */
+
+function saveLocalSettings() {
+
+
+    localStorage.setItem(
+
+        STORAGE.SETTINGS,
+
+        JSON.stringify(
+
+            state.settings
+
+        )
+
+    );
 
 }
 
@@ -2076,25 +2479,34 @@ async function loadSettings() {
 
 function applySettings() {
 
+
+    if (
+
+        !state.settings
+
+    ) {
+
+        return;
+
+    }
+
+
     const pgName =
 
         String(
 
-            settings.pgName ||
+            state.settings.pgName ||
 
             ""
 
         ).trim();
 
 
-    /*
-     * DO NOT SHOW PG ERP IF
-     * THE BACKEND HAS NOT RETURNED
-     * A PG NAME.
-     */
+    if (
 
+        !pgName
 
-    if (!pgName) {
+    ) {
 
         return;
 
@@ -2104,6 +2516,7 @@ function applySettings() {
     document.title =
 
         pgName +
+
         " - Dashboard";
 
 
@@ -2123,249 +2536,10 @@ function applySettings() {
     ).textContent =
 
         "Welcome to " +
+
         pgName +
+
         " 👋";
-
-}
-
-
-/* =====================================================
-   CACHED SETTINGS
-===================================================== */
-
-function loadCachedSettings() {
-
-    try {
-
-        const cached =
-
-            localStorage.getItem(
-
-                SETTINGS_CACHE_KEY
-
-            );
-
-
-        if (!cached) {
-
-            return;
-
-        }
-
-
-        const parsed =
-
-            JSON.parse(
-                cached
-            );
-
-
-        if (
-
-            !parsed ||
-
-            typeof parsed !==
-            "object"
-
-        ) {
-
-            return;
-
-        }
-
-
-        settings =
-            parsed;
-
-
-        applySettings();
-
-    }
-
-    catch(error) {
-
-        console.warn(
-            "Invalid settings cache cleared"
-        );
-
-
-        localStorage.removeItem(
-
-            SETTINGS_CACHE_KEY
-
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   LOAD DASHBOARD
-===================================================== */
-
-async function loadDashboard() {
-
-    try {
-
-        const result =
-
-            await apiRequest(
-
-                "getDashboardData"
-
-            );
-
-
-        dashboardData =
-
-            result.data;
-
-
-        localStorage.setItem(
-
-            DASHBOARD_CACHE_KEY,
-
-            JSON.stringify(
-
-                dashboardData
-
-            )
-
-        );
-
-
-        renderDashboard(
-
-            dashboardData
-
-        );
-
-
-        updateSyncStatus(
-            true
-        );
-
-    }
-
-    catch(error) {
-
-        console.error(
-
-            "Dashboard sync failed:",
-
-            error
-
-        );
-
-
-        updateSyncStatus(
-
-            false
-
-        );
-
-
-        showToast(
-
-            "Could not fetch dashboard data",
-
-            true
-
-        );
-
-    }
-
-    finally {
-
-        hideLoading();
-
-    }
-
-}
-
-
-/* =====================================================
-   CACHED DASHBOARD
-===================================================== */
-
-function loadCachedDashboard() {
-
-    try {
-
-        const cached =
-
-            localStorage.getItem(
-
-                DASHBOARD_CACHE_KEY
-
-            );
-
-
-        if (!cached) {
-
-            return;
-
-        }
-
-
-        const parsed =
-
-            JSON.parse(
-                cached
-            );
-
-
-        if (
-
-            !parsed ||
-
-            typeof parsed !==
-            "object"
-
-        ) {
-
-            return;
-
-        }
-
-
-        dashboardData =
-            parsed;
-
-
-        renderDashboard(
-
-            dashboardData
-
-        );
-
-        updateSyncStatus(
-
-            false,
-
-            true
-
-        );
-
-    }
-
-    catch(error) {
-
-        console.warn(
-
-            "Invalid dashboard cache cleared"
-
-        );
-
-
-        localStorage.removeItem(
-
-            DASHBOARD_CACHE_KEY
-
-        );
-
-    }
 
 }
 
@@ -2376,7 +2550,12 @@ function loadCachedDashboard() {
 
 function renderDashboard(data) {
 
-    if (!data) {
+
+    if (
+
+        !data
+
+    ) {
 
         return;
 
@@ -2396,8 +2575,6 @@ function renderDashboard(data) {
 
             dashboard.revenue ||
 
-            dashboard.totalRevenue ||
-
             dashboard.monthlyRevenue ||
 
             0
@@ -2410,8 +2587,6 @@ function renderDashboard(data) {
         Number(
 
             dashboard.expenses ||
-
-            dashboard.totalExpenses ||
 
             dashboard.monthlyExpenses ||
 
@@ -2429,6 +2604,7 @@ function renderDashboard(data) {
             dashboard.netProfit ||
 
             revenue -
+
             expenses
 
         );
@@ -2447,8 +2623,6 @@ function renderDashboard(data) {
 
             occupancy.occupied ||
 
-            dashboard.occupiedBeds ||
-
             0
 
         );
@@ -2459,8 +2633,6 @@ function renderDashboard(data) {
         Number(
 
             occupancy.available ||
-
-            dashboard.availableBeds ||
 
             0
 
@@ -2473,9 +2645,8 @@ function renderDashboard(data) {
 
             occupancy.total ||
 
-            dashboard.totalBeds ||
-
             occupied +
+
             available
 
         );
@@ -2490,7 +2661,9 @@ function renderDashboard(data) {
         Math.round(
 
             occupied /
+
             total *
+
             100
 
         )
@@ -2546,6 +2719,7 @@ function renderDashboard(data) {
     ).textContent =
 
         percentage +
+
         "%";
 
 
@@ -2571,6 +2745,7 @@ function renderDashboard(data) {
     ).textContent =
 
         percentage +
+
         "%";
 
 
@@ -2601,23 +2776,17 @@ function renderDashboard(data) {
         "--occupancy",
 
         percentage +
+
         "%"
 
     );
 
 
-    const transactions =
+    renderTransactions(
 
         dashboard.recentPayments ||
 
-        dashboard.recentTransactions ||
-
-        [];
-
-
-    renderTransactions(
-
-        transactions
+        []
 
     );
 
@@ -2625,7 +2794,7 @@ function renderDashboard(data) {
 
 
 /* =====================================================
-   TRANSACTIONS
+   RENDER TRANSACTIONS
 ===================================================== */
 
 function renderTransactions(
@@ -2633,6 +2802,7 @@ function renderTransactions(
     transactions
 
 ) {
+
 
     const container =
 
@@ -2655,15 +2825,19 @@ function renderTransactions(
 
     ) {
 
+
         container.innerHTML = `
 
-            <div class="empty-state">
+            <div
+                class="empty-state"
+            >
 
                 No recent payments found.
 
             </div>
 
         `;
+
 
         return;
 
@@ -2674,19 +2848,24 @@ function renderTransactions(
 
         transactions
 
-            .slice(0, 8)
+            .slice(
+
+                0,
+
+                8
+
+            )
 
             .map(
 
                 function(payment) {
+
 
                     const amount =
 
                         Number(
 
                             payment.Amount ||
-
-                            payment.amount ||
 
                             0
 
@@ -2697,26 +2876,12 @@ function renderTransactions(
 
                         payment["Tenant Name"] ||
 
-                        payment.tenant_name ||
-
-                        payment.FullName ||
-
-                        payment.full_name ||
-
-                        payment["Tenant ID"] ||
-
-                        payment.tenant_id ||
-
                         "Tenant";
 
 
                     const date =
 
-                        payment["Payment Date"] ||
-
-                        payment.payment_date ||
-
-                        payment.date;
+                        payment["Payment Date"];
 
 
                     return `
@@ -2741,7 +2906,11 @@ function renderTransactions(
                                         class="transaction-name"
                                     >
 
-                                        ${escapeHtml(name)}
+                                        ${escapeHtml(
+
+                                            name
+
+                                        )}
 
                                     </div>
 
@@ -2749,7 +2918,11 @@ function renderTransactions(
                                         class="transaction-date"
                                     >
 
-                                        ${formatDate(date)}
+                                        ${formatDate(
+
+                                            date
+
+                                        )}
 
                                     </div>
 
@@ -2761,7 +2934,11 @@ function renderTransactions(
                                 class="transaction-amount"
                             >
 
-                                +${formatCurrency(amount)}
+                                +${formatCurrency(
+
+                                    amount
+
+                                )}
 
                             </div>
 
@@ -2779,10 +2956,11 @@ function renderTransactions(
 
 
 /* =====================================================
-   REFRESH
+   MANUAL SYNC
 ===================================================== */
 
-async function refreshDashboard() {
+async function manualSync() {
+
 
     const button =
 
@@ -2801,12 +2979,11 @@ async function refreshDashboard() {
 
 
     button.textContent =
+
         "↻ Syncing...";
 
 
-    await loadSettings();
-
-    await loadDashboard();
+    await syncWithBackend();
 
 
     button.classList.remove(
@@ -2817,7 +2994,257 @@ async function refreshDashboard() {
 
 
     button.textContent =
-        "↻ Refresh";
+
+        "↻ Sync";
+
+}
+
+
+/* =====================================================
+   FUTURE LOCAL-FIRST WRITE SYSTEM
+===================================================== */
+
+
+/*
+ * Every future frontend action
+ * should use this function.
+ *
+ * Example:
+ *
+ * addPayment(paymentData)
+ *
+ * 1. Update local data immediately
+ * 2. Save local data
+ * 3. Add backend operation to queue
+ * 4. Sync in background
+ */
+
+
+function queueBackendChange(
+
+    action,
+
+    data
+
+) {
+
+
+    const queue =
+
+        getSyncQueue();
+
+
+    queue.push({
+
+        id:
+
+            crypto.randomUUID(),
+
+        action:
+
+            action,
+
+        data:
+
+            data,
+
+        createdAt:
+
+            new Date()
+
+                .toISOString(),
+
+        status:
+
+            "pending"
+
+    });
+
+
+    saveSyncQueue(
+
+        queue
+
+    );
+
+
+    syncQueuedChanges();
+
+}
+
+
+/* =====================================================
+   SYNC QUEUED CHANGES
+===================================================== */
+
+async function syncQueuedChanges() {
+
+
+    if (
+
+        !navigator.onLine
+
+    ) {
+
+        return;
+
+    }
+
+
+    const queue =
+
+        getSyncQueue();
+
+
+    if (
+
+        queue.length === 0
+
+    ) {
+
+        return;
+
+    }
+
+
+    for (
+
+        const item of queue
+
+    ) {
+
+
+        try {
+
+
+            await apiRequest(
+
+                item.action,
+
+                item.data
+
+            );
+
+
+            removeFromSyncQueue(
+
+                item.id
+
+            );
+
+        }
+
+
+        catch (error) {
+
+
+            console.error(
+
+                "Queued change failed:",
+
+                error
+
+            );
+
+
+            break;
+
+        }
+
+    }
+
+
+    /*
+     * After sending local changes,
+     * download latest backend state.
+     */
+
+    await syncWithBackend();
+
+}
+
+
+/* =====================================================
+   SYNC QUEUE HELPERS
+===================================================== */
+
+function getSyncQueue() {
+
+
+    try {
+
+
+        return JSON.parse(
+
+            localStorage.getItem(
+
+                STORAGE.SYNC_QUEUE
+
+            )
+
+        ) || [];
+
+
+    }
+
+
+    catch (error) {
+
+
+        return [];
+
+    }
+
+}
+
+
+function saveSyncQueue(
+
+    queue
+
+) {
+
+
+    localStorage.setItem(
+
+        STORAGE.SYNC_QUEUE,
+
+        JSON.stringify(
+
+            queue
+
+        )
+
+    );
+
+}
+
+
+function removeFromSyncQueue(
+
+    id
+
+) {
+
+
+    const queue =
+
+        getSyncQueue()
+
+            .filter(
+
+                item =>
+
+                    item.id !== id
+
+            );
+
+
+    saveSyncQueue(
+
+        queue
+
+    );
 
 }
 
@@ -2828,11 +3255,10 @@ async function refreshDashboard() {
 
 function updateSyncStatus(
 
-    online,
-
-    cached = false
+    status
 
 ) {
+
 
     const dot =
 
@@ -2861,13 +3287,86 @@ function updateSyncStatus(
         );
 
 
-    if (online) {
+    dot.classList.remove(
 
-        dot.classList.remove(
+        "offline",
 
-            "offline"
+        "pending"
+
+    );
+
+
+    if (
+
+        status ===
+
+        "local"
+
+    ) {
+
+
+        dot.classList.add(
+
+            "pending"
 
         );
+
+
+        text.textContent =
+
+            "Local data loaded";
+
+
+        last.textContent =
+
+            state.lastSync
+
+                ?
+
+            "Syncing in background"
+
+                :
+
+            "First sync pending";
+
+    }
+
+
+    else if (
+
+        status ===
+
+        "syncing"
+
+    ) {
+
+
+        dot.classList.add(
+
+            "pending"
+
+        );
+
+
+        text.textContent =
+
+            "Syncing...";
+
+
+        last.textContent =
+
+            "Updating backend data";
+
+    }
+
+
+    else if (
+
+        status ===
+
+        "synced"
+
+    ) {
 
 
         text.textContent =
@@ -2881,7 +3380,15 @@ function updateSyncStatus(
 
     }
 
-    else {
+
+    else if (
+
+        status ===
+
+        "offline"
+
+    ) {
+
 
         dot.classList.add(
 
@@ -2892,30 +3399,51 @@ function updateSyncStatus(
 
         text.textContent =
 
-            cached
-
-                ?
-
-            "Using cached data"
-
-                :
-
             "Offline";
 
 
         last.textContent =
 
-            cached
-
-                ?
-
-            "Will sync when available"
-
-                :
-
-            "Connection unavailable";
+            "Using local data";
 
     }
+
+}
+
+
+/* =====================================================
+   CLEAR CACHE
+===================================================== */
+
+function clearLocalCache() {
+
+
+    localStorage.removeItem(
+
+        STORAGE.SETTINGS
+
+    );
+
+
+    localStorage.removeItem(
+
+        STORAGE.DASHBOARD
+
+    );
+
+
+    localStorage.removeItem(
+
+        STORAGE.VERSION
+
+    );
+
+
+    localStorage.removeItem(
+
+        STORAGE.LAST_SYNC
+
+    );
 
 }
 
@@ -2927,6 +3455,7 @@ function updateSyncStatus(
 function navigateTo(page) {
 
     window.location.href =
+
         page;
 
 }
@@ -3006,7 +3535,9 @@ function closeSidebar() {
 
 function setCurrentDate() {
 
+
     const date =
+
         new Date();
 
 
@@ -3042,7 +3573,7 @@ function setCurrentDate() {
 
 
 /* =====================================================
-   CURRENCY
+   HELPERS
 ===================================================== */
 
 function formatCurrency(
@@ -3050,6 +3581,7 @@ function formatCurrency(
     amount
 
 ) {
+
 
     return (
 
@@ -3066,7 +3598,8 @@ function formatCurrency(
             {
 
                 maximumFractionDigits:
-                0
+
+                    0
 
             }
 
@@ -3077,17 +3610,18 @@ function formatCurrency(
 }
 
 
-/* =====================================================
-   DATE FORMAT
-===================================================== */
-
 function formatDate(
 
     value
 
 ) {
 
-    if (!value) {
+
+    if (
+
+        !value
+
+    ) {
 
         return "--";
 
@@ -3140,19 +3674,18 @@ function formatDate(
 }
 
 
-/* =====================================================
-   HTML ESCAPE
-===================================================== */
-
 function escapeHtml(
 
     value
 
 ) {
 
+
     return String(
 
-        value || ""
+        value ||
+
+        ""
 
     )
 
@@ -3205,6 +3738,7 @@ function escapeHtml(
 
 function hideLoading() {
 
+
     document.getElementById(
 
         "loadingOverlay"
@@ -3228,6 +3762,7 @@ function showToast(
 
 ) {
 
+
     const toast =
 
         document.getElementById(
@@ -3238,6 +3773,7 @@ function showToast(
 
 
     toast.textContent =
+
         message;
 
 
