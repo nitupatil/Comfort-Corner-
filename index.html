@@ -1,1167 +1,1889 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PG ERP Dashboard</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Loading...</title>
 
 <style>
 
+/* =====================================================
+   ROOT
+===================================================== */
+
 :root {
+
     --primary: #111827;
     --secondary: #374151;
+
     --accent: #2563eb;
+
     --success: #16a34a;
     --danger: #dc2626;
     --warning: #d97706;
+
     --background: #f3f4f6;
     --card: #ffffff;
+
     --border: #e5e7eb;
+
     --text: #111827;
     --muted: #6b7280;
+
     --radius: 20px;
+
 }
 
+/* =====================================================
+   RESET
+===================================================== */
+
 * {
+
     margin: 0;
+
     padding: 0;
+
     box-sizing: border-box;
+
+}
+
+html {
+
+    scroll-behavior: smooth;
+
 }
 
 body {
-    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+    font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
     background: var(--background);
+
     color: var(--text);
+
     min-height: 100vh;
+
 }
 
-button {
-    font-family: inherit;
-}
+/* =====================================================
+   APP
+===================================================== */
 
 .app {
+
     min-height: 100vh;
+
     display: flex;
+
 }
 
-/* SIDEBAR */
+/* =====================================================
+   SIDEBAR
+===================================================== */
 
 .sidebar {
+
     width: 250px;
-    background: linear-gradient(145deg, #111827, #1f2937);
+
+    background:
+    linear-gradient(
+        145deg,
+        #111827,
+        #1f2937
+    );
+
     color: white;
+
     padding: 24px 16px;
+
     position: fixed;
+
     left: 0;
+
     top: 0;
+
     bottom: 0;
-    z-index: 100;
-    transition: 0.3s ease;
+
+    z-index: 1000;
+
+    transition:
+    transform 0.3s ease;
+
 }
 
 .brand {
+
     display: flex;
+
     align-items: center;
+
     gap: 12px;
-    padding: 0 10px 30px;
+
+    padding:
+    0 10px 30px;
+
 }
 
 .brand-icon {
+
     width: 44px;
+
     height: 44px;
+
     border-radius: 14px;
-    background: linear-gradient(135deg, #2563eb, #7c3aed);
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #7c3aed
+    );
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     font-size: 22px;
+
+    flex-shrink: 0;
+
 }
 
 .brand-text {
-    overflow: hidden;
+
+    min-width: 0;
+
 }
 
 .brand-title {
+
     font-size: 17px;
+
     font-weight: 700;
+
     white-space: nowrap;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
+
 }
 
 .brand-subtitle {
+
     font-size: 11px;
+
     color: #9ca3af;
+
     margin-top: 3px;
+
 }
 
 .nav {
+
     display: flex;
+
     flex-direction: column;
+
     gap: 6px;
+
 }
 
 .nav-item {
+
     border: none;
+
     background: transparent;
+
     color: #d1d5db;
+
     width: 100%;
+
     padding: 13px 14px;
+
     border-radius: 13px;
+
     display: flex;
+
     align-items: center;
+
     gap: 12px;
+
     cursor: pointer;
+
     text-align: left;
+
     font-size: 14px;
+
     transition: 0.2s ease;
+
 }
 
 .nav-item:hover {
-    background: rgba(255,255,255,0.08);
+
+    background:
+    rgba(255,255,255,0.08);
+
     color: white;
+
 }
 
 .nav-item.active {
-    background: linear-gradient(135deg, #2563eb, #4f46e5);
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    );
+
     color: white;
+
 }
 
 .nav-icon {
+
     width: 22px;
+
     text-align: center;
+
     font-size: 18px;
+
 }
 
 .sidebar-footer {
+
     position: absolute;
+
     left: 16px;
+
     right: 16px;
+
     bottom: 20px;
+
 }
 
 .sync-status {
-    background: rgba(255,255,255,0.07);
+
+    background:
+    rgba(255,255,255,0.07);
+
     border-radius: 14px;
+
     padding: 13px;
+
     font-size: 11px;
+
     color: #d1d5db;
+
 }
 
 .sync-row {
+
     display: flex;
+
     align-items: center;
+
     gap: 7px;
+
 }
 
 .sync-dot {
+
     width: 8px;
+
     height: 8px;
+
     border-radius: 50%;
+
     background: #22c55e;
+
 }
 
 .sync-dot.offline {
+
     background: #ef4444;
+
 }
 
-/* MAIN */
+/* =====================================================
+   MAIN
+===================================================== */
 
 .main {
+
     margin-left: 250px;
-    width: calc(100% - 250px);
+
+    width:
+    calc(100% - 250px);
+
     min-height: 100vh;
+
 }
 
+/* =====================================================
+   STICKY TOPBAR
+===================================================== */
+
 .topbar {
-    height: 76px;
-    background: white;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 30px;
+
     position: sticky;
+
     top: 0;
-    z-index: 50;
+
+    z-index: 900;
+
+    height: 76px;
+
+    background:
+    rgba(255,255,255,0.98);
+
+    backdrop-filter:
+    blur(16px);
+
+    -webkit-backdrop-filter:
+    blur(16px);
+
+    border-bottom:
+    1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+    0 30px;
+
+    box-shadow:
+    0 3px 14px
+    rgba(0,0,0,0.04);
+
+}
+
+/* This ensures content stays visually below the header */
+
+.topbar::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: -1px;
+
+    height: 2px;
+
+    background:
+    rgba(255,255,255,0.98);
+
 }
 
 .page-title h1 {
+
     font-size: 23px;
+
     font-weight: 750;
+
 }
 
 .page-title p {
+
     font-size: 12px;
+
     color: var(--muted);
+
     margin-top: 3px;
+
 }
 
 .top-actions {
+
     display: flex;
+
     align-items: center;
+
     gap: 12px;
+
 }
 
 .refresh-btn {
-    border: 1px solid var(--border);
+
+    border:
+    1px solid var(--border);
+
     background: white;
+
     border-radius: 11px;
-    padding: 9px 13px;
+
+    padding:
+    9px 13px;
+
     cursor: pointer;
+
+    transition: 0.2s ease;
+
+}
+
+.refresh-btn:hover {
+
+    background: #f9fafb;
+
 }
 
 .refresh-btn.loading {
+
     opacity: 0.6;
+
     pointer-events: none;
+
 }
 
 .profile {
+
     width: 38px;
+
     height: 38px;
+
     border-radius: 50%;
-    background: linear-gradient(135deg, #2563eb, #7c3aed);
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #7c3aed
+    );
+
     color: white;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     font-weight: 700;
+
 }
 
-/* CONTENT */
+/* =====================================================
+   CONTENT
+===================================================== */
 
 .content {
-    padding: 28px 30px 40px;
+
+    position: relative;
+
+    z-index: 1;
+
+    padding:
+    28px 30px 40px;
+
     max-width: 1600px;
+
     margin: auto;
+
 }
 
-/* WELCOME */
+/* =====================================================
+   WELCOME
+===================================================== */
 
 .welcome-card {
-    background: linear-gradient(135deg, #111827, #1e3a8a);
+
+    background:
+    linear-gradient(
+        135deg,
+        #111827,
+        #1e3a8a
+    );
+
     color: white;
+
     border-radius: 24px;
+
     padding: 28px;
+
     margin-bottom: 25px;
-    position: relative;
-    overflow: hidden;
+
 }
 
 .welcome-card h2 {
+
     font-size: 25px;
+
     margin-bottom: 8px;
+
 }
 
 .welcome-card p {
+
     color: #dbeafe;
+
     font-size: 14px;
+
 }
 
-/* KPI */
+/* =====================================================
+   KPI
+===================================================== */
 
 .kpi-grid {
+
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    grid-template-columns:
+    repeat(
+        4,
+        minmax(0,1fr)
+    );
+
     gap: 18px;
+
     margin-bottom: 25px;
+
 }
 
 .kpi-card {
+
     background: var(--card);
-    border: 1px solid var(--border);
+
+    border:
+    1px solid var(--border);
+
     border-radius: var(--radius);
+
     padding: 20px;
+
     min-height: 145px;
+
     transition: 0.25s ease;
+
 }
 
 .kpi-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 30px rgba(0,0,0,0.07);
+
+    transform:
+    translateY(-4px);
+
+    box-shadow:
+    0 14px 30px
+    rgba(0,0,0,0.07);
+
 }
 
 .kpi-top {
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     margin-bottom: 20px;
+
 }
 
 .kpi-label {
+
     color: var(--muted);
+
     font-size: 13px;
+
 }
 
 .kpi-icon {
+
     width: 38px;
+
     height: 38px;
+
     border-radius: 12px;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     font-size: 19px;
+
 }
 
 .revenue {
+
     background: #dcfce7;
+
 }
 
 .expenses {
+
     background: #fee2e2;
+
 }
 
 .profit {
+
     background: #dbeafe;
+
 }
 
 .occupancy {
+
     background: #fef3c7;
+
 }
 
 .kpi-value {
+
     font-size: 26px;
+
     font-weight: 750;
+
 }
 
 .kpi-sub {
+
     color: var(--muted);
+
     font-size: 11px;
+
     margin-top: 5px;
+
 }
 
-/* GRID */
+/* =====================================================
+   GRID
+===================================================== */
 
 .dashboard-grid {
+
     display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.8fr);
+
+    grid-template-columns:
+    minmax(0,1.4fr)
+    minmax(300px,0.8fr);
+
     gap: 20px;
+
 }
 
 .panel {
+
     background: white;
-    border: 1px solid var(--border);
+
+    border:
+    1px solid var(--border);
+
     border-radius: var(--radius);
+
     padding: 22px;
+
 }
 
 .panel-header {
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     margin-bottom: 20px;
+
 }
 
 .panel-title {
+
     font-size: 16px;
+
     font-weight: 700;
+
 }
 
 .panel-link {
+
     border: none;
+
     background: transparent;
+
     color: var(--accent);
+
     cursor: pointer;
+
     font-size: 12px;
+
     font-weight: 600;
+
 }
 
-/* OCCUPANCY */
+/* =====================================================
+   OCCUPANCY
+===================================================== */
 
 .occupancy-card {
+
     display: flex;
+
     align-items: center;
+
     gap: 25px;
+
 }
 
 .progress-ring {
+
     width: 130px;
+
     height: 130px;
+
     border-radius: 50%;
-    background: conic-gradient(
-        var(--accent) var(--occupancy, 0%),
-        #e5e7eb var(--occupancy, 0%)
+
+    background:
+    conic-gradient(
+        var(--accent)
+        var(--occupancy,0%),
+
+        #e5e7eb
+        var(--occupancy,0%)
     );
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     position: relative;
+
 }
 
 .progress-ring::before {
+
     content: "";
+
     position: absolute;
+
     width: 94px;
+
     height: 94px;
+
     border-radius: 50%;
+
     background: white;
+
 }
 
 .progress-value {
+
     position: relative;
+
     z-index: 2;
+
     font-size: 24px;
+
     font-weight: 750;
+
 }
 
 .occupancy-info {
+
     display: flex;
+
     flex-direction: column;
+
     gap: 13px;
+
 }
 
 .occupancy-stat {
+
     display: flex;
+
     align-items: center;
+
     gap: 9px;
+
     font-size: 13px;
+
 }
 
 .stat-dot {
+
     width: 9px;
+
     height: 9px;
+
     border-radius: 50%;
+
 }
 
 .stat-dot.occupied {
-    background: var(--accent);
+
+    background:
+    var(--accent);
+
 }
 
 .stat-dot.available {
-    background: #d1d5db;
+
+    background:
+    #d1d5db;
+
 }
 
-/* TRANSACTIONS */
+/* =====================================================
+   TRANSACTIONS
+===================================================== */
 
 .transaction-list {
+
     display: flex;
+
     flex-direction: column;
+
 }
 
 .transaction {
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
-    padding: 14px 0;
-    border-bottom: 1px solid #f0f0f0;
+
+    padding:
+    14px 0;
+
+    border-bottom:
+    1px solid #f0f0f0;
+
 }
 
 .transaction:last-child {
+
     border-bottom: none;
+
 }
 
 .transaction-left {
+
     display: flex;
+
     align-items: center;
+
     gap: 12px;
+
     min-width: 0;
+
 }
 
 .transaction-icon {
+
     width: 38px;
+
     height: 38px;
+
     border-radius: 12px;
+
     background: #eff6ff;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
 }
 
 .transaction-name {
+
     font-size: 13px;
+
     font-weight: 650;
+
     white-space: nowrap;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
+
     max-width: 220px;
+
 }
 
 .transaction-date {
+
     color: var(--muted);
+
     font-size: 11px;
+
     margin-top: 3px;
+
 }
 
 .transaction-amount {
+
     font-weight: 700;
+
     font-size: 13px;
+
     white-space: nowrap;
+
 }
 
-/* QUICK ACTIONS */
+/* =====================================================
+   QUICK ACTIONS
+===================================================== */
 
 .quick-actions {
+
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-columns:
+    repeat(2,1fr);
+
     gap: 12px;
+
 }
 
 .quick-action {
-    border: 1px solid var(--border);
+
+    border:
+    1px solid var(--border);
+
     background: #fafafa;
+
     border-radius: 15px;
+
     padding: 16px;
+
     cursor: pointer;
+
     transition: 0.2s ease;
+
     text-align: left;
+
 }
 
 .quick-action:hover {
+
     background: #f3f4f6;
-    transform: translateY(-2px);
+
+    transform:
+    translateY(-2px);
+
 }
 
 .quick-action-icon {
+
     font-size: 21px;
+
     margin-bottom: 10px;
+
 }
 
 .quick-action-title {
+
     font-size: 13px;
+
     font-weight: 650;
+
 }
 
 .quick-action-sub {
+
     font-size: 11px;
+
     color: var(--muted);
+
     margin-top: 4px;
+
 }
+
+/* =====================================================
+   EMPTY
+===================================================== */
 
 .empty-state {
+
     text-align: center;
+
     padding: 30px 10px;
+
     color: var(--muted);
+
     font-size: 13px;
+
 }
 
-/* TOAST */
-
-.toast {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background: #111827;
-    color: white;
-    padding: 13px 18px;
-    border-radius: 12px;
-    font-size: 13px;
-    transform: translateY(100px);
-    opacity: 0;
-    transition: 0.3s ease;
-    z-index: 999;
-}
-
-.toast.show {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.toast.error {
-    background: #b91c1c;
-}
-
-/* LOADING */
+/* =====================================================
+   LOADING
+===================================================== */
 
 .loading-overlay {
+
     position: fixed;
+
     inset: 0;
-    background: rgba(255,255,255,0.75);
-    backdrop-filter: blur(5px);
+
+    background:
+    rgba(255,255,255,0.75);
+
+    backdrop-filter:
+    blur(5px);
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
-    z-index: 500;
+
+    z-index: 2000;
+
 }
 
 .loading-box {
+
     background: white;
+
     padding: 25px;
+
     border-radius: 18px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+
+    box-shadow:
+    0 15px 40px
+    rgba(0,0,0,0.12);
+
     text-align: center;
+
 }
 
 .spinner {
+
     width: 32px;
+
     height: 32px;
-    border: 3px solid #e5e7eb;
-    border-top-color: var(--accent);
+
+    border:
+    3px solid #e5e7eb;
+
+    border-top-color:
+    var(--accent);
+
     border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin: auto auto 12px;
+
+    animation:
+    spin 0.8s linear infinite;
+
+    margin:
+    auto auto 12px;
+
 }
 
 @keyframes spin {
+
     to {
-        transform: rotate(360deg);
+
+        transform:
+        rotate(360deg);
+
     }
+
 }
 
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast {
+
+    position: fixed;
+
+    bottom: 25px;
+
+    right: 25px;
+
+    background: #111827;
+
+    color: white;
+
+    padding:
+    13px 18px;
+
+    border-radius: 12px;
+
+    font-size: 13px;
+
+    transform:
+    translateY(100px);
+
+    opacity: 0;
+
+    transition: 0.3s ease;
+
+    z-index: 3000;
+
+}
+
+.toast.show {
+
+    transform:
+    translateY(0);
+
+    opacity: 1;
+
+}
+
+.toast.error {
+
+    background:
+    #b91c1c;
+
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
 .mobile-header {
+
     display: none;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    margin-right: 12px;
+
+}
+
+.sidebar-overlay {
+
+    display: none;
+
 }
 
 @media (max-width: 1100px) {
+
     .kpi-grid {
-        grid-template-columns: repeat(2, 1fr);
+
+        grid-template-columns:
+        repeat(2,1fr);
+
     }
+
 }
 
 @media (max-width: 800px) {
 
     .sidebar {
-        transform: translateX(-100%);
+
+        transform:
+        translateX(-100%);
+
     }
 
     .sidebar.open {
-        transform: translateX(0);
+
+        transform:
+        translateX(0);
+
     }
 
     .main {
-        margin-left: 0;
-        width: 100%;
-    }
 
-    .topbar {
-        padding: 0 18px;
+        margin-left: 0;
+
+        width: 100%;
+
     }
 
     .mobile-header {
+
         display: block;
-        margin-right: 12px;
-        border: none;
-        background: transparent;
-        font-size: 22px;
-        cursor: pointer;
+
+    }
+
+    .sidebar-overlay {
+
+        position: fixed;
+
+        inset: 0;
+
+        background:
+        rgba(0,0,0,0.35);
+
+        z-index: 950;
+
+    }
+
+    .sidebar-overlay.show {
+
+        display: block;
+
+    }
+
+    .topbar {
+
+        height: 68px;
+
+        padding:
+        0 18px;
+
     }
 
     .content {
-        padding: 20px 16px 30px;
+
+        padding:
+        20px 16px 30px;
+
     }
 
     .dashboard-grid {
+
         grid-template-columns: 1fr;
+
     }
+
 }
 
 @media (max-width: 520px) {
 
-    .topbar {
-        height: 68px;
-    }
-
     .page-title h1 {
+
         font-size: 18px;
+
     }
 
     .page-title p {
+
         display: none;
-    }
 
-    .refresh-btn {
-        padding: 8px 10px;
-        font-size: 12px;
-    }
-
-    .profile {
-        width: 34px;
-        height: 34px;
-    }
-
-    .welcome-card {
-        padding: 22px;
-        border-radius: 20px;
-    }
-
-    .welcome-card h2 {
-        font-size: 21px;
     }
 
     .kpi-grid {
-        grid-template-columns: 1fr 1fr;
+
+        grid-template-columns:
+        repeat(2,1fr);
+
         gap: 12px;
+
     }
 
     .kpi-card {
+
         min-height: 130px;
+
         padding: 15px;
+
     }
 
     .kpi-value {
+
         font-size: 20px;
+
     }
 
     .kpi-label {
-        font-size: 11px;
-    }
 
-    .kpi-icon {
-        width: 32px;
-        height: 32px;
-        font-size: 15px;
+        font-size: 11px;
+
     }
 
     .occupancy-card {
+
         flex-direction: column;
+
         align-items: flex-start;
+
     }
 
-    .quick-actions {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-.sidebar-overlay {
-    display: none;
-}
-
-@media (max-width: 800px) {
-
-    .sidebar-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.35);
-        z-index: 90;
-    }
-
-    .sidebar-overlay.show {
-        display: block;
-    }
 }
 
 </style>
+
 </head>
 
 <body>
 
 <div class="app">
 
-<aside class="sidebar" id="sidebar">
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
-<div class="brand">
+<aside
+    class="sidebar"
+    id="sidebar"
+>
 
-<div class="brand-icon">🏠</div>
+    <div class="brand">
 
-<div class="brand-text">
+        <div class="brand-icon">
+            🏠
+        </div>
 
-<div class="brand-title" id="brandName">
-PG ERP
-</div>
+        <div class="brand-text">
 
-<div class="brand-subtitle">
-Management System
-</div>
+            <div
+                class="brand-title"
+                id="brandName"
+            >
+                PG ERP
+            </div>
 
-</div>
+            <div class="brand-subtitle">
+                Management System
+            </div>
 
-</div>
+        </div>
 
-<nav class="nav">
+    </div>
 
-<button class="nav-item active" onclick="navigateTo('index.html')">
-<span class="nav-icon">▦</span>
-<span>Dashboard</span>
-</button>
+    <nav class="nav">
 
-<button class="nav-item" onclick="navigateTo('admissions.html')">
-<span class="nav-icon">＋</span>
-<span>Admissions</span>
-</button>
+        <button
+            class="nav-item active"
+            onclick="navigateTo('index.html')"
+        >
+            <span class="nav-icon">▦</span>
+            <span>Dashboard</span>
+        </button>
 
-<button class="nav-item" onclick="navigateTo('rooms.html')">
-<span class="nav-icon">⌂</span>
-<span>Rooms & Beds</span>
-</button>
+        <button
+            class="nav-item"
+            onclick="navigateTo('admissions.html')"
+        >
+            <span class="nav-icon">＋</span>
+            <span>Admissions</span>
+        </button>
 
-<button class="nav-item" onclick="navigateTo('payments.html')">
-<span class="nav-icon">₹</span>
-<span>Payments</span>
-</button>
+        <button
+            class="nav-item"
+            onclick="navigateTo('rooms.html')"
+        >
+            <span class="nav-icon">⌂</span>
+            <span>Rooms & Beds</span>
+        </button>
 
-<button class="nav-item" onclick="navigateTo('reports.html')">
-<span class="nav-icon">▥</span>
-<span>Reports</span>
-</button>
+        <button
+            class="nav-item"
+            onclick="navigateTo('payments.html')"
+        >
+            <span class="nav-icon">₹</span>
+            <span>Payments</span>
+        </button>
 
-<button class="nav-item" onclick="navigateTo('expenses.html')">
-<span class="nav-icon">↘</span>
-<span>Expenses</span>
-</button>
+        <button
+            class="nav-item"
+            onclick="navigateTo('reports.html')"
+        >
+            <span class="nav-icon">▥</span>
+            <span>Reports</span>
+        </button>
 
-<button class="nav-item" onclick="navigateTo('tenants.html')">
-<span class="nav-icon">♙</span>
-<span>Tenants</span>
-</button>
+        <button
+            class="nav-item"
+            onclick="navigateTo('expenses.html')"
+        >
+            <span class="nav-icon">↘</span>
+            <span>Expenses</span>
+        </button>
 
-<button class="nav-item" onclick="navigateTo('settings.html')">
-<span class="nav-icon">⚙</span>
-<span>Settings</span>
-</button>
+        <button
+            class="nav-item"
+            onclick="navigateTo('tenants.html')"
+        >
+            <span class="nav-icon">♙</span>
+            <span>Tenants</span>
+        </button>
 
-</nav>
+        <button
+            class="nav-item"
+            onclick="navigateTo('settings.html')"
+        >
+            <span class="nav-icon">⚙</span>
+            <span>Settings</span>
+        </button>
 
-<div class="sidebar-footer">
+    </nav>
 
-<div class="sync-status">
+    <div class="sidebar-footer">
 
-<div class="sync-row">
+        <div class="sync-status">
 
-<span class="sync-dot" id="syncDot"></span>
+            <div class="sync-row">
 
-<span id="syncText">
-Syncing...
-</span>
+                <span
+                    class="sync-dot"
+                    id="syncDot"
+                ></span>
 
-</div>
+                <span id="syncText">
+                    Syncing...
+                </span>
 
-<div id="lastSync" style="margin-top:6px;">
---
-</div>
+            </div>
 
-</div>
+            <div
+                id="lastSync"
+                style="margin-top:6px;"
+            >
+                --
+            </div>
 
-</div>
+        </div>
+
+    </div>
 
 </aside>
 
-<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+<div
+    class="sidebar-overlay"
+    id="sidebarOverlay"
+    onclick="closeSidebar()"
+></div>
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <main class="main">
 
-<header class="topbar">
+    <!-- STICKY HEADER -->
 
-<div style="display:flex;align-items:center;">
+    <header class="topbar">
 
-<button class="mobile-header" onclick="toggleSidebar()">
-☰
-</button>
+        <div
+            style="
+            display:flex;
+            align-items:center;
+            "
+        >
 
-<div class="page-title">
+            <button
+                class="mobile-header"
+                onclick="toggleSidebar()"
+            >
+                ☰
+            </button>
 
-<h1>
-Dashboard
-</h1>
+            <div class="page-title">
 
-<p id="currentDate">
---
-</p>
+                <h1>
+                    Dashboard
+                </h1>
 
-</div>
+                <p id="currentDate">
+                    --
+                </p>
 
-</div>
+            </div>
 
-<div class="top-actions">
+        </div>
 
-<button class="refresh-btn" id="refreshBtn" onclick="refreshDashboard()">
-↻ Refresh
-</button>
+        <div class="top-actions">
 
-<div class="profile">
-A
-</div>
+            <button
+                class="refresh-btn"
+                id="refreshBtn"
+                onclick="refreshDashboard()"
+            >
+                ↻ Refresh
+            </button>
 
-</div>
+            <div class="profile">
+                A
+            </div>
 
-</header>
+        </div>
 
-<section class="content">
+    </header>
 
-<div class="welcome-card">
+    <!-- PAGE CONTENT -->
 
-<h2 id="welcomeTitle">
-Welcome back 👋
-</h2>
+    <section class="content">
 
-<p>
-Here's what's happening with your property today.
-</p>
+        <div class="welcome-card">
 
-</div>
+            <h2 id="welcomeTitle">
+                Welcome 👋
+            </h2>
 
-<div class="kpi-grid">
+            <p>
+                Here's what's happening with your property today.
+            </p>
 
-<div class="kpi-card">
+        </div>
 
-<div class="kpi-top">
+        <div class="kpi-grid">
 
-<span class="kpi-label">
-Monthly Revenue
-</span>
+            <div class="kpi-card">
 
-<div class="kpi-icon revenue">
-₹
-</div>
+                <div class="kpi-top">
 
-</div>
+                    <span class="kpi-label">
+                        Monthly Revenue
+                    </span>
 
-<div class="kpi-value" id="revenueValue">
-₹0
-</div>
+                    <div class="kpi-icon revenue">
+                        ₹
+                    </div>
 
-<div class="kpi-sub">
-Current month
-</div>
+                </div>
 
-</div>
+                <div
+                    class="kpi-value"
+                    id="revenueValue"
+                >
+                    ₹0
+                </div>
 
-<div class="kpi-card">
+                <div class="kpi-sub">
+                    Current month
+                </div>
 
-<div class="kpi-top">
+            </div>
 
-<span class="kpi-label">
-Monthly Expenses
-</span>
+            <div class="kpi-card">
 
-<div class="kpi-icon expenses">
-↘
-</div>
+                <div class="kpi-top">
 
-</div>
+                    <span class="kpi-label">
+                        Monthly Expenses
+                    </span>
 
-<div class="kpi-value" id="expensesValue">
-₹0
-</div>
+                    <div class="kpi-icon expenses">
+                        ↘
+                    </div>
 
-<div class="kpi-sub">
-Current month
-</div>
+                </div>
 
-</div>
+                <div
+                    class="kpi-value"
+                    id="expensesValue"
+                >
+                    ₹0
+                </div>
 
-<div class="kpi-card">
+                <div class="kpi-sub">
+                    Current month
+                </div>
 
-<div class="kpi-top">
+            </div>
 
-<span class="kpi-label">
-Net Profit
-</span>
+            <div class="kpi-card">
 
-<div class="kpi-icon profit">
-↗
-</div>
+                <div class="kpi-top">
 
-</div>
+                    <span class="kpi-label">
+                        Net Profit
+                    </span>
 
-<div class="kpi-value" id="profitValue">
-₹0
-</div>
+                    <div class="kpi-icon profit">
+                        ↗
+                    </div>
 
-<div class="kpi-sub">
-Revenue minus expenses
-</div>
+                </div>
 
-</div>
+                <div
+                    class="kpi-value"
+                    id="profitValue"
+                >
+                    ₹0
+                </div>
 
-<div class="kpi-card">
+                <div class="kpi-sub">
+                    Revenue minus expenses
+                </div>
 
-<div class="kpi-top">
+            </div>
 
-<span class="kpi-label">
-Occupancy
-</span>
+            <div class="kpi-card">
 
-<div class="kpi-icon occupancy">
-⌂
-</div>
+                <div class="kpi-top">
 
-</div>
+                    <span class="kpi-label">
+                        Occupancy
+                    </span>
 
-<div class="kpi-value" id="occupancyValue">
-0%
-</div>
+                    <div class="kpi-icon occupancy">
+                        ⌂
+                    </div>
 
-<div class="kpi-sub" id="occupancySub">
-0 of 0 beds
-</div>
+                </div>
 
-</div>
+                <div
+                    class="kpi-value"
+                    id="occupancyValue"
+                >
+                    0%
+                </div>
 
-</div>
+                <div
+                    class="kpi-sub"
+                    id="occupancySub"
+                >
+                    0 of 0 beds
+                </div>
 
-<div class="dashboard-grid">
+            </div>
 
-<div class="panel">
+        </div>
 
-<div class="panel-header">
+        <div class="dashboard-grid">
 
-<div class="panel-title">
-Recent Payments
-</div>
+            <div class="panel">
 
-<button class="panel-link" onclick="navigateTo('payments.html')">
-View All
-</button>
+                <div class="panel-header">
 
-</div>
+                    <div class="panel-title">
+                        Recent Payments
+                    </div>
 
-<div class="transaction-list" id="transactionList">
+                    <button
+                        class="panel-link"
+                        onclick="navigateTo('payments.html')"
+                    >
+                        View All
+                    </button>
 
-<div class="empty-state">
-Loading transactions...
-</div>
+                </div>
 
-</div>
+                <div
+                    class="transaction-list"
+                    id="transactionList"
+                >
 
-</div>
+                    <div class="empty-state">
+                        Loading transactions...
+                    </div>
 
-<div style="display:flex;flex-direction:column;gap:20px;">
+                </div>
 
-<div class="panel">
+            </div>
 
-<div class="panel-header">
+            <div
+                style="
+                display:flex;
+                flex-direction:column;
+                gap:20px;
+                "
+            >
 
-<div class="panel-title">
-Occupancy Overview
-</div>
+                <div class="panel">
 
-</div>
+                    <div class="panel-header">
 
-<div class="occupancy-card">
+                        <div class="panel-title">
+                            Occupancy Overview
+                        </div>
 
-<div class="progress-ring" id="progressRing">
+                    </div>
 
-<div class="progress-value" id="progressValue">
-0%
-</div>
+                    <div class="occupancy-card">
 
-</div>
+                        <div
+                            class="progress-ring"
+                            id="progressRing"
+                        >
 
-<div class="occupancy-info">
+                            <div
+                                class="progress-value"
+                                id="progressValue"
+                            >
+                                0%
+                            </div>
 
-<div class="occupancy-stat">
+                        </div>
 
-<span class="stat-dot occupied"></span>
+                        <div class="occupancy-info">
 
-<span>
-Occupied:
-<strong id="occupiedBeds">0</strong>
-</span>
+                            <div class="occupancy-stat">
 
-</div>
+                                <span
+                                    class="stat-dot occupied"
+                                ></span>
 
-<div class="occupancy-stat">
+                                <span>
+                                    Occupied:
+                                    <strong
+                                        id="occupiedBeds"
+                                    >
+                                        0
+                                    </strong>
+                                </span>
 
-<span class="stat-dot available"></span>
+                            </div>
 
-<span>
-Available:
-<strong id="availableBeds">0</strong>
-</span>
+                            <div class="occupancy-stat">
 
-</div>
+                                <span
+                                    class="stat-dot available"
+                                ></span>
 
-</div>
+                                <span>
+                                    Available:
+                                    <strong
+                                        id="availableBeds"
+                                    >
+                                        0
+                                    </strong>
+                                </span>
 
-</div>
+                            </div>
 
-</div>
+                        </div>
 
-<div class="panel">
+                    </div>
 
-<div class="panel-header">
+                </div>
 
-<div class="panel-title">
-Quick Actions
-</div>
+                <div class="panel">
 
-</div>
+                    <div class="panel-header">
 
-<div class="quick-actions">
+                        <div class="panel-title">
+                            Quick Actions
+                        </div>
 
-<button class="quick-action" onclick="navigateTo('admissions.html')">
+                    </div>
 
-<div class="quick-action-icon">
-👤
-</div>
+                    <div class="quick-actions">
 
-<div class="quick-action-title">
-New Admission
-</div>
+                        <button
+                            class="quick-action"
+                            onclick="navigateTo('admissions.html')"
+                        >
 
-<div class="quick-action-sub">
-Add a new tenant
-</div>
+                            <div class="quick-action-icon">
+                                👤
+                            </div>
 
-</button>
+                            <div class="quick-action-title">
+                                New Admission
+                            </div>
 
-<button class="quick-action" onclick="navigateTo('payments.html')">
+                            <div class="quick-action-sub">
+                                Add a new tenant
+                            </div>
 
-<div class="quick-action-icon">
-₹
-</div>
+                        </button>
 
-<div class="quick-action-title">
-Record Payment
-</div>
+                        <button
+                            class="quick-action"
+                            onclick="navigateTo('payments.html')"
+                        >
 
-<div class="quick-action-sub">
-Add rent payment
-</div>
+                            <div class="quick-action-icon">
+                                ₹
+                            </div>
 
-</button>
+                            <div class="quick-action-title">
+                                Record Payment
+                            </div>
 
-<button class="quick-action" onclick="navigateTo('rooms.html')">
+                            <div class="quick-action-sub">
+                                Add rent payment
+                            </div>
 
-<div class="quick-action-icon">
-🛏️
-</div>
+                        </button>
 
-<div class="quick-action-title">
-View Beds
-</div>
+                        <button
+                            class="quick-action"
+                            onclick="navigateTo('rooms.html')"
+                        >
 
-<div class="quick-action-sub">
-Check availability
-</div>
+                            <div class="quick-action-icon">
+                                🛏️
+                            </div>
 
-</button>
+                            <div class="quick-action-title">
+                                View Beds
+                            </div>
 
-<button class="quick-action" onclick="navigateTo('reports.html')">
+                            <div class="quick-action-sub">
+                                Check availability
+                            </div>
 
-<div class="quick-action-icon">
-📊
-</div>
+                        </button>
 
-<div class="quick-action-title">
-View Reports
-</div>
+                        <button
+                            class="quick-action"
+                            onclick="navigateTo('reports.html')"
+                        >
 
-<div class="quick-action-sub">
-Financial overview
-</div>
+                            <div class="quick-action-icon">
+                                📊
+                            </div>
 
-</button>
+                            <div class="quick-action-title">
+                                View Reports
+                            </div>
 
-</div>
+                            <div class="quick-action-sub">
+                                Financial overview
+                            </div>
 
-</div>
+                        </button>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
-</section>
+            </div>
+
+        </div>
+
+    </section>
 
 </main>
 
 </div>
 
-<div class="loading-overlay" id="loadingOverlay">
+<div
+    class="loading-overlay"
+    id="loadingOverlay"
+>
 
-<div class="loading-box">
+    <div class="loading-box">
 
-<div class="spinner"></div>
+        <div class="spinner"></div>
 
-<div>
-Loading dashboard...
+        <div>
+            Loading dashboard...
+        </div>
+
+    </div>
+
 </div>
 
-</div>
-
-</div>
-
-<div class="toast" id="toast"></div>
+<div
+    class="toast"
+    id="toast"
+></div>
 
 <script>
 
@@ -1209,29 +1931,43 @@ async function() {
    API REQUEST
 ===================================================== */
 
-async function apiRequest(action, data = {}) {
+async function apiRequest(
+    action,
+    data = {}
+) {
 
-    const response = await fetch(
-        API_URL,
-        {
-            method: "POST",
+    const response =
+        await fetch(
+            API_URL,
+            {
 
-            headers: {
-                "Content-Type":
-                "text/plain;charset=utf-8"
-            },
+                method: "POST",
 
-            body: JSON.stringify({
-                action: action,
-                data: data
-            })
-        }
-    );
+                headers: {
+
+                    "Content-Type":
+                    "text/plain;charset=utf-8"
+
+                },
+
+                body:
+                JSON.stringify({
+
+                    action: action,
+
+                    data: data
+
+                })
+
+            }
+        );
 
     if (!response.ok) {
+
         throw new Error(
             "Network request failed"
         );
+
     }
 
     const result =
@@ -1240,8 +1976,10 @@ async function apiRequest(action, data = {}) {
     if (!result.success) {
 
         throw new Error(
+
             result.message ||
             "API request failed"
+
         );
 
     }
@@ -1252,7 +1990,7 @@ async function apiRequest(action, data = {}) {
 
 
 /* =====================================================
-   SETTINGS
+   LOAD SETTINGS
 ===================================================== */
 
 async function loadSettings() {
@@ -1264,14 +2002,35 @@ async function loadSettings() {
                 "getSettings"
             );
 
+        /*
+           Expected backend response:
+
+           {
+               success: true,
+
+               data: {
+
+                   pgName:
+                   "Name from SETTINGS!C2"
+
+               }
+
+           }
+        */
+
         settings =
             normalizeSettings(
                 result.data
             );
 
         localStorage.setItem(
+
             SETTINGS_CACHE_KEY,
-            JSON.stringify(settings)
+
+            JSON.stringify(
+                settings
+            )
+
         );
 
         applySettings();
@@ -1285,82 +2044,74 @@ async function loadSettings() {
             error.message
         );
 
-        updateSyncStatus(
-            false
-        );
-
     }
 
 }
 
 
 /* =====================================================
-   NORMALIZE SETTINGS
+   SETTINGS NORMALIZER
 ===================================================== */
 
 function normalizeSettings(data) {
 
-    const normalized = {};
-
     if (!data) {
-        return normalized;
+
+        return {};
+
     }
 
     /*
-       Supports both:
+       Expected:
 
        {
-           "PG Name": "Comfort Corner"
+           pgName: "Comfort Corner"
        }
-
-       and:
-
-       [
-           {
-               "Setting Name": "PG Name",
-               "Value": "Comfort Corner"
-           }
-       ]
     */
 
-    if (Array.isArray(data)) {
+    if (
+        data.pgName !== undefined
+    ) {
 
-        data.forEach(function(row) {
-
-            const key =
-                row["Setting Name"] ||
-                row.settingName ||
-                row.name;
-
-            const value =
-                row["Value"] ??
-                row.value;
-
-            if (key) {
-
-                normalized[key] =
-                    value;
-
-            }
-
-        });
+        return data;
 
     }
 
-    else {
+    /*
+       Fallback if backend
+       returns array
+    */
 
-        Object.keys(data).forEach(
-            function(key) {
+    if (
+        Array.isArray(data)
+    ) {
 
-                normalized[key] =
-                    data[key];
+        const result = {};
+
+        data.forEach(
+            function(row) {
+
+                const key =
+                    row["Setting Name"];
+
+                const value =
+                    row["Value"];
+
+                if (key) {
+
+                    result[key] =
+                        value;
+
+                }
 
             }
         );
 
+        return result;
+
     }
 
-    return normalized;
+    return data;
 
 }
 
@@ -1371,10 +2122,18 @@ function normalizeSettings(data) {
 
 function applySettings() {
 
+    /*
+       PG NAME COMES FROM:
+
+       SETTINGS!C2
+
+       through backend:
+
+       settings.pgName
+    */
+
     const pgName =
-        settings["PG Name"] ||
-        settings["PG_NAME"] ||
-        settings["Business Name"] ||
+        settings.pgName ||
         "PG ERP";
 
     document.title =
@@ -1397,7 +2156,7 @@ function applySettings() {
 
 
 /* =====================================================
-   CACHE SETTINGS
+   LOAD CACHED SETTINGS
 ===================================================== */
 
 function loadCachedSettings() {
@@ -1410,9 +2169,15 @@ function loadCachedSettings() {
             );
 
         if (
+
             !cached ||
-            cached === "undefined" ||
-            cached === "null"
+
+            cached ===
+            "undefined" ||
+
+            cached ===
+            "null"
+
         ) {
 
             return;
@@ -1444,7 +2209,7 @@ function loadCachedSettings() {
 
 
 /* =====================================================
-   DASHBOARD
+   LOAD DASHBOARD
 ===================================================== */
 
 async function loadDashboard() {
@@ -1460,10 +2225,13 @@ async function loadDashboard() {
             result.data;
 
         localStorage.setItem(
+
             DASHBOARD_CACHE_KEY,
+
             JSON.stringify(
                 dashboardData
             )
+
         );
 
         renderDashboard(
@@ -1487,14 +2255,10 @@ async function loadDashboard() {
             false
         );
 
-        if (!dashboardData) {
-
-            showToast(
-                "Could not fetch dashboard data",
-                true
-            );
-
-        }
+        showToast(
+            "Could not fetch dashboard data",
+            true
+        );
 
     }
 
@@ -1508,7 +2272,7 @@ async function loadDashboard() {
 
 
 /* =====================================================
-   CACHE DASHBOARD
+   LOAD DASHBOARD CACHE
 ===================================================== */
 
 function loadCachedDashboard() {
@@ -1521,9 +2285,15 @@ function loadCachedDashboard() {
             );
 
         if (
+
             !cached ||
-            cached === "undefined" ||
-            cached === "null"
+
+            cached ===
+            "undefined" ||
+
+            cached ===
+            "null"
+
         ) {
 
             return;
@@ -1568,32 +2338,10 @@ function loadCachedDashboard() {
 function renderDashboard(data) {
 
     if (!data) {
+
         return;
+
     }
-
-    /*
-       Supports dashboard data like:
-
-       {
-           revenue: 50000,
-           expenses: 10000,
-           profit: 40000,
-           occupancy: {
-               occupied: 20,
-               available: 5,
-               total: 25
-           },
-           recentTransactions: []
-       }
-
-       or:
-
-       {
-           dashboard: {
-               revenue: ...
-           }
-       }
-    */
 
     const dashboard =
         data.dashboard ||
@@ -1601,25 +2349,40 @@ function renderDashboard(data) {
 
     const revenue =
         Number(
+
             dashboard.revenue ||
+
             dashboard.totalRevenue ||
+
             dashboard.monthlyRevenue ||
+
             0
+
         );
 
     const expenses =
         Number(
+
             dashboard.expenses ||
+
             dashboard.totalExpenses ||
+
             dashboard.monthlyExpenses ||
+
             0
+
         );
 
     const profit =
         Number(
+
             dashboard.profit ||
+
             dashboard.netProfit ||
-            revenue - expenses
+
+            revenue -
+            expenses
+
         );
 
     const occupancy =
@@ -1628,33 +2391,54 @@ function renderDashboard(data) {
 
     const occupied =
         Number(
+
             occupancy.occupied ||
+
             dashboard.occupiedBeds ||
+
             0
+
         );
 
     const available =
         Number(
+
             occupancy.available ||
+
             dashboard.availableBeds ||
+
             0
+
         );
 
     const total =
         Number(
+
             occupancy.total ||
+
             dashboard.totalBeds ||
-            occupied + available
+
+            occupied +
+            available
+
         );
 
     const percentage =
         total > 0
-        ? Math.round(
+
+        ?
+
+        Math.round(
+
             occupied /
             total *
             100
+
         )
-        : 0;
+
+        :
+
+        0;
 
     document.getElementById(
         "revenueValue"
@@ -1686,6 +2470,7 @@ function renderDashboard(data) {
     document.getElementById(
         "occupancySub"
     ).textContent =
+
         occupied +
         " of " +
         total +
@@ -1710,14 +2495,20 @@ function renderDashboard(data) {
     document.getElementById(
         "progressRing"
     ).style.setProperty(
+
         "--occupancy",
+
         percentage +
         "%"
+
     );
 
     const transactions =
+
         dashboard.recentTransactions ||
+
         dashboard.recentPayments ||
+
         [];
 
     renderTransactions(
@@ -1741,16 +2532,23 @@ function renderTransactions(
         );
 
     if (
+
         !Array.isArray(
             transactions
         ) ||
+
         transactions.length === 0
+
     ) {
 
         container.innerHTML = `
+
             <div class="empty-state">
+
                 No recent payments found.
+
             </div>
+
         `;
 
         return;
@@ -1758,64 +2556,104 @@ function renderTransactions(
     }
 
     container.innerHTML =
+
         transactions
-        .slice(0, 8)
-        .map(function(payment) {
 
-            const amount =
-                Number(
-                    payment.Amount ||
-                    payment.amount ||
-                    0
-                );
+        .slice(0,8)
 
-            const name =
-                payment["Tenant Name"] ||
-                payment.tenant_name ||
-                payment.FullName ||
-                payment.full_name ||
-                payment["Tenant ID"] ||
-                payment.tenant_id ||
-                "Tenant";
+        .map(
 
-            const date =
-                payment["Payment Date"] ||
-                payment.payment_date ||
-                payment.date;
+            function(payment) {
 
-            return `
+                const amount =
+                    Number(
 
-                <div class="transaction">
+                        payment.Amount ||
 
-                    <div class="transaction-left">
+                        payment.amount ||
 
-                        <div class="transaction-icon">
-                            ₹
+                        0
+
+                    );
+
+                const name =
+
+                    payment["Tenant Name"] ||
+
+                    payment.tenant_name ||
+
+                    payment.FullName ||
+
+                    payment.full_name ||
+
+                    payment["Tenant ID"] ||
+
+                    payment.tenant_id ||
+
+                    "Tenant";
+
+                const date =
+
+                    payment["Payment Date"] ||
+
+                    payment.payment_date ||
+
+                    payment.date;
+
+                return `
+
+                    <div
+                        class="transaction"
+                    >
+
+                        <div
+                            class="transaction-left"
+                        >
+
+                            <div
+                                class="transaction-icon"
+                            >
+                                ₹
+                            </div>
+
+                            <div>
+
+                                <div
+                                    class="transaction-name"
+                                >
+
+                                    ${escapeHtml(name)}
+
+                                </div>
+
+                                <div
+                                    class="transaction-date"
+                                >
+
+                                    ${formatDate(date)}
+
+                                </div>
+
+                            </div>
+
                         </div>
 
-                        <div>
+                        <div
+                            class="transaction-amount"
+                        >
 
-                            <div class="transaction-name">
-                                ${escapeHtml(name)}
-                            </div>
-
-                            <div class="transaction-date">
-                                ${formatDate(date)}
-                            </div>
+                            +${formatCurrency(amount)}
 
                         </div>
 
                     </div>
 
-                    <div class="transaction-amount">
-                        +${formatCurrency(amount)}
-                    </div>
+                `;
 
-                </div>
+            }
 
-            `;
+        )
 
-        })
         .join("");
 
 }
@@ -1858,8 +2696,11 @@ async function refreshDashboard() {
 ===================================================== */
 
 function updateSyncStatus(
+
     online,
+
     cached = false
+
 ) {
 
     const dot =
@@ -1898,14 +2739,28 @@ function updateSyncStatus(
         );
 
         text.textContent =
+
             cached
-            ? "Using cached data"
-            : "Offline";
+
+            ?
+
+            "Using cached data"
+
+            :
+
+            "Offline";
 
         last.textContent =
+
             cached
-            ? "Will sync when available"
-            : "Connection unavailable";
+
+            ?
+
+            "Will sync when available"
+
+            :
+
+            "Connection unavailable";
 
     }
 
@@ -1917,46 +2772,49 @@ function updateSyncStatus(
 ===================================================== */
 
 function navigateTo(page) {
-    window.location.href = page;
+
+    window.location.href =
+        page;
+
 }
 
 function toggleSidebar() {
 
     document
-    .getElementById(
-        "sidebar"
-    )
-    .classList.toggle(
-        "open"
-    );
+        .getElementById(
+            "sidebar"
+        )
+        .classList.toggle(
+            "open"
+        );
 
     document
-    .getElementById(
-        "sidebarOverlay"
-    )
-    .classList.toggle(
-        "show"
-    );
+        .getElementById(
+            "sidebarOverlay"
+        )
+        .classList.toggle(
+            "show"
+        );
 
 }
 
 function closeSidebar() {
 
     document
-    .getElementById(
-        "sidebar"
-    )
-    .classList.remove(
-        "open"
-    );
+        .getElementById(
+            "sidebar"
+        )
+        .classList.remove(
+            "open"
+        );
 
     document
-    .getElementById(
-        "sidebarOverlay"
-    )
-    .classList.remove(
-        "show"
-    );
+        .getElementById(
+            "sidebarOverlay"
+        )
+        .classList.remove(
+            "show"
+        );
 
 }
 
@@ -1973,62 +2831,97 @@ function setCurrentDate() {
     document.getElementById(
         "currentDate"
     ).textContent =
+
         date.toLocaleDateString(
+
             "en-IN",
+
             {
-                weekday: "long",
-                day: "numeric",
-                month: "long",
-                year: "numeric"
+
+                weekday:
+                "long",
+
+                day:
+                "numeric",
+
+                month:
+                "long",
+
+                year:
+                "numeric"
+
             }
+
         );
 
 }
 
 
 /* =====================================================
-   FORMAT CURRENCY
+   CURRENCY
 ===================================================== */
 
-function formatCurrency(amount) {
+function formatCurrency(
+    amount
+) {
 
     const symbol =
+
+        settings.currencySymbol ||
+
         settings["Currency Symbol"] ||
-        settings["Currency"] ||
+
         "₹";
 
     return (
+
         symbol +
+
         Number(
             amount
         ).toLocaleString(
+
             "en-IN",
+
             {
-                maximumFractionDigits: 0
+
+                maximumFractionDigits:
+                0
+
             }
+
         )
+
     );
 
 }
 
 
 /* =====================================================
-   FORMAT DATE
+   DATE FORMAT
 ===================================================== */
 
-function formatDate(value) {
+function formatDate(
+    value
+) {
 
     if (!value) {
+
         return "--";
+
     }
 
     const date =
-        new Date(value);
+        new Date(
+            value
+        );
 
     if (
+
         isNaN(
             date.getTime()
         )
+
     ) {
 
         return value;
@@ -2036,12 +2929,22 @@ function formatDate(value) {
     }
 
     return date.toLocaleDateString(
+
         "en-IN",
+
         {
-            day: "2-digit",
-            month: "short",
-            year: "numeric"
+
+            day:
+            "2-digit",
+
+            month:
+            "short",
+
+            year:
+            "numeric"
+
         }
+
     );
 
 }
@@ -2051,7 +2954,9 @@ function formatDate(value) {
    ESCAPE HTML
 ===================================================== */
 
-function escapeHtml(value) {
+function escapeHtml(
+    value
+) {
 
     return String(
         value || ""
@@ -2104,8 +3009,11 @@ function hideLoading() {
 ===================================================== */
 
 function showToast(
+
     message,
+
     error = false
+
 ) {
 
     const toast =
@@ -2126,6 +3034,7 @@ function showToast(
     );
 
     setTimeout(
+
         function() {
 
             toast.classList.remove(
@@ -2133,7 +3042,9 @@ function showToast(
             );
 
         },
+
         3500
+
     );
 
 }
@@ -2141,4 +3052,5 @@ function showToast(
 </script>
 
 </body>
+
 </html>
